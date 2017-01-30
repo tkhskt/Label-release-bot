@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -138,6 +138,8 @@ ALLOWED_HOSTS = ['*']
 
 STATIC_URL = '/static/'
 
+DATABASES['default'] = dj_database_url.config()
+
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')  # PROJECT_ROOTはBASE_DIRだった
 
@@ -148,5 +150,5 @@ STATICFILES_DIRS = (
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # 追加した
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # -------------
