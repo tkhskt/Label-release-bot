@@ -68,8 +68,8 @@ def labelcheck(request):
       linetransmit(pla['label'],pla['title'],pla['artist'],pla['url'])
 
   dig = digger.digger(0)
-  if dig['key']==1:
-      linetransmit(dig['label'],dig['title'],dig['artist'],dig['url'])
+  #if dig['key']==1:
+  linetransmit(dig['label'],dig['title'],dig['artist'],dig['url'])
 
 
 
