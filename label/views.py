@@ -3,7 +3,7 @@ from label.scraping import altema,maltine,bunkai,sense,trekkie,warp,planet,flau,
 # Create your views here.
 import json
 import requests
-from label.models import lineid,sensedb
+from label.models import lineid,diggerdb
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -34,7 +34,7 @@ def linetransmit(): #label,title,artist,url
     }
     requests.post(ENDPOINT,header=HEADER,data=json.dumps(payload))
     tx = "kokomadedekitayo"
-    db = sensedb(artist=tx)
+    db = diggerdb(artist=tx)
     db.save()
 
 
