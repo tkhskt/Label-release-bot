@@ -39,6 +39,7 @@ def linetransmit(label,title,artist,url):
 
 
 def labelcheck(request):
+  p = "done"
   alt = altema.altema(0)
   if alt['key']==1:
       linetransmit(alt['label'],alt['title'],alt['artist'],alt['url'])
@@ -71,6 +72,7 @@ def labelcheck(request):
   #if dig['key']==1:
   linetransmit(dig['label'],dig['title'],dig['artist'],dig['url'])
 
+  return HttpResponse(p)
 
 
 
