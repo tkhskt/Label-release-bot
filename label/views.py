@@ -18,8 +18,8 @@ HEADER = {
 ENDPOINT = 'https://api.line.me/v2/bot/message/multicast'
 
 
-def linetransmit(label,title,artist,url):
-    text = "New Release! "+label+" "+title+" - "+artist+" "+url
+def linetransmit(): #label,title,artist,url
+    text = "New Release!"#+label+" "+title+" - "+artist+" "+url
     userid = []
     for ids in lineid.objects.all():
         userid.append(ids.user)
@@ -70,7 +70,7 @@ def labelcheck(request):
 
   dig = digger.digger(0)
   #if dig['key']==1:
-  linetransmit(dig['label'],dig['title'],dig['artist'],dig['url'])
+  linetransmit()
 
   return HttpResponse(p)
 
