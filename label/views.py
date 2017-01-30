@@ -41,6 +41,7 @@ def linetransmit(): #label,title,artist,url
 def labelcheck(request):
   p = "done"
   jui = linetransmit()
+  dig = digger.digger(0)
   alt = altema.altema(0)
   if alt['key']==1:
       linetransmit(alt['label'],alt['title'],alt['artist'],alt['url'])
@@ -69,7 +70,7 @@ def labelcheck(request):
   if pla['key']==1:
       linetransmit(pla['label'],pla['title'],pla['artist'],pla['url'])
 
-  dig = digger.digger(0)
+
   #if dig['key']==1:
 
 
