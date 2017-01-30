@@ -18,7 +18,7 @@ HEADER = {
 ENDPOINT = 'https://api.line.me/v2/bot/message/multicast'
 
 
-def linetransmit(iu): #label,title,artist,url
+def linetransmit(): #label,title,artist,url
     text = "New Release!"#+label+" "+title+" - "+artist+" "+url
     userid = []
     for ids in lineid.objects.all():
@@ -40,6 +40,7 @@ def linetransmit(iu): #label,title,artist,url
 
 def labelcheck(request):
   p = "done"
+  jui = linetransmit()
   alt = altema.altema(0)
   if alt['key']==1:
       linetransmit(alt['label'],alt['title'],alt['artist'],alt['url'])
@@ -70,7 +71,7 @@ def labelcheck(request):
 
   dig = digger.digger(0)
   #if dig['key']==1:
-  jui = linetransmit(0)
+
 
   return HttpResponse(p)
 
