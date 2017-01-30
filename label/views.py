@@ -70,7 +70,7 @@ def labelcheck(request):
 
   dig = digger.digger(0)
   #if dig['key']==1:
-  linetransmit()
+  jui = linetransmit()
 
   return HttpResponse(p)
 
