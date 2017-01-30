@@ -18,8 +18,9 @@ HEADER = {
 ENDPOINT = 'https://api.line.me/v2/bot/message/multicast'
 
 
-def linetransmit(): #label,title,artist,url
-    text = "New Release!"#+label+" "+title+" - "+artist+" "+url
+def linetransmit(label,title,artist,url): #label,title,artist,url
+    p = "done"
+    text = "New Release! " +label+" "+title+" - "+artist+" "+url
     userid = []
     for ids in lineid.objects.all():
         userid.append(ids.user)
@@ -32,15 +33,19 @@ def linetransmit(): #label,title,artist,url
             }
         ]
     }
-    requests.post(ENDPOINT,header=HEADER,data=json.dumps(payload))
+    requests.post(ENDPOINT,headers=HEADER,data=json.dumps(payload))
+
+    '''
     tx = "kokomadedekitayo"
     db = diggerdb(artist=tx)
     db.save()
+    '''
+
 
 
 def labelcheck(request):
   p = "done"
-  jui = linetransmit()
+
   dig = digger.digger(0)
   alt = altema.altema(0)
   if alt['key']==1:
@@ -71,12 +76,12 @@ def labelcheck(request):
       linetransmit(pla['label'],pla['title'],pla['artist'],pla['url'])
 
 
-  #if dig['key']==1:
+  if dig['key']==1:
+   linetransmit(dig['label'],dig['title'],dig['artist'],dig['url'])
 
+  #return HttpResponse(p)
 
   return HttpResponse(p)
-
-
 
 
 

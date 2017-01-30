@@ -354,7 +354,7 @@ class warp:
           title.append(pre2[i*2-1])
           #print(title[i])
 
-        for i in range(1,int((len(pre2))/2)):
+        for i in range(0,int((len(pre2))/2)):
          artist.append(pre2[i*2])
 
         for i in range(len(title)):
@@ -510,7 +510,7 @@ class digger:
         artistdb = [] #dbから取得したアーティスト情報
 
         for artdb in diggerdb.objects.all().order_by('id'):
-         diggerdb.append(artdb.artist)
+         artistdb.append(artdb.artist)
 
         for art in soup.find_all(class_="type02"):
           for cla in art.find_all(class_='cell'):
