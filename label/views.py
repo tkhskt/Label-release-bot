@@ -76,8 +76,8 @@ def labelcheck(request):
       linetransmit(pla['label'],pla['title'],pla['artist'],pla['url'])
 
 
-  if dig['key']==1:
-   linetransmit(dig['label'],dig['title'],dig['artist'],dig['url'])
+  #if dig['key']==1:
+   #linetransmit(dig['label'],dig['title'],dig['artist'],dig['url'])
 
 
 
