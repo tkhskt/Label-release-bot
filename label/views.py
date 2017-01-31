@@ -16,6 +16,7 @@ HEADER = {
 }
 
 ENDPOINT = 'https://api.line.me/v2/bot/message/multicast'
+PUSH_ENDPOINT ='https://api.line.me/v2/bot/message/push'
 
 
 def linetransmit(label,title,artist,url): #label,title,artist,url
@@ -40,6 +41,20 @@ def linetransmit(label,title,artist,url): #label,title,artist,url
     db = diggerdb(artist=tx)
     db.save()
     '''
+
+def takahashi(no):
+
+    payload = {
+        "to":'U9cffcfa9f62705b889bfc4470efea951',
+        "messages":[
+            {
+                "type":"text",
+                "text": '今日は更新なかった'
+            }
+        ]
+    }
+    requests.post(PUSH_ENDPOINT,headers=HEADER,data=json.dumps(payload))
+
 
 
 
@@ -75,6 +90,7 @@ def labelcheck(request):
   if pla['key']==1:
       linetransmit(pla['label'],pla['title'],pla['artist'],pla['url'])
 
+  takahashi(3)
 
   #if dig['key']==1:
    #linetransmit(dig['label'],dig['title'],dig['artist'],dig['url'])
@@ -82,8 +98,6 @@ def labelcheck(request):
 
 
   return HttpResponse(p)
-
-
 
 
 
