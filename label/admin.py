@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from label.models import sensedb,warpdb,altemadb,bunkaidb,maltinedb,flaudb,progressivedb,trekkiedb,planetdb,lineid,diggerdb
+from label.models import sensedb,warpdb,altemadb,bunkaidb,maltinedb,flaudb,progressivedb,trekkiedb,planetdb,lineid,diggerdb,owsladb
 
 admin.site.register(sensedb)
 admin.site.register(warpdb)
@@ -15,3 +15,4 @@ admin.site.register(trekkiedb)
 admin.site.register(planetdb)
 admin.site.register(lineid)
 admin.site.register(diggerdb)
+admin.site.register(owsladb)
