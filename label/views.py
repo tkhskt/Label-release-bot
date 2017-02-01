@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from label.scraping import altema,maltine,bunkai,sense,trekkie,warp,planet,flau,progressive,digger
+from label.scraping import altema,maltine,bunkai,sense,trekkie,warp,planet,flau,progressive,digger,owsla
 # Create your views here.
 import json
 import requests
@@ -88,6 +88,9 @@ def labelcheck(request):
       linetransmit(war['label'],war['title'],war['artist'],war['url'])
   pla = planet.planet(0)
   if pla['key']==1:
+      linetransmit(pla['label'],pla['title'],pla['artist'],pla['url'])
+  ows = owsla.owsla(0)
+  if ows['key']==1:
       linetransmit(pla['label'],pla['title'],pla['artist'],pla['url'])
 
   takahashi(3)

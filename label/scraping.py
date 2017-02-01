@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request
-from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,progressivedb,warpdb,planetdb,diggerdb
+from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,progressivedb,warpdb,planetdb,diggerdb,owsladb
 
 class altema:
     def altema(number):
@@ -489,6 +489,50 @@ class flau:
             db.save()
 
         return info
+
+
+class owsla:
+    def owsla(self):
+
+       info =  {"label":"OWSLA","title":"","url":"","artist":"","key":0}
+
+       artistdb = [] #dbから取得したアーティスト情報
+
+       for artdb in owsladb.objects.all().order_by('id'):
+           artistdb.append(artdb.artist)
+
+       url = 'http://owsla.com/releases/'
+       req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+       response = urllib.request.urlopen(req)
+       html = response.read()
+       soup = BeautifulSoup(html, "lxml")
+
+        #artist = []
+       #title = []
+       url = []
+
+       p = soup.prettify()
+
+       for link in soup.find_all(class_="view option valign"):
+        url.append(link['href'])
+
+       if url[0]!=artistdb[0]:
+           #info['title']=title[0]
+           #info['artist']=artist[0]
+           info['url']=url[0]
+           info['key']=1
+
+       delete = owsladb.objects.all()
+       delete.delete()
+
+       for i in range(len(url)):
+           at = url[i]
+           #tit = title[i]
+           #ur =  url[i]
+           db = owsladb(artist=at)
+           db.save()
+
+       return info
 
 
 
