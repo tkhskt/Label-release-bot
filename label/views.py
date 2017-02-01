@@ -105,7 +105,7 @@ def labelcheck2(request):
     if ows['key']==1:
      linetransmit(ows['label'],ows['title'],ows['artist'],ows['url'])
 
-     return HttpResponse(p)
+    return HttpResponse(p)
 
 
 
