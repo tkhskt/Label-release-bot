@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request
-from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,progressivedb,warpdb,planetdb,diggerdb,owsladb
+from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,progressivedb,warpdb,planetdb,diggerdb,owsladb,revealeddb
 
 class altema:
     def altema(number):
@@ -535,6 +535,60 @@ class owsla:
        return info
 
 
+
+class revealed:
+    def revealed(self):
+
+        info =  {"label":"Revealed Records","title":"","url":"","artist":"","key":0}
+
+        artistdb = [] #dbから取得したアーティスト情報
+
+        for artdb in revealeddb.objects.all().order_by('id'):
+            artistdb.append(artdb.artist)
+
+
+
+        url = 'http://www.revealedrecordings.com/releases/'
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+        pre =[]
+
+        #artist = []
+        #title = []
+        url = []
+
+        p = soup.prettify()
+
+
+
+        for link in soup.find_all(class_="releaseblock"):
+           for link2 in link.find_all("a"):
+             pre.append(link2['href'])
+
+        for i in range(len(pre)):
+          if 'http://www.revealedrecordings.com' in pre[i]:
+               url.append(pre[i])
+
+        if url[0]!=artistdb[0]:
+            #info['title']=title[0]
+            #info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+
+        delete = revealeddb.objects.all()
+        delete.delete()
+
+        for i in range(len(url)):
+           at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+           db = revealeddb(artist=at)
+           db.save()
+
+        return info
 
 class digger:
     def digger(self):

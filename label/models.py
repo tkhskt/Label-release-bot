@@ -72,6 +72,12 @@ class owsladb(models.Model):
         return self.artist
 
 
+class revealeddb(models.Model):
+    artist =  models.CharField('アーティスト名',max_length=500)
+
+    def __str__(self):
+        return self.artist
+
 
 class lineid(models.Model):
     user = models.CharField('userid',max_length=500)

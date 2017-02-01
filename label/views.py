@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from label.scraping import altema,maltine,bunkai,sense,trekkie,warp,planet,flau,progressive,digger,owsla
+from label.scraping import altema,maltine,bunkai,sense,trekkie,warp,planet,flau,progressive,digger,owsla,revealed
 # Create your views here.
 import json
 import requests
@@ -36,11 +36,7 @@ def linetransmit(label,title,artist,url): #label,title,artist,url
     }
     requests.post(ENDPOINT,headers=HEADER,data=json.dumps(payload))
 
-    '''
-    tx = "kokomadedekitayo"
-    db = diggerdb(artist=tx)
-    db.save()
-    '''
+
 
 def takahashi(no):
 
@@ -107,6 +103,15 @@ def labelcheck2(request):
 
     return HttpResponse(p)
 
+
+def labelcheck3(request):
+    p = "done3"
+    rev = revealed.revealed(0)
+    if rev['key']==1:
+        linetransmit(rev['label'],rev['title'],rev['artist'],rev['url'])
+
+
+    return HttpResponse
 
 
 def lineidinput(request):

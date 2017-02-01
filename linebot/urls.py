@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^$', views.lineidinput),
     url(r'^check/$', views.labelcheck),
     url(r'^check2/$', views.labelcheck2),
+    url(r'^check3/$', views.labelcheck3),
 ]
