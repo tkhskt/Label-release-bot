@@ -87,7 +87,7 @@ def labelcheck(request):
 
 
 
-def labelcheck2():
+def labelcheck2(request):
     p = "done2"
     pro = progressive.progressive(0)
     if pro['key']==1:
