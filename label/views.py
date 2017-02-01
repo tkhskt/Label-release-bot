@@ -21,7 +21,7 @@ PUSH_ENDPOINT ='https://api.line.me/v2/bot/message/push'
 
 def linetransmit(label,title,artist,url): #label,title,artist,url
     p = "done"
-    text = "New Release! " +label+" "+title+" - "+artist+" "+url
+    text = "New Release!\n" +label+"\n"+title+" - "+artist+" "+url
     userid = []
     for ids in lineid.objects.all():
         userid.append(ids.user)
