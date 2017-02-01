@@ -91,7 +91,7 @@ def labelcheck(request):
       linetransmit(pla['label'],pla['title'],pla['artist'],pla['url'])
   ows = owsla.owsla(0)
   if ows['key']==1:
-      linetransmit(pla['label'],pla['title'],pla['artist'],pla['url'])
+      linetransmit(ows['label'],ows['title'],ows['artist'],ows['url'])
 
   takahashi(3)
 
