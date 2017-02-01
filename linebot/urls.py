@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.lineidinput),
     url(r'^check/$', views.labelcheck),
+    url(r'^check2/$', views.labelcheck2),
 ]

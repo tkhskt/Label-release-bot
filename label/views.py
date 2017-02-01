@@ -77,31 +77,35 @@ def labelcheck(request):
   sen = sense.sense(0)
   if sen['key']==1:
       linetransmit(sen['label'],sen['title'],sen['artist'],sen['url'])
-  pro = progressive.progressive(0)
-  if pro['key']==1:
-      linetransmit(pro['label'],pro['title'],pro['artist'],pro['url'])
-  fla = flau.flau(0)
-  if fla['key']==1:
-      linetransmit(fla['label'],fla['title'],fla['artist'],fla['url'])
-  war = warp.warp(0)
-  if war['key']==1:
-      linetransmit(war['label'],war['title'],war['artist'],war['url'])
-  pla = planet.planet(0)
-  if pla['key']==1:
-      linetransmit(pla['label'],pla['title'],pla['artist'],pla['url'])
-  ows = owsla.owsla(0)
-  if ows['key']==1:
-      linetransmit(ows['label'],ows['title'],ows['artist'],ows['url'])
 
   takahashi(3)
 
   #if dig['key']==1:
    #linetransmit(dig['label'],dig['title'],dig['artist'],dig['url'])
 
-
-
   return HttpResponse(p)
 
+
+
+def labelcheck2():
+    p = "done2"
+    pro = progressive.progressive(0)
+    if pro['key']==1:
+        linetransmit(pro['label'],pro['title'],pro['artist'],pro['url'])
+    fla = flau.flau(0)
+    if fla['key']==1:
+     linetransmit(fla['label'],fla['title'],fla['artist'],fla['url'])
+    war = warp.warp(0)
+    if war['key']==1:
+     linetransmit(war['label'],war['title'],war['artist'],war['url'])
+    pla = planet.planet(0)
+    if pla['key']==1:
+     linetransmit(pla['label'],pla['title'],pla['artist'],pla['url'])
+    ows = owsla.owsla(0)
+    if ows['key']==1:
+     linetransmit(ows['label'],ows['title'],ows['artist'],ows['url'])
+
+     return HttpResponse(p)
 
 
 
