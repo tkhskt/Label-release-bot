@@ -111,7 +111,7 @@ def labelcheck3(request):
         linetransmit(rev['label'],rev['title'],rev['artist'],rev['url'])
 
 
-    return HttpResponse
+    return HttpResponse(p)
 
 
 def lineidinput(request):
