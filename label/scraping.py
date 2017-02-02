@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request
-from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,progressivedb,warpdb,planetdb,diggerdb,owsladb,revealeddb,ghostlydb,spinnindb,wediditdb
+from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,progressivedb,warpdb,planetdb,diggerdb,owsladb,revealeddb,ghostlydb,spinnindb,wediditdb,neverdb
 import re
 
 class altema:
@@ -768,6 +768,61 @@ class wedidit:
 
         return info
 
+
+
+class never:
+    def never(self):
+        url = 'https://never-slept.bandcamp.com/'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+        #artist = []
+        title = []
+        url = []
+
+
+        info =  {"label":"Never Slept","title":"","url":"","artist":"","key":0}
+
+        artistdb = [] #dbから取得したアーティスト情報
+
+        for artdb in neverdb.objects.all().order_by('id'):
+            neverdb.append(artdb.artist)
+
+
+        for tit in soup.find_all("p",class_="title"):
+          title.append(tit.text)
+
+
+        for i in range(len(title)):
+           title[i] = title[i].replace("\n","")
+
+        for i in range(len(title)):
+           title[i] = re.sub("\s{2}","",title[i])
+
+        for link in soup.find_all("div",class_="leftMiddleColumns"):
+          for link2 in link.find_all("a"):
+             url.append(link2['href'])
+
+
+        if len(title)>len(artistdb):
+            info['title']=title[0]
+            #info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+
+        delete = neverdb.objects.all()
+        delete.delete()
+
+        for i in range(len(url)):
+            at = title[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = neverdb(artist=at)
+            db.save()
+
+        return info
 
 class digger:
     def digger(self):
