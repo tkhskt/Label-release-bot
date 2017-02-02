@@ -805,6 +805,9 @@ class never:
           for link2 in link.find_all("a"):
              url.append(link2['href'])
 
+        for i in range(len(url)):
+            url[i] = 'https://never-slept.bandcamp.com' + url[i]
+
 
         if len(title)>len(artistdb):
             info['title']=title[0]
