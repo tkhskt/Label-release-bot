@@ -810,7 +810,7 @@ class never:
 
 
         if len(title)>len(artistdb):
-            info['title']=title[0]
+            #info['title']=title[0]
             #info['artist']=artist[0]
             info['url']=url[0]
             info['key']=1
@@ -819,7 +819,7 @@ class never:
         delete.delete()
 
         for i in range(len(url)):
-            at = title[i]
+            at = url[i]
             #tit = title[i]
             #ur =  url[i]
             db = neverdb(artist=at)
