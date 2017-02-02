@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib.request
-from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,progressivedb,warpdb,planetdb,diggerdb,owsladb,revealeddb
+from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,progressivedb,warpdb,planetdb,diggerdb,owsladb,revealeddb,ghostlydb,spinnindb,wediditdb
+import re
 
 class altema:
     def altema(number):
@@ -589,6 +590,184 @@ class revealed:
            db.save()
 
         return info
+
+
+
+class ghostly:
+    def ghostly(self):
+        info =  {"label":"Ghostly International","title":"","url":"","artist":"","key":0}
+
+        artistdb = [] #dbから取得したアーティスト情報
+        titledb = []
+        urldb = []
+
+        for artdb in ghostlydb.objects.all().order_by('id'):
+            artistdb.append(artdb.artist)
+            titledb.append(artdb.title)
+            urldb.append(artdb.url)
+
+        url = 'http://ghostly.com/releases'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+
+        preurl = []
+        pretitle = []
+        preartist = []
+
+
+        p = soup.prettify()
+
+        for link in soup.find_all("dl",class_="artist-releases"):
+          for link2 in link.find_all("a"):
+             preurl.append(link2['href'])
+          for art in link.find_all("dd",class_="artist"):
+             preartist.append(art.text)
+          for tit in link.find_all("dd",class_="title"):
+             pretitle.append(tit.text)
+
+        if len(preartist)>len(artistdb):
+            artist = set(preartist)-set(artistdb)
+            title = set(pretitle)-set(titledb)
+            url = set(preurl)-set(urldb)
+            artist = list(artist)
+            title = list(title)
+            url = list(url)
+
+            for i in range(len(url)):
+                url[i] = 'http://ghostly.com'+url[i]
+
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+
+
+
+        delete = ghostlydb.objects.all()
+        delete.delete()
+
+        for i in range(len(preurl)):
+            at = preartist[i]
+            tit = pretitle[i]
+            ur = preurl[i]
+            db = ghostlydb(artist=at,title=tit,url=ur)
+            db.save()
+
+        return info
+
+
+
+class spinnin:
+    def spinnin(self):
+        url = 'https://www.spinninrecords.com/releases/'
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+        pre = []
+        pre2 = []
+
+        artist = []
+        title = []
+        url = []
+
+        info =  {"label":"Spinnin' Records","title":"","url":"","artist":"","key":0}
+
+        artistdb = [] #dbから取得したアーティスト情報
+
+        for artdb in spinnindb.objects.all().order_by('id'):
+            artistdb.append(artdb.artist)
+
+
+        for tit in soup.find_all("h2"):
+         for link in tit.find_all("a"):
+             title.append(link.text)
+             url.append(link['href'])
+
+
+        for art in soup.find_all(class_="item music jscroll-content"):
+           for art2 in art.find_all("p"):
+              pre.append(art2.text)
+
+        for i in range(len(pre)):
+          pre2.append(pre[i].replace("\n",""))
+
+        for i in range(len(pre2)):
+         moji = re.sub('\s{2}',"",pre2[i]) #連続した空白の削除
+         artist.append(moji)
+
+        for i in range(len(url)):
+            url[i] = "https://www.spinninrecords.com" + url[i]
+
+        if title[0]!=artistdb[0]:
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+
+        delete = spinnindb.objects.all()
+        delete.delete()
+
+        for i in range(len(url)):
+            at = title[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = spinnindb(artist=at)
+            db.save()
+
+        return info
+
+
+
+class wedidit:
+    def wedidit(self):
+        url = 'http://www.wediditcollective.com/releases/'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+        artist = []
+        title = []
+        url = []
+
+        info =  {"label":"WEDIDIT","title":"","url":"","artist":"","key":0}
+
+        artistdb = [] #dbから取得したアーティスト情報
+
+        for artdb in wediditdb.objects.all().order_by('id'):
+            artistdb.append(artdb.artist)
+
+        for link in soup.find_all(class_="releases-wrapper"):
+           for link2 in link.find_all("a"):
+              url.append(link2['href'])
+           for art in link.find_all("h4"):
+              artist.append(art.text)
+           for tit in link.find_all("h3"):
+              title.append(tit.text)
+
+           if len(title)>len(artistdb):
+               info['title']=title[0]
+               info['artist']=artist[0]
+               info['url']=url[0]
+               info['key']=1
+
+        delete = wediditdb.objects.all()
+        delete.delete()
+
+        for i in range(len(url)):
+            at = title[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = wediditdb(artist=at)
+            db.save()
+
+        return info
+
 
 class digger:
     def digger(self):
