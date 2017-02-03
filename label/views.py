@@ -135,16 +135,32 @@ def labelcheck4(request):
         linetransmit(ma['label'],ma['title'],ma['artist'],ma['url'])
 
 
-
     return HttpResponse(p)
+
+
 
 def lineidinput(request):
     request_json = json.loads(request.body.decode('utf-8'))
     p = "ok"
+    id =[]
     for e in request_json['events']:
         if e['type'] == 'follow':
          userid = e['source']['userId']
          db = lineid(user=userid)
          db.save()
 
+        if e['type'] == 'unfollow':
+           for i in lineid.objects.all():
+               id.append(i.user)
+
+           delete = lineid.objects.all()
+           delete.delete()
+
+           userid = e['source']['userId']
+
+           id.remove(userid)
+
+           for i in range(len(id)):
+            db = lineid(user=id[i])
+            db.save()
     return HttpResponse(p)
