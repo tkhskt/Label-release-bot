@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from label.scraping import altema,maltine,bunkai,sense,trekkie,warp,planet,flau,progressive,digger,owsla,revealed,ghostly,spinnin,wedidit,never,mad
+from label.scraping import altema,maltine,bunkai,sense,trekkie,warp,planet,flau,progressive,digger,owsla,revealed,ghostly,spinnin,wedidit,never,mad,rs
 # Create your views here.
 import json
 import requests
@@ -137,7 +137,9 @@ def labelcheck4(request):
     ma = mad.mad(0)
     if ma['key']==1:
         linetransmit(ma['label'],ma['title'],ma['artist'],ma['url'])
-
+    r = rs.rs(0)
+    if r['key']==1:
+        linetransmit(r['label'],r['title'],r['artist'],r['url'])
     return HttpResponse(p)
    except:
     return HttpResponse("error")

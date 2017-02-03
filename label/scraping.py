@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request
-from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,progressivedb,warpdb,planetdb,diggerdb,owsladb,revealeddb,ghostlydb,spinnindb,wediditdb,neverdb,maddb
+from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,progressivedb,warpdb,planetdb,diggerdb,owsladb,revealeddb,ghostlydb,spinnindb,wediditdb,neverdb,maddb,rsdb
 import re
 
 class altema:
@@ -303,7 +303,7 @@ class planet:
               for link in tit.find_all("a"):
                    url.append(link['href'])
 
-        if artist[0]!=artistdb[0]:
+        if url[0]!=artistdb[0]:
              info['title']=title[0]
              info['artist']=artist[0]
              info['url']=url[0]
@@ -313,7 +313,7 @@ class planet:
         delete.delete()
 
         for i in range(len(url)):
-            at = artist[i]
+            at = url[i]
             #tit = title[i]
             #ur =  url[i]
             db = planetdb(artist=at)
@@ -362,7 +362,7 @@ class warp:
          for link in soup.find_all("a",class_="GridItem-link",href=True,title=title[i]):
              url.append('https://warp.net' + link['href'])
 
-        if artist[0]!=artistdb[0]:
+        if url[0]!=artistdb[0]:
             info['title']=title[0]
             info['artist']=artist[0]
             info['url']=url[0]
@@ -372,7 +372,7 @@ class warp:
         delete.delete()
 
         for i in range(len(url)):
-            at = artist[i]
+            at = url[i]
             #tit = title[i]
             #ur =  url[i]
             db = warpdb(artist=at)
@@ -865,6 +865,51 @@ class mad:
 
         return info
 
+
+
+class rs:
+    def rs(self):
+        url = 'http://www.randsrecords.com/releases'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+        artist = []
+        title = []
+        url = []
+
+        info =  {"label":"R&S Records","title":"","url":"","artist":"","key":0}
+
+        artistdb = [] #dbから取得したアーティスト情報
+
+        for artdb in rsdb.objects.all().order_by('id'):
+            artistdb.append(artdb.artist)
+
+        for art in soup.find_all(class_="artist"):
+          artist.append(art.text)
+
+        for link in soup.find_all(class_="title"):
+          url.append(link['href'])
+          title.append(link.text)
+
+        if title[0]!=artistdb[0]:
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+
+        delete = rsdb.objects.all()
+        delete.delete()
+
+        for i in range(len(url)):
+            at = title[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = rsdb(artist=at)
+            db.save()
+
+        return info
 
 class digger:
     def digger(self):
