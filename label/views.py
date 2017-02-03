@@ -118,9 +118,9 @@ def labelcheck3(request):
     wed = wedidit.wedidit(0)
     if wed['key']==1:
         linetransmit(wed['label'],wed['title'],wed['artist'],wed['url'])
-    nev = never.never(0)
-    if nev['key']==1:
-        linetransmit(nev['label'],nev['title'],nev['artist'],nev['url'])
+    #nev = never.never(0)
+    #if nev['key']==1:
+     #   linetransmit(nev['label'],nev['title'],nev['artist'],nev['url'])
 
 
     return HttpResponse(p)
