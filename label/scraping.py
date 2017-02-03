@@ -831,13 +831,12 @@ class mad:
         title = []
         url = []
 
-
         info =  {"label":"Mad Decent","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
 
         for artdb in maddb.objects.all().order_by('id'):
-            artistdb.append(artdb.artist)
+           artistdb.append(artdb.artist)
 
         for link in soup.find_all("a",class_="thumb-link"):
            url.append(link['href'])

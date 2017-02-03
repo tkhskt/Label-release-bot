@@ -55,8 +55,8 @@ def takahashi(no):
 
 
 def labelcheck(request):
-  p = "done"
-
+ p = "done"
+ try:
   dig = digger.digger(0)
   alt = altema.altema(0)
   if alt['key']==1:
@@ -73,18 +73,17 @@ def labelcheck(request):
   sen = sense.sense(0)
   if sen['key']==1:
       linetransmit(sen['label'],sen['title'],sen['artist'],sen['url'])
-
   takahashi(3)
-
-  #if dig['key']==1:
-   #linetransmit(dig['label'],dig['title'],dig['artist'],dig['url'])
-
   return HttpResponse(p)
+ except:
+  pass
+
 
 
 
 def labelcheck2(request):
-    p = "done2"
+   p = "done2"
+   try:
     pro = progressive.progressive(0)
     if pro['key']==1:
         linetransmit(pro['label'],pro['title'],pro['artist'],pro['url'])
@@ -100,12 +99,14 @@ def labelcheck2(request):
     ows = owsla.owsla(0)
     if ows['key']==1:
      linetransmit(ows['label'],ows['title'],ows['artist'],ows['url'])
-
     return HttpResponse(p)
+   except:
+    pass
 
 
 def labelcheck3(request):
-    p = "done3"
+   p = "done3"
+   try:
     rev = revealed.revealed(0)
     if rev['key']==1:
         linetransmit(rev['label'],rev['title'],rev['artist'],rev['url'])
@@ -121,9 +122,10 @@ def labelcheck3(request):
     nev = never.never(0)
     if nev['key']==1:
         linetransmit(nev['label'],nev['title'],nev['artist'],nev['url'])
-
-
     return HttpResponse(p)
+   except:
+    pass
+
 
 
 
