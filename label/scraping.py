@@ -788,7 +788,7 @@ class never:
         artistdb = [] #dbから取得したアーティスト情報
 
         for artdb in neverdb.objects.all().order_by('id'):
-            neverdb.append(artdb.artist)
+            artistdb.append(artdb.artist)
 
 
         for link in soup.find_all("div",class_="leftMiddleColumns"):
@@ -837,7 +837,7 @@ class mad:
         artistdb = [] #dbから取得したアーティスト情報
 
         for artdb in maddb.objects.all().order_by('id'):
-            neverdb.append(artdb.artist)
+            artistdb.append(artdb.artist)
 
         for link in soup.find_all("a",class_="thumb-link"):
            url.append(link['href'])
