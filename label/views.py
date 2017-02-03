@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from label.scraping import altema,maltine,bunkai,sense,trekkie,warp,planet,flau,progressive,digger,owsla,revealed,ghostly,spinnin,wedidit,never
+from label.scraping import altema,maltine,bunkai,sense,trekkie,warp,planet,flau,progressive,digger,owsla,revealed,ghostly,spinnin,wedidit,never,mad
 # Create your views here.
 import json
 import requests
@@ -125,6 +125,18 @@ def labelcheck3(request):
 
     return HttpResponse(p)
 
+
+
+
+def labelcheck4(request):
+    p = "done3"
+    ma = mad.mad(0)
+    if ma['key']==1:
+        linetransmit(ma['label'],ma['title'],ma['artist'],ma['url'])
+
+
+
+    return HttpResponse(p)
 
 def lineidinput(request):
     request_json = json.loads(request.body.decode('utf-8'))

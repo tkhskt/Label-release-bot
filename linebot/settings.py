@@ -31,7 +31,7 @@ SECRET_KEY = '&v&mt)^l*xc0o1tm2%pib8&v7i6b3(hjkeqz3!!&rhmmd@8l0m'
 DEBUG = False
 
 # コメントアウトした
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 # ここまで
 
 # Application definition

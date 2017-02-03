@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request
-from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,progressivedb,warpdb,planetdb,diggerdb,owsladb,revealeddb,ghostlydb,spinnindb,wediditdb,neverdb
+from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,progressivedb,warpdb,planetdb,diggerdb,owsladb,revealeddb,ghostlydb,spinnindb,wediditdb,neverdb,maddb
 import re
 
 class altema:
@@ -816,6 +816,56 @@ class never:
             db.save()
 
         return info
+
+
+
+class mad:
+    def mad(self):
+        url = 'http://maddecent.com/music/'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+        artist = []
+        title = []
+        url = []
+
+
+        info =  {"label":"Mad Decent","title":"","url":"","artist":"","key":0}
+
+        artistdb = [] #dbから取得したアーティスト情報
+
+        for artdb in maddb.objects.all().order_by('id'):
+            neverdb.append(artdb.artist)
+
+        for link in soup.find_all("a",class_="thumb-link"):
+           url.append(link['href'])
+
+        for tit in soup.find_all("h1",itemprop="name"):
+           title.append(tit.text)
+
+        for art in soup.find_all("h2",class_="artist-name"):
+           artist.append(art.text)
+
+        if title[0]!=artistdb[0]:
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+
+        delete = maddb.objects.all()
+        delete.delete()
+
+        for i in range(len(url)):
+            at = title[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = maddb(artist=at)
+            db.save()
+
+        return info
+
 
 class digger:
     def digger(self):
