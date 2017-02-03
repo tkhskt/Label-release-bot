@@ -142,7 +142,7 @@ def labelcheck4(request):
         linetransmit(r['label'],r['title'],r['artist'],r['url'])
     return HttpResponse(p)
    except:
-    return HttpResponse("error")
+    return HttpResponse("error4")
 
 
 def lineidinput(request):
