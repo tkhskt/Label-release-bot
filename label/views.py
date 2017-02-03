@@ -129,7 +129,7 @@ def labelcheck3(request):
 
 
 def labelcheck4(request):
-    p = "done3"
+    p = "done4"
     ma = mad.mad(0)
     if ma['key']==1:
         linetransmit(ma['label'],ma['title'],ma['artist'],ma['url'])
