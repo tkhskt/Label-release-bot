@@ -76,7 +76,7 @@ def labelcheck(request):
   takahashi(3)
   return HttpResponse(p)
  except:
-  pass
+  return HttpResponse("error")
 
 
 
@@ -101,7 +101,8 @@ def labelcheck2(request):
      linetransmit(ows['label'],ows['title'],ows['artist'],ows['url'])
     return HttpResponse(p)
    except:
-    pass
+    return HttpResponse("error")
+
 
 
 def labelcheck3(request):
@@ -124,21 +125,22 @@ def labelcheck3(request):
         linetransmit(nev['label'],nev['title'],nev['artist'],nev['url'])
     return HttpResponse(p)
    except:
-    pass
+    return HttpResponse("error")
 
 
 
 
 
 def labelcheck4(request):
-    p = "done4"
+   p = "done4"
+   try:
     ma = mad.mad(0)
     if ma['key']==1:
         linetransmit(ma['label'],ma['title'],ma['artist'],ma['url'])
 
-
     return HttpResponse(p)
-
+   except:
+    return HttpResponse("error")
 
 
 def lineidinput(request):
