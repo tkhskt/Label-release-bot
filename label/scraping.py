@@ -540,7 +540,7 @@ class owsla:
 class revealed:
     def revealed(self):
 
-        info =  {"label":"Revealed Records","title":"","url":"","artist":"","key":0}
+        info =  {"label":"Revealed Recordings","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
 
