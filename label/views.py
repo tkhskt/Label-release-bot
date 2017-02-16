@@ -38,7 +38,7 @@ def linetransmit(label,title,artist,url): #label,title,artist,url
 
 
 
-def takahashi(no):
+def takahashi():
 
     payload = {
         "to":'U9cffcfa9f62705b889bfc4470efea951',
@@ -73,7 +73,7 @@ def labelcheck(request):
   sen = sense.sense(0)
   if sen['key']==1:
       linetransmit(sen['label'],sen['title'],sen['artist'],sen['url'])
-  takahashi(3)
+  takahashi()
   return HttpResponse(p)
  except:
   return HttpResponse("error")
