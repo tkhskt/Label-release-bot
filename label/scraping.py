@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,\
       progressivedb,warpdb,planetdb,diggerdb,owsladb,revealeddb,ghostlydb,spinnindb,\
-      wediditdb,neverdb,maddb,rsdb,edbangerdb
+      wediditdb,neverdb,maddb,rsdb,edbangerdb,brainfeederdb
 import re
 
 class altema:
@@ -930,6 +930,58 @@ class edbanger:
 
         return info
 
+
+
+class brainfeeder:
+    def brainfeeder(self):
+        url = 'http://www.brainfeedersite.com/'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+        artist = []
+        title = []
+        url = []
+
+        info =  {"label":"Brainfeeder","title":"","url":"","artist":"","key":0}
+
+        artistdb = [] #dbから取得したアーティスト情報
+
+        for artdb in brainfeederdb.objects.all().order_by('id'):
+            artistdb.append(artdb.artist)
+
+        pre = []
+
+        for sl in soup.find_all(class_="slideshow"):
+            for h2 in sl.find_all("h2"):
+             pre.append(h2.text)
+             for a in h2.find_all("a"):
+                url.append(a['href'])
+
+        at = pre[0].split(" – ")
+        artist.append(at[0])
+        title.append(at[1])
+
+
+
+        if url[0]!=artistdb[0]:
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+
+        delete = brainfeederdb.objects.all()
+        delete.delete()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = brainfeederdb(artist=at)
+            db.save()
+
+        return info
 
 
 class rs:
