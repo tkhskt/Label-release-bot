@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from label.scraping import altema,maltine,bunkai,sense,trekkie,warp,planet,flau,progressive,digger,owsla,revealed,ghostly,spinnin,wedidit,never,mad,rs
+from label.scraping import altema,maltine,bunkai,sense,trekkie,warp,planet,flau,progressive,\
+      digger,owsla,revealed,ghostly,spinnin,wedidit,never,mad,rs,edbanger
 # Create your views here.
 import json
 import requests
@@ -26,7 +27,7 @@ def linetransmit(label,title,artist,url): #label,title,artist,url
     for ids in lineid.objects.all():
         userid.append(ids.user)
     payload = {
-        "to":userid,
+        "to":['U9cffcfa9f62705b889bfc4470efea951',],#userid,
         "messages":[
             {
                 "type":"text",
@@ -140,6 +141,9 @@ def labelcheck4(request):
     r = rs.rs(0)
     if r['key']==1:
         linetransmit(r['label'],r['title'],r['artist'],r['url'])
+    ed = edbanger.edbanger(0)
+    if ed['key']==1:
+        linetransmit(ed['label'],ed['title'],ed['artist'],ed['url'])
     return HttpResponse(p)
    except:
     return HttpResponse("error4")

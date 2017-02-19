@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import urllib.request
-from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,progressivedb,warpdb,planetdb,diggerdb,owsladb,revealeddb,ghostlydb,spinnindb,wediditdb,neverdb,maddb,rsdb
+from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,\
+      progressivedb,warpdb,planetdb,diggerdb,owsladb,revealeddb,ghostlydb,spinnindb,\
+      wediditdb,neverdb,maddb,rsdb,edbangerdb
 import re
 
 class altema:
@@ -861,6 +863,69 @@ class mad:
             #tit = title[i]
             #ur =  url[i]
             db = maddb(artist=at)
+            db.save()
+
+        return info
+
+
+
+class edbanger:
+    def edbanger(self):
+        url = 'http://www.edbangerrecords.com/site/'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+        artist = []
+        title = []
+        url = []
+
+        info =  {"label":"Ed Banger Records","title":"","url":"","artist":"","key":0}
+
+        artistdb = [] #dbから取得したアーティスト情報
+
+        for artdb in edbangerdb.objects.all().order_by('id'):
+            artistdb.append(artdb.artist)
+
+        pre = []
+
+        for h2 in soup.find_all("h2",class_="entry-title"):
+            for art in h2.find_all("a"):
+                pre.append(art.text)
+                url.append(art['href'])
+
+
+        for i in range(len(pre)):
+            if "“" in pre[i]:
+                p = pre[i].split(" “")
+                artist.append(p[0])
+                q = p[1].replace("”","")
+                title.append(q)
+            elif "« " in pre[i]:
+                p = pre[i].split("« ")
+                artist.append(p[0])
+                q = p[1].replace(" »","")
+                title.append(q)
+            else:
+                artist.append("")
+                title.append(pre[i])
+
+
+        if len(url)>len(artistdb):
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+
+        delete = edbangerdb.objects.all()
+        delete.delete()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = edbangerdb(artist=at)
             db.save()
 
         return info
