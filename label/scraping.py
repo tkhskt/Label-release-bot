@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,\
       progressivedb,warpdb,planetdb,diggerdb,owsladb,revealeddb,ghostlydb,spinnindb,\
-      wediditdb,neverdb,maddb,rsdb,edbangerdb,brainfeederdb
+      wediditdb,neverdb,maddb,rsdb,edbangerdb,brainfeederdb,luckymedb
 import re
 
 class altema:
@@ -979,6 +979,56 @@ class brainfeeder:
             #tit = title[i]
             #ur =  url[i]
             db = brainfeederdb(artist=at)
+            db.save()
+
+        return info
+
+
+class luckyme:
+    def luckyme(self):
+        url = 'https://luckyme.bleepstores.com/'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+        artist = []
+        title = []
+        url = []
+
+        info =  {"label":"LuckyMe","title":"","url":"","artist":"","key":0}
+
+        artistdb = [] #dbから取得したアーティスト情報
+
+        for artdb in luckymedb.objects.all().order_by('id'):
+            artistdb.append(artdb.artist)
+
+        for id in soup.find_all(id="2017"):
+            for dd in id.find_all("dd",class_="artist "):
+                for a in dd.find_all("a"):
+                    artist.append(a['title'])
+
+        for id2 in soup.find_all(id="2017"):
+            for dd2 in id2.find_all("dd",class_="release-title"):
+                for a2 in dd2.find_all("a"):
+                    title.append(a2['title'])
+                    url.append("https://luckyme.bleepstores.com/"+a2['href'])
+
+
+        if len(url)>len(artistdb):
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+
+        delete = luckymedb.objects.all()
+        delete.delete()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = luckymedb(artist=at)
             db.save()
 
         return info
