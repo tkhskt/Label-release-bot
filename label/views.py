@@ -40,7 +40,7 @@ words = {
     'mad decent':['Mad','MAD','mad','マッド','まっど'],
     'r&s':['R&S','RandS','rands','r&s','Rands','R&s','アール','あーる'],
     'ed banger':['Ed Banger','ED BANGER','ed banger','Ed banger','ed Banger','EdBanger','EDBANGER','edbanger','Edbanger','edBanger','エドバンガー','エド・バンガー','エド　バンガー'],
-    'Brainfeeder':['Brain','brain','BRAIN','ブレイン','ブレーン','ぶれいん','ぶれーん'],
+    'brainfeeder':['Brain','brain','BRAIN','ブレイン','ブレーン','ぶれいん','ぶれーん'],
     'luckyme':['Lucky','lucky','LUCKY','ラッキー','らっきー'],
 }
 
@@ -309,7 +309,7 @@ def reply(data):
             }
         )
     if len(data['url'])<=5:
-        for i in range(len(data['url'])):
+        for i in range(len(data['label'])):
             payload['messages'].append(
                 {
                     'type':'text',
@@ -328,6 +328,8 @@ def lineidinput(request):
     p = "ok"
     id =[]
     for e in request_json['events']:
+        rptoken = e['replyToken']
+
         if e['type'] == 'follow':
          userid = e['source']['userId']
          db = lineid(user=userid)
@@ -348,8 +350,9 @@ def lineidinput(request):
             db = lineid(user=id[i])
             db.save()
 
+
         if e['type']=='message':
             if e['message']['type']=='text':
-                data = wordcheck(e['message']['text'],e['replyToken'])
+                data = wordcheck(e['message']['text'],rptoken)
                 reply(data)
     return HttpResponse(p)
