@@ -22,13 +22,13 @@ PUSH_ENDPOINT ='https://api.line.me/v2/bot/message/push'
 REPLY_ENDPOINT = 'https://api.line.me/v2/bot/message/reply'
 
 words = {
-    'altema':['altema','アルテマ','あるてま','altima','アルティマ','アルティメ','Altema','ALTEMA'],
+    'altema':['altema','アルテマ','あるてま','altima','Altima','アルティマ','アルティメ','Altema','ALTEMA'],
     'maltine':['maltine','マルチネ','マルティネ','malutine','marutine','martine','MALTINE','Maltine','まるちね'],
     'bunkai-kei':['bunkai','Bunkai','BUNKAI','分解','ぶんかい','ブンカイ'],
     'trekkie trax':['Trekkie','TREKKIE','trekkie','トレッキー','とれっきー'],
     'sense':['SenSe','SENSE','sense','Sense','senSe','センス','せんす','sence','Sence'],
     'flau':['flau','FLAU','FLAW','Flau','ふらう','ふらー','flaw','Flaw','フル―','フラ','フラー','ふる','ふるー','フラウ'],
-    'progressive form':['PROGRESSIVE','progressive','Prog','prog','Progressive','プログレッシブ','プログレッシヴ','プログレ','ぷろぐれっしぶ','ぷろぐれ'],
+    'progressive form':['PROGRESSIVE','progressive','Progressive','プログレッシブ','プログレッシヴ','ぷろぐれっしぶ'],
     'warp':['Warp','warp','WARP','ウォープ','ワープ','うぉーぷ','わーぷ'],
     'planet mu':['Planet','planet','PLANET','ぷらねっと','プラネット'],
     'owsla':['OWSLA','owsla','Owsla','オウスラ','おうすら','オースラ','オウズラ','おーずら'],

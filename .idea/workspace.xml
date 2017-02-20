@@ -133,11 +133,15 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/label/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+            <state relative-caret-position="306">
+              <caret line="30" column="95" lean-forward="false" selection-start-line="30" selection-start-column="95" selection-end-line="30" selection-end-column="95" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <element signature="e#6231#10888#0" expanded="false" />
+                <element signature="e#3307#4011#0" expanded="false" />
+                <element signature="e#4045#4733#0" expanded="false" />
+                <element signature="e#4766#5474#0" expanded="false" />
+                <element signature="e#5509#6176#0" expanded="false" />
+                <element signature="e#6212#10869#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -976,12 +980,12 @@
       <option name="presentableId" value="Default" />
       <updated>1485658593786</updated>
       <workItem from="1485658598840" duration="85299000" />
-      <workItem from="1487499849464" duration="34702000" />
+      <workItem from="1487499849464" duration="36587000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120001000" />
+    <option name="totallyTimeSpent" value="121886000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
@@ -1161,7 +1165,11 @@
           <caret line="13" column="39" lean-forward="false" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <element signature="e#6231#10888#0" expanded="false" />
+            <element signature="e#3307#4011#0" expanded="false" />
+            <element signature="e#4045#4733#0" expanded="false" />
+            <element signature="e#4766#5474#0" expanded="false" />
+            <element signature="e#5509#6176#0" expanded="false" />
+            <element signature="e#6212#10869#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1269,11 +1277,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/label/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+        <state relative-caret-position="306">
+          <caret line="30" column="95" lean-forward="false" selection-start-line="30" selection-start-column="95" selection-end-line="30" selection-end-column="95" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <element signature="e#6231#10888#0" expanded="false" />
+            <element signature="e#3307#4011#0" expanded="false" />
+            <element signature="e#4045#4733#0" expanded="false" />
+            <element signature="e#4766#5474#0" expanded="false" />
+            <element signature="e#5509#6176#0" expanded="false" />
+            <element signature="e#6212#10869#0" expanded="false" />
           </folding>
         </state>
       </provider>
