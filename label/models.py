@@ -2,6 +2,36 @@ from django.db import models
 
 # Create your models here.
 
+class releases(models.Model):
+    LABEL_SET = (
+        ('no','no'),
+        ('altema','Altema Records'),
+        ('maltine','Maltine Records'),
+        ('bunkai-kei','Bunkai-Kei Records'),
+        ('trekkie trax','TREKKIE TRAX'),
+        ('sense','SenSe'),
+        ('flau','flau'),
+        ('progressive form','PROGRESSIVE FOrM'),
+        ('warp','Warp Records'),
+        ('planet mu','Planet Mu'),
+        ('owsla','OWSLA'),
+        ('revealed','Revealed Recordings'),
+        ('ghostly international','Ghostly International'),
+        ("spinnin'","Spinnin' Records"),
+        ('wedidit','WEDIDIT'),
+        ('never slept','Never Slept'),
+        ('mad decent','Mad Decent'),
+        ('r&s','R&S Records'),
+        ('ed banger','Ed Banger Records'),
+        ('brainfeeder','brainfeeder'),
+        ('luckyme','luckyme'),
+    )
+    label = models.CharField('Label',max_length=500,choices=LABEL_SET,default='no')
+    url = models.CharField('URL',max_length=500)
+
+    def __str__(self):
+        return self.label
+
 
 class altemadb(models.Model):
     artist =  models.CharField('アーティスト名',max_length=500)

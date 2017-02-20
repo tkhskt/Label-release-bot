@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,\
       progressivedb,warpdb,planetdb,diggerdb,owsladb,revealeddb,ghostlydb,spinnindb,\
-      wediditdb,neverdb,maddb,rsdb,edbangerdb,brainfeederdb,luckymedb
+      wediditdb,neverdb,maddb,rsdb,edbangerdb,brainfeederdb,luckymedb,releases
 import re
 
 class altema:
@@ -19,6 +19,10 @@ class altema:
         url = [] #リンク
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
+
+        for artdb2 in releases.objects.filter(label='altema').order_by('id'):
+            artistdb2.append(artdb2.url)
 
         for artdb in altemadb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
@@ -59,14 +63,30 @@ class altema:
             url[i] = 'http://www.altemarecords.jp/rel' \
                      'ease/'+url[i].replace("./","")
 
+        '''
         if len(artist)>len(artistdb):
             info['title']=title[0]
             info['artist']=artist[0]
             info['url']=url[0]
             info['key']=1
+        '''
+        if url[0]!=artistdb2[0]:
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+
 
         delete = altemadb.objects.all()
         delete.delete()
+
+        delete2 = releases.objects.filter(label='altema')
+        delete2.delete()
+
+        for i in range(len(url)):
+            at = url[i]
+            db = releases(url=at,label='altema')
+            db.save()
 
         for i in range(len(artist)):
             at = artist[i]
@@ -89,6 +109,11 @@ class maltine:
         info =  {"label":"Maltine Records","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
+
+        for artdb2 in releases.objects.filter(label='maltine').order_by('id'):
+            artistdb2.append(artdb2.url)
+
 
         for artdb in maltinedb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
@@ -116,14 +141,30 @@ class maltine:
                   #print(link)
 
 
+
+         if url[0]!=artistdb2[0]:
+             info['title']=title[0]
+             #info['artist']=artist[0]
+             info['url']=url[0]
+             info['key']=1
+         '''
          if len(url)>len(artistdb):
              info['title']=title[0]
              #info['artist']=artist[0]
              info['url']=url[0]
              info['key']=1
-
+         '''
         delete = maltinedb.objects.all()
         delete.delete()
+
+        delete2 = releases.objects.filter(label='maltine')
+        delete2.delete()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            db = releases(url=at,label='maltine')
+            db.save()
 
         for i in range(len(url)):
             at = url[i]
@@ -147,9 +188,13 @@ class bunkai:
         info =  {"label":"Bunkai-kei Records","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
 
         for artdb in bunkaidb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
+
+        for artdb2 in releases.objects.filter(label='bunkai-kei').order_by('id'):
+            artistdb2.append(artdb2.url)
 
         for ri2 in soup.find_all(class_='ri2'):
             ta = ri2.text
@@ -164,7 +209,14 @@ class bunkai:
          for urls in link:
                url.append(urls['href'])
 
+        '''
         if len(url)>len(artistdb):
+            info['title']=title[0]
+            #info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+        '''
+        if url[0]!=artistdb2[0]:
             info['title']=title[0]
             #info['artist']=artist[0]
             info['url']=url[0]
@@ -173,11 +225,21 @@ class bunkai:
         delete = bunkaidb.objects.all()
         delete.delete()
 
+        delete2 = releases.objects.filter(label='bunkai-kei')
+        delete2.delete()
+
         for i in range(len(url)):
             at = artist[i]
             #tit = title[i]
             #ur =  url[i]
             db = bunkaidb(artist=at)
+            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='bunkai-kei')
             db.save()
 
         return info
@@ -198,9 +260,13 @@ class sense:
         info =  {"label":"SenSe","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
 
         for artdb in sensedb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
+
+        for artdb2 in releases.objects.filter(label='sense').order_by('id'):
+            artistdb2.append(artdb2.url)
 
         for cts in soup.find_all(class_="content_title_single"):
           title.append(cts.text)
@@ -213,20 +279,37 @@ class sense:
          for urls in link2:
                url.append(urls['href'])
 
+        '''
         if len(artist)>len(artistdb):
              info['title']=title[0]
              info['artist']=artist[0]
              info['url']=url[0]
              info['key']=1
+        '''
+        if url[0]!=artistdb2[0]:
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
 
         delete = sensedb.objects.all()
         delete.delete()
+
+        delete2 = releases.objects.filter(label='sense')
+        delete2.delete()
 
         for i in range(len(url)):
             at = artist[i]
             #tit = title[i]
             #ur =  url[i]
             db = sensedb(artist=at)
+            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='sense')
             db.save()
 
         return info
@@ -247,16 +330,28 @@ class trekkie:
         info =  {"label":"Trekkie Trax","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
 
         for artdb in trekkiedb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
+
+        for artdb2 in releases.objects.filter(label='trekkie trax').order_by('id'):
+            artistdb2.append(artdb2.url)
 
         for link in soup.find_all('div', style='text-align:center;'):
             link2 = link.find_all("a")
             for urls in link2:
                 url.append(urls['href'])
 
+        '''
         if len(url)>len(artistdb):
+            #info['title']=title[0]
+            #info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+        '''
+
+        if url[0]!=artistdb2[0]:
             #info['title']=title[0]
             #info['artist']=artist[0]
             info['url']=url[0]
@@ -265,11 +360,21 @@ class trekkie:
         delete = trekkiedb.objects.all()
         delete.delete()
 
+        delete2 = releases.objects.filter(label='trekkie trax')
+        delete2.delete()
+
         for i in range(len(url)):
             at = url[i]
             #tit = title[i]
             #ur =  url[i]
             db = trekkiedb(artist=at)
+            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='trekkie trax')
             db.save()
 
         return info
@@ -289,9 +394,13 @@ class planet:
         info =  {"label":"Planet Mu","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 =[]
 
         for artdb in planetdb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
+
+        for artdb2 in releases.objects.filter(label='planet mu').order_by('id'):
+            artistdb2.append(artdb2.url)
 
         for bbr in soup.find_all(class_="box-inner"):
          ra = bbr.find_all(class_="release-artist")
@@ -305,20 +414,37 @@ class planet:
               for link in tit.find_all("a"):
                    url.append(link['href'])
 
+        '''
         if url[0]!=artistdb[0]:
              info['title']=title[0]
              info['artist']=artist[0]
              info['url']=url[0]
              info['key']=1
+        '''
+        if url[0]!=artistdb2[0]:
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
 
         delete = planetdb.objects.all()
         delete.delete()
+
+        delete2 = releases.objects.filter(label='planet mu')
+        delete2.delete()
 
         for i in range(len(url)):
             at = url[i]
             #tit = title[i]
             #ur =  url[i]
             db = planetdb(artist=at)
+            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='planet mu')
             db.save()
 
         return info
@@ -342,9 +468,13 @@ class warp:
         info =  {"label":"Warp Records","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
 
         for artdb in warpdb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
+
+        for artdb2 in releases.objects.filter(label='warp').order_by('id'):
+            artistdb2.append(artdb2.url)
 
         for art in soup.find_all("p",class_="GridItem-title"):
           pre.append(art.text)
@@ -363,8 +493,14 @@ class warp:
         for i in range(len(title)):
          for link in soup.find_all("a",class_="GridItem-link",href=True,title=title[i]):
              url.append('https://warp.net' + link['href'])
-
+        '''
         if url[0]!=artistdb[0]:
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+        '''
+        if url[0]!=artistdb2[0]:
             info['title']=title[0]
             info['artist']=artist[0]
             info['url']=url[0]
@@ -373,11 +509,21 @@ class warp:
         delete = warpdb.objects.all()
         delete.delete()
 
+        delete2 = releases.objects.filter(label='warp')
+        delete2.delete()
+
         for i in range(len(url)):
             at = url[i]
             #tit = title[i]
             #ur =  url[i]
             db = warpdb(artist=at)
+            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='warp')
             db.save()
 
         return info
@@ -400,9 +546,13 @@ class progressive:
         info =  {"label":"PROGRESSIVE FOrM","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
 
         for artdb in progressivedb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
+
+        for artdb2 in releases.objects.filter(label='progressive form').order_by('id'):
+            artistdb2.append(artdb2.url)
 
         for tit in soup.find_all(class_="itemTitle"):
           pre.append(tit.text)
@@ -415,8 +565,14 @@ class progressive:
          link2 = link.find_all("a")
          for urls in link2:
                url.append(urls['href'])
-
+        '''
         if len(title)>len(artistdb):
+            info['title']=title[0]
+            #info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+        '''
+        if url[0]>artistdb2[0]:
             info['title']=title[0]
             #info['artist']=artist[0]
             info['url']=url[0]
@@ -425,11 +581,21 @@ class progressive:
         delete = progressivedb.objects.all()
         delete.delete()
 
+        delete2 = releases.objects.filter(label='progressive form')
+        delete2.delete()
+
         for i in range(len(url)):
             at = title[i]
             #tit = title[i]
             #ur =  url[i]
             db = progressivedb(artist=at)
+            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='progressive form')
             db.save()
 
         return info
@@ -455,10 +621,13 @@ class flau:
         info =  {"label":"flau","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
 
         for artdb in flaudb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
 
+        for artdb2 in releases.objects.filter(label='flau').order_by('id'):
+            artistdb2.append(artdb2.url)
 
 
         for tit in soup.find_all("section",class_="unit"):
@@ -474,8 +643,15 @@ class flau:
                        url.append(link['href'])
                 else:
                        url.append('http://flau.jp/' + link['href'])
-
+        '''
         if len(artist)>len(artistdb):
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+        '''
+
+        if len(url)>len(artistdb2):
             info['title']=title[0]
             info['artist']=artist[0]
             info['url']=url[0]
@@ -484,11 +660,21 @@ class flau:
         delete = flaudb.objects.all()
         delete.delete()
 
+        delete2 = releases.objects.filter(label='flau')
+        delete2.delete()
+
         for i in range(len(url)):
             at = artist[i]
             #tit = title[i]
             #ur =  url[i]
             db = flaudb(artist=at)
+            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='flau')
             db.save()
 
         return info
@@ -500,9 +686,13 @@ class owsla:
        info =  {"label":"OWSLA","title":"","url":"","artist":"","key":0}
 
        artistdb = [] #dbから取得したアーティスト情報
+       artistdb2 = []
 
        for artdb in owsladb.objects.all().order_by('id'):
            artistdb.append(artdb.artist)
+
+       for artdb2 in releases.objects.filter(label='owsla').order_by('id'):
+           artistdb2.append(artdb2.url)
 
        url = 'http://owsla.com/releases/'
        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -525,14 +715,30 @@ class owsla:
            info['url']=url[0]
            info['key']=1
 
+       if url[0]!=artistdb2[0]:
+           #info['title']=title[0]
+           #info['artist']=artist[0]
+           info['url']=url[0]
+           info['key']=1
+
        delete = owsladb.objects.all()
        delete.delete()
+
+       delete2 = releases.objects.filter(label='owsla')
+       delete2.delete()
 
        for i in range(len(url)):
            at = url[i]
            #tit = title[i]
            #ur =  url[i]
            db = owsladb(artist=at)
+           db.save()
+
+       for i in range(len(url)):
+           at = url[i]
+           #tit = title[i]
+           #ur =  url[i]
+           db = releases(url=at,label='owsla')
            db.save()
 
        return info
@@ -545,10 +751,13 @@ class revealed:
         info =  {"label":"Revealed Recordings","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
 
         for artdb in revealeddb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
 
+        for artdb2 in releases.objects.filter(label='revealed').order_by('id'):
+            artistdb2.append(artdb2.url)
 
 
         url = 'http://www.revealedrecordings.com/releases/'
@@ -574,8 +783,14 @@ class revealed:
         for i in range(len(pre)):
           if 'http://www.revealedrecordings.com' in pre[i]:
                url.append(pre[i])
-
+        '''
         if url[0]!=artistdb[0]:
+            #info['title']=title[0]
+            #info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+        '''
+        if url[0]!=artistdb2[0]:
             #info['title']=title[0]
             #info['artist']=artist[0]
             info['url']=url[0]
@@ -584,12 +799,22 @@ class revealed:
         delete = revealeddb.objects.all()
         delete.delete()
 
+        delete2 = releases.objects.filter(label='revealed')
+        delete2.delete()
+
         for i in range(len(url)):
            at = url[i]
             #tit = title[i]
             #ur =  url[i]
            db = revealeddb(artist=at)
            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='revealed')
+            db.save()
 
         return info
 
@@ -600,6 +825,7 @@ class ghostly:
         info =  {"label":"Ghostly International","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+
         titledb = []
         urldb = []
 
@@ -619,7 +845,7 @@ class ghostly:
         pretitle = []
         preartist = []
 
-
+        artist = ''
         p = soup.prettify()
 
         for link in soup.find_all("dl",class_="artist-releases"):
@@ -630,26 +856,44 @@ class ghostly:
           for tit in link.find_all("dd",class_="title"):
              pretitle.append(tit.text)
 
+
+        delete2 = releases.objects.filter(label='ghostly international')
+        delete2.delete()
+
         if len(preartist)>len(artistdb):
-            artist = set(preartist)-set(artistdb)
+            #artist = set(preartist)-set(artistdb)
             title = set(pretitle)-set(titledb)
             url = set(preurl)-set(urldb)
-            artist = list(artist)
+            #artist = list(artist)
             title = list(title)
             url = list(url)
+
+            for i in range(len(preurl)):
+                if url[0] in preurl[i]:
+                    artist = preartist[i]
 
             for i in range(len(url)):
                 url[i] = 'http://ghostly.com'+url[i]
 
             info['title']=title[0]
-            info['artist']=artist[0]
+            info['artist']=artist
             info['url']=url[0]
             info['key']=1
+
+            ul = url[0]
+            db2 = releases(label='ghostly international',url=ul)
+            db2.save()
+
+        else:
+            ul = 'http://ghostly.com'+preurl[0]
+            db2 = releases(label='ghostly international',url=ul)
+            db2.save()
 
 
 
         delete = ghostlydb.objects.all()
         delete.delete()
+
 
         for i in range(len(preurl)):
             at = preartist[i]
@@ -657,6 +901,8 @@ class ghostly:
             ur = preurl[i]
             db = ghostlydb(artist=at,title=tit,url=ur)
             db.save()
+
+
 
         return info
 
@@ -680,9 +926,13 @@ class spinnin:
         info =  {"label":"Spinnin' Records","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
 
         for artdb in spinnindb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
+
+        for artdb2 in releases.objects.filter(label="spinnin'").order_by('id'):
+            artistdb2.append(artdb2.url)
 
 
         for tit in soup.find_all("h2"):
@@ -704,21 +954,44 @@ class spinnin:
 
         for i in range(len(url)):
             url[i] = "https://www.spinninrecords.com" + url[i]
-
+        '''
         if title[0]!=artistdb[0]:
             info['title']=title[0]
             info['artist']=artist[0]
             info['url']=url[0]
             info['key']=1
+        '''
+
+        if url[0]!=artistdb2[0]:
+            if url[1]!=artistdb2[0]:
+              info['title']=title[0]
+              info['artist']=artist[0]
+              info['url']=url[0] + "\n複数のリリースがあります"
+              info['key']=1
+            else:
+              info['title']=title[0]
+              info['artist']=artist[0]
+              info['url']=url[0]
+              info['key']=1
 
         delete = spinnindb.objects.all()
         delete.delete()
+
+        delete2 = releases.objects.filter(label="spinnin'")
+        delete2.delete()
 
         for i in range(len(url)):
             at = title[i]
             #tit = title[i]
             #ur =  url[i]
             db = spinnindb(artist=at)
+            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label="spinnin'")
             db.save()
 
         return info
@@ -740,9 +1013,13 @@ class wedidit:
         info =  {"label":"WEDIDIT","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
 
         for artdb in wediditdb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
+
+        for artdb2 in releases.objects.filter(label='wedidit').order_by('id'):
+            artistdb2.append(artdb2.url)
 
         for link in soup.find_all(class_="releases-wrapper"):
            for link2 in link.find_all("a"):
@@ -752,7 +1029,15 @@ class wedidit:
            for tit in link.find_all("h3"):
               title.append(tit.text)
 
+           '''
            if len(title)>len(artistdb):
+               info['title']=title[0]
+               info['artist']=artist[0]
+               info['url']=url[0]
+               info['key']=1
+            '''
+
+           if len(url)>len(artistdb2):
                info['title']=title[0]
                info['artist']=artist[0]
                info['url']=url[0]
@@ -761,11 +1046,21 @@ class wedidit:
         delete = wediditdb.objects.all()
         delete.delete()
 
+        delete2 = releases.objects.filter(label='wedidit')
+        delete2.delete()
+
         for i in range(len(url)):
             at = title[i]
             #tit = title[i]
             #ur =  url[i]
             db = wediditdb(artist=at)
+            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='wedidit')
             db.save()
 
         return info
@@ -788,9 +1083,13 @@ class never:
         info =  {"label":"Never Slept","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
 
         for artdb in neverdb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
+
+        for artdb2 in releases.objects.filter(label='never slept').order_by('id'):
+            artistdb2.append(artdb2.url)
 
 
         for link in soup.find_all("div",class_="leftMiddleColumns"):
@@ -800,8 +1099,15 @@ class never:
         for i in range(len(url)):
             url[i] = 'https://never-slept.bandcamp.com' + url[i]
 
-
+        '''
         if len(url)>len(artistdb):
+            #info['title']=title[0]
+            #info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+        '''
+
+        if len(url)>len(artistdb2):
             #info['title']=title[0]
             #info['artist']=artist[0]
             info['url']=url[0]
@@ -810,11 +1116,21 @@ class never:
         delete = neverdb.objects.all()
         delete.delete()
 
+        delete2 = releases.objects.filter(label='never slept')
+        delete2.delete()
+
         for i in range(len(url)):
             at = url[i]
             #tit = title[i]
             #ur =  url[i]
             db = neverdb(artist=at)
+            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='never slept')
             db.save()
 
         return info
@@ -836,9 +1152,13 @@ class mad:
         info =  {"label":"Mad Decent","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
+
+        for artdb2 in releases.objects.filter(label='mad decent').order_by('id'):
+           artistdb2.append(artdb2.url)
 
         for artdb in maddb.objects.all().order_by('id'):
-           artistdb.append(artdb.artist)
+            artistdb.append(artdb.artist)
 
         for link in soup.find_all("a",class_="thumb-link"):
            url.append(link['href'])
@@ -848,21 +1168,44 @@ class mad:
 
         for art in soup.find_all("h2",class_="artist-name"):
            artist.append(art.text)
-
+        '''
         if title[0]!=artistdb[0]:
             info['title']=title[0]
             info['artist']=artist[0]
             info['url']=url[0]
             info['key']=1
+        '''
+
+        if url[0]!=artistdb2[0]:
+            if url[1]!=artistdb2[0]:
+                info['title']=title[0]
+                info['artist']=artist[0]
+                info['url']=url[0] + "\n複数のリリースがあります"
+                info['key']=1
+            else:
+                info['title']=title[0]
+                info['artist']=artist[0]
+                info['url']=url[0]
+                info['key']=1
 
         delete = maddb.objects.all()
         delete.delete()
+
+        delete2 = releases.objects.filter(label='mad decent')
+        delete2.delete()
 
         for i in range(len(url)):
             at = title[i]
             #tit = title[i]
             #ur =  url[i]
             db = maddb(artist=at)
+            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='mad decent')
             db.save()
 
         return info
@@ -884,9 +1227,14 @@ class edbanger:
         info =  {"label":"Ed Banger Records","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
 
         for artdb in edbangerdb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
+
+        for artdb2 in releases.objects.filter(label='ed banger').order_by('id'):
+            artistdb2.append(artdb2.url)
+
 
         pre = []
 
@@ -911,8 +1259,15 @@ class edbanger:
                 artist.append("")
                 title.append(pre[i])
 
-
+        '''
         if len(url)>len(artistdb):
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+        '''
+
+        if len(url)>len(artistdb2):
             info['title']=title[0]
             info['artist']=artist[0]
             info['url']=url[0]
@@ -921,11 +1276,21 @@ class edbanger:
         delete = edbangerdb.objects.all()
         delete.delete()
 
+        delete2 = releases.objects.filter(label='ed banger')
+        delete2.delete()
+
         for i in range(len(url)):
             at = url[i]
             #tit = title[i]
             #ur =  url[i]
             db = edbangerdb(artist=at)
+            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='ed banger')
             db.save()
 
         return info
@@ -947,9 +1312,15 @@ class brainfeeder:
         info =  {"label":"Brainfeeder","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
+
 
         for artdb in brainfeederdb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
+
+        for artdb2 in releases.objects.filter(label='brainfeeder').order_by('id'):
+            artistdb2.append(artdb2.url)
+
 
         pre = []
 
@@ -964,8 +1335,15 @@ class brainfeeder:
         title.append(at[1])
 
 
-
+        '''
         if url[0]!=artistdb[0]:
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+        '''
+
+        if url[0]!=artistdb2[0]:
             info['title']=title[0]
             info['artist']=artist[0]
             info['url']=url[0]
@@ -974,11 +1352,21 @@ class brainfeeder:
         delete = brainfeederdb.objects.all()
         delete.delete()
 
+        delete2 = releases.objects.filter(label='brainfeeder')
+        delete2.delete()
+
         for i in range(len(url)):
             at = url[i]
             #tit = title[i]
             #ur =  url[i]
             db = brainfeederdb(artist=at)
+            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='brainfeeder')
             db.save()
 
         return info
@@ -999,9 +1387,14 @@ class luckyme:
         info =  {"label":"LuckyMe","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
+
 
         for artdb in luckymedb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
+
+        for artdb2 in releases.objects.filter(label='luckyme').order_by('id'):
+            artistdb2.append(artdb2.url)
 
         for id in soup.find_all(id="2017"):
             for dd in id.find_all("dd",class_="artist "):
@@ -1014,8 +1407,15 @@ class luckyme:
                     title.append(a2['title'])
                     url.append("https://luckyme.bleepstores.com/"+a2['href'])
 
-
+        '''
         if len(url)>len(artistdb):
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+         '''
+
+        if len(url)>len(artistdb2):
             info['title']=title[0]
             info['artist']=artist[0]
             info['url']=url[0]
@@ -1024,11 +1424,21 @@ class luckyme:
         delete = luckymedb.objects.all()
         delete.delete()
 
+        delete2 = releases.objects.filter(label='luckyme')
+        delete2.delete()
+
         for i in range(len(url)):
             at = url[i]
             #tit = title[i]
             #ur =  url[i]
             db = luckymedb(artist=at)
+            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='luckyme')
             db.save()
 
         return info
@@ -1049,9 +1459,13 @@ class rs:
         info =  {"label":"R&S Records","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
+        artistdb2 = []
 
         for artdb in rsdb.objects.all().order_by('id'):
             artistdb.append(artdb.artist)
+
+        for artdb2 in releases.objects.filter(label='r&s').order_by('id'):
+            artistdb2.append(artdb2.url)
 
         for art in soup.find_all(class_="artist"):
           artist.append(art.text)
@@ -1060,7 +1474,15 @@ class rs:
           url.append(link['href'])
           title.append(link.text)
 
+        '''
         if title[0]!=artistdb[0]:
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+        '''
+
+        if url[0]!=artistdb2[0]:
             info['title']=title[0]
             info['artist']=artist[0]
             info['url']=url[0]
@@ -1069,11 +1491,21 @@ class rs:
         delete = rsdb.objects.all()
         delete.delete()
 
+        delete2 = releases.objects.filter(label='r&s')
+        delete2.delete()
+
         for i in range(len(url)):
             at = title[i]
             #tit = title[i]
             #ur =  url[i]
             db = rsdb(artist=at)
+            db.save()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='r&s')
             db.save()
 
         return info

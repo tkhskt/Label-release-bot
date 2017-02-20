@@ -2,6 +2,7 @@ from django.shortcuts import render
 from label.scraping import altema,maltine,bunkai,sense,trekkie,warp,planet,flau,progressive,\
       digger,owsla,revealed,ghostly,spinnin,wedidit,never,mad,rs,edbanger,brainfeeder,luckyme
 # Create your views here.
+from .models import releases
 import json
 import requests
 from label.models import lineid,diggerdb
@@ -18,6 +19,31 @@ HEADER = {
 
 ENDPOINT = 'https://api.line.me/v2/bot/message/multicast'
 PUSH_ENDPOINT ='https://api.line.me/v2/bot/message/push'
+REPLY_ENDPOINT = 'https://api.line.me/v2/bot/message/reply'
+
+words = {
+    'altema':['altema','アルテマ','あるてま','altima','アルティマ','アルティメ','Altema','ALTEMA'],
+    'maltine':['maltine','マルチネ','マルティネ','malutine','marutine','martine','MALTINE','Maltine','まるちね'],
+    'bunkai-kei':['bunkai','Bunkai','BUNKAI','分解','ぶんかい','ブンカイ'],
+    'trekkie trax':['Trekkie','TREKKIE','trekkie','トレッキー','とれっきー'],
+    'sense':['SenSe','SENSE','sense','Sense','senSe','センス','せんす','sence','Sence'],
+    'flau':['flau','FLAU','FLAW','Flau','ふらう','ふらー','flaw','Flaw','フル―','フラ','フラー','ふる','ふるー','フラウ'],
+    'progressive form':['PROGRESSIVE','progressive','Prog','prog','Progressive','プログレッシブ','プログレッシヴ','プログレ','ぷろぐれっしぶ','ぷろぐれ'],
+    'warp':['Warp','warp','WARP','ウォープ','ワープ','うぉーぷ','わーぷ'],
+    'planet mu':['Planet','planet','PLANET','ぷらねっと','プラネット'],
+    'owsla':['OWSLA','owsla','Owsla','オウスラ','おうすら','オースラ','オウズラ','おーずら'],
+    'revealed':['Revealed','REVEALED','revealed','リヴィールド','リビールド'],
+    'ghostly international':['Ghostly','GHOSTLY','ghostly','Ghosty','GHOSTTY','ghosty','ゴーストリー','ごーすとりー','ごーすてぃー','ゴースティー'],
+    "spinnin'":['Spinnin','spinnin','SPINNIN','スピニン','すぴにん'],
+    'wedidit':['WEDIDIT','wedidit','Wedidit','ウィーディドイット','ウィーディドゥイット','うぃーでぃどいっと'],
+    'never slept':['Never','NEVER','never','ネヴァー','ネバー','ねばー'],
+    'mad decent':['Mad','MAD','mad','マッド','まっど'],
+    'r&s':['R&S','RandS','rands','r&s','Rands','R&s','アール','あーる'],
+    'ed banger':['Ed Banger','ED BANGER','ed banger','Ed banger','ed Banger','EdBanger','EDBANGER','edbanger','Edbanger','edBanger','エドバンガー','エド・バンガー','エド　バンガー'],
+    'Brainfeeder':['Brain','brain','BRAIN','ブレイン','ブレーン','ぶれいん','ぶれーん'],
+    'luckyme':['Lucky','lucky','LUCKY','ラッキー','らっきー'],
+}
+
 
 
 def linetransmit(label,title,artist,url): #label,title,artist,url
@@ -27,7 +53,7 @@ def linetransmit(label,title,artist,url): #label,title,artist,url
     for ids in lineid.objects.all():
         userid.append(ids.user)
     payload = {
-        "to":userid,
+        "to":['U9cffcfa9f62705b889bfc4470efea951',],#userid,
         "messages":[
             {
                 "type":"text",
@@ -58,7 +84,7 @@ def takahashi():
 def labelcheck(request):
  p = "done"
  try:
-  dig = digger.digger(0)
+  #dig = digger.digger(0)
   alt = altema.altema(0)
   if alt['key']==1:
       linetransmit(alt['label'],alt['title'],alt['artist'],alt['url'])
@@ -74,7 +100,7 @@ def labelcheck(request):
   sen = sense.sense(0)
   if sen['key']==1:
       linetransmit(sen['label'],sen['title'],sen['artist'],sen['url'])
-  takahashi()
+  #takahashi()
   return HttpResponse(p)
  except:
   return HttpResponse("error")
@@ -107,8 +133,8 @@ def labelcheck2(request):
 
 
 def labelcheck3(request):
-   p = "done3"
-   try:
+    p = "done3"
+   #try:
     rev = revealed.revealed(0)
     if rev['key']==1:
         linetransmit(rev['label'],rev['title'],rev['artist'],rev['url'])
@@ -125,8 +151,8 @@ def labelcheck3(request):
     if nev['key']==1:
         linetransmit(nev['label'],nev['title'],nev['artist'],nev['url'])
     return HttpResponse(p)
-   except:
-    return HttpResponse("error")
+  #except:
+   # return HttpResponse("error")
 
 
 
@@ -155,6 +181,148 @@ def labelcheck4(request):
     #return HttpResponse("error4")
 
 
+
+
+def wordcheck(text,token):
+    data = {
+            'label':[],
+            'url':[],
+            'token':token,
+            }
+    for wd in words['altema']:
+        if wd in text:
+            db = releases.objects.filter(label='altema').order_by('id').first()
+            data['label'].append('Altema Records')
+            data['url'].append(db.url)
+    for wd in words['maltine']:
+        if wd in text:
+            db = releases.objects.filter(label='maltine').order_by('id').first()
+            data['label'].append('Maltine Records')
+            data['url'].append(db.url)
+    for wd in words['bunkai-kei']:
+        if wd in text:
+            db = releases.objects.filter(label='bunkai-kei').order_by('id').first()
+            data['label'].append('Bunkai-Kei Records')
+            data['url'].append(db.url)
+    for wd in words['trekkie trax']:
+        if wd in text:
+            db = releases.objects.filter(label='trekkie trax').order_by('id').first()
+            data['label'].append('TREKKIE TRAX')
+            data['url'].append(db.url)
+    for wd in words['sense']:
+        if wd in text:
+            db = releases.objects.filter(label='sense').order_by('id').first()
+            data['label'].append('SenSe')
+            data['url'].append(db.url)
+    for wd in words['flau']:
+        if wd in text:
+            db = releases.objects.filter(label='flau').order_by('id').first()
+            data['label'].append('flau')
+            data['url'].append(db.url)
+    for wd in words['progressive form']:
+        if wd in text:
+            db = releases.objects.filter(label='progressive form').order_by('id').first()
+            data['label'].append('PROGRESSIVE FOrM')
+            data['url'].append(db.url)
+    for wd in words['warp']:
+        if wd in text:
+            db = releases.objects.filter(label='warp').order_by('id').first()
+            data['label'].append('Warp Records')
+            data['url'].append(db.url)
+    for wd in words['planet mu']:
+        if wd in text:
+            db = releases.objects.filter(label='planet mu').order_by('id').first()
+            data['label'].append('Planet Mu')
+            data['url'].append(db.url)
+    for wd in words['owsla']:
+        if wd in text:
+            db = releases.objects.filter(label='owsla').order_by('id').first()
+            data['label'].append('OWSLA')
+            data['url'].append(db.url)
+    for wd in words['revealed']:
+        if wd in text:
+            db = releases.objects.filter(label='revealed').order_by('id').first()
+            data['label'].append('Revealed Recordings')
+            data['url'].append(db.url)
+    for wd in words['ghostly international']:
+        if wd in text:
+            db = releases.objects.filter(label='ghostly international').order_by('id').first()
+            data['label'].append('Ghostly International')
+            data['url'].append(db.url)
+    for wd in words["spinnin'"]:
+        if wd in text:
+            db = releases.objects.filter(label="spinnin'").order_by('id').first()
+            data['label'].append("Spinnin' Records")
+            data['url'].append(db.url)
+    for wd in words['wedidit']:
+        if wd in text:
+            db = releases.objects.filter(label='wedidit').order_by('id').first()
+            data['label'].append('WEDIDIT')
+            data['url'].append(db.url)
+    for wd in words['never slept']:
+        if wd in text:
+            db = releases.objects.filter(label='never slept').order_by('id').first()
+            data['label'].append('Never Slept')
+            data['url'].append(db.url)
+    for wd in words['mad decent']:
+        if wd in text:
+            db = releases.objects.filter(label='mad decent').order_by('id').first()
+            data['label'].append('Mad Decent')
+            data['url'].append(db.url)
+    for wd in words['r&s']:
+        if wd in text:
+            db = releases.objects.filter(label='r&s').order_by('id').first()
+            data['label'].append('R&S Records')
+            data['url'].append(db.url)
+    for wd in words['ed banger']:
+        if wd in text:
+            db = releases.objects.filter(label='ed banger').order_by('id').first()
+            data['label'].append('Ed Banger Records')
+            data['url'].append(db.url)
+    for wd in words['brainfeeder']:
+        if wd in text:
+            db = releases.objects.filter(label='brainfeeder').order_by('id').first()
+            data['label'].append('Brainfeeder')
+            data['url'].append(db.url)
+    for wd in words['luckyme']:
+        if wd in text:
+            db = releases.objects.filter(label='luckyme').order_by('id').first()
+            data['label'].append('LuckyMe')
+            data['url'].append(db.url)
+    return data
+
+
+
+
+
+def reply(data):
+    payload = {
+        "replyToken":data['token'],
+        "messages":[]
+    }
+
+    if len(data['url'])>5:
+        payload['messages'].append(
+            {
+             'type':'text',
+             'text':'一度に調べられるレーベルは５つまでです。'
+            }
+        )
+    if len(data['url'])<=5:
+        for i in range(len(data['url'])):
+            payload['messages'].append(
+                {
+                    'type':'text',
+                    'text':data['label'][i]+"\n"+data['url'][i]
+                }
+            )
+    requests.post(REPLY_ENDPOINT,headers=HEADER,data=json.dumps(payload))
+
+
+
+
+
+
 def lineidinput(request):
     request_json = json.loads(request.body.decode('utf-8'))
     p = "ok"
@@ -179,4 +347,9 @@ def lineidinput(request):
            for i in range(len(id)):
             db = lineid(user=id[i])
             db.save()
+
+        if e['type']=='message':
+            if e['message']['type']=='text':
+                data = wordcheck(e['message']['text'],e['replyToken'])
+                reply(data)
     return HttpResponse(p)
