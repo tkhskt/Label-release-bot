@@ -133,8 +133,8 @@ def labelcheck2(request):
 
 
 def labelcheck3(request):
-    p = "done3"
-   #try:
+   p = "done3"
+   try:
     rev = revealed.revealed(0)
     if rev['key']==1:
         linetransmit(rev['label'],rev['title'],rev['artist'],rev['url'])
@@ -151,16 +151,16 @@ def labelcheck3(request):
     if nev['key']==1:
         linetransmit(nev['label'],nev['title'],nev['artist'],nev['url'])
     return HttpResponse(p)
-  #except:
-   # return HttpResponse("error")
+   except:
+    return HttpResponse("error")
 
 
 
 
 
 def labelcheck4(request):
-    p = "done4"
-   #try:
+   p = "done4"
+   try:
     ma = mad.mad(0)
     if ma['key']==1:
         linetransmit(ma['label'],ma['title'],ma['artist'],ma['url'])
@@ -177,8 +177,8 @@ def labelcheck4(request):
     if lc['key']==1:
         linetransmit(lc['label'],lc['title'],lc['artist'],lc['url'])
     return HttpResponse(p)
-   #except:
-    #return HttpResponse("error4")
+   except:
+    return HttpResponse("error4")
 
 
 
@@ -317,8 +317,6 @@ def reply(data):
                 }
             )
     requests.post(REPLY_ENDPOINT,headers=HEADER,data=json.dumps(payload))
-
-
 
 
 
