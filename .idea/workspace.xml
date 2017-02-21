@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="26b5f249-2c0b-4ebb-bf73-1b0c692d42e9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/label/views.py" afterPath="$PROJECT_DIR$/label/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/linebot/settings.py" afterPath="$PROJECT_DIR$/linebot/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/linebot/urls.py" afterPath="$PROJECT_DIR$/linebot/urls.py" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -69,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/linebot/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="457">
-              <caret line="27" column="47" lean-forward="false" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+              <caret line="27" column="35" lean-forward="false" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
               <folding>
                 <element signature="e#641#673#0" expanded="true" />
               </folding>
@@ -152,15 +151,15 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/label/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="48" column="33" lean-forward="false" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
+            <state relative-caret-position="340">
+              <caret line="50" column="65" lean-forward="true" selection-start-line="50" selection-start-column="65" selection-end-line="50" selection-end-column="65" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <element signature="e#3369#4073#0" expanded="false" />
-                <element signature="e#4107#4795#0" expanded="false" />
-                <element signature="e#4828#5536#0" expanded="false" />
-                <element signature="e#5571#6238#0" expanded="false" />
-                <element signature="e#6274#10931#0" expanded="false" />
+                <element signature="e#3370#4074#0" expanded="false" />
+                <element signature="e#4108#4796#0" expanded="false" />
+                <element signature="e#4829#5537#0" expanded="false" />
+                <element signature="e#5572#6239#0" expanded="false" />
+                <element signature="e#6275#10932#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -204,8 +203,8 @@
         <option value="$PROJECT_DIR$/label/templates/test.html" />
         <option value="$PROJECT_DIR$/label/templates.html" />
         <option value="$PROJECT_DIR$/label/templates/index.html" />
-        <option value="$PROJECT_DIR$/linebot/urls.py" />
         <option value="$PROJECT_DIR$/linebot/settings.py" />
+        <option value="$PROJECT_DIR$/linebot/urls.py" />
         <option value="$PROJECT_DIR$/label/views.py" />
       </list>
     </option>
@@ -1030,12 +1029,12 @@
       <option name="presentableId" value="Default" />
       <updated>1485658593786</updated>
       <workItem from="1485658598840" duration="85299000" />
-      <workItem from="1487499849464" duration="47151000" />
+      <workItem from="1487499849464" duration="47259000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132450000" />
+    <option name="totallyTimeSpent" value="132558000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
@@ -1232,11 +1231,11 @@
           <caret line="13" column="39" lean-forward="false" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <element signature="e#3369#4073#0" expanded="false" />
-            <element signature="e#4107#4795#0" expanded="false" />
-            <element signature="e#4828#5536#0" expanded="false" />
-            <element signature="e#5571#6238#0" expanded="false" />
-            <element signature="e#6274#10931#0" expanded="false" />
+            <element signature="e#3370#4074#0" expanded="false" />
+            <element signature="e#4108#4796#0" expanded="false" />
+            <element signature="e#4829#5537#0" expanded="false" />
+            <element signature="e#5572#6239#0" expanded="false" />
+            <element signature="e#6275#10932#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1348,14 +1347,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/label/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/linebot/static/yes.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1393,24 +1384,32 @@
     <entry file="file://$PROJECT_DIR$/linebot/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
-          <caret line="27" column="47" lean-forward="false" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+          <caret line="27" column="35" lean-forward="false" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
           <folding>
             <element signature="e#641#673#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/label/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/label/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="48" column="33" lean-forward="false" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
+        <state relative-caret-position="340">
+          <caret line="50" column="65" lean-forward="true" selection-start-line="50" selection-start-column="65" selection-end-line="50" selection-end-column="65" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <element signature="e#3369#4073#0" expanded="false" />
-            <element signature="e#4107#4795#0" expanded="false" />
-            <element signature="e#4828#5536#0" expanded="false" />
-            <element signature="e#5571#6238#0" expanded="false" />
-            <element signature="e#6274#10931#0" expanded="false" />
+            <element signature="e#3370#4074#0" expanded="false" />
+            <element signature="e#4108#4796#0" expanded="false" />
+            <element signature="e#4829#5537#0" expanded="false" />
+            <element signature="e#5572#6239#0" expanded="false" />
+            <element signature="e#6275#10932#0" expanded="false" />
           </folding>
         </state>
       </provider>
