@@ -45,7 +45,8 @@ words = {
 }
 
 
-
+def render(request):
+    return render(request, 'index.html')
 
 def linetransmit(label,title,artist,url): #label,title,artist,url
     p = "done"
