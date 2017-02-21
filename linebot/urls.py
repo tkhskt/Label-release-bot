@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from label import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,4 +27,4 @@ urlpatterns = [
     url(r'^check3/$', views.labelcheck3),
     url(r'^check4/$', views.labelcheck4),
     url(r'^render/$', views.rendertest),
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
