@@ -5,7 +5,7 @@ from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,\
       wediditdb,neverdb,maddb,rsdb,edbangerdb,brainfeederdb,luckymedb,releases
 import re
 
-class altema:
+class scrape:
     def altema(number):
         url = 'http://www.altemarecords.jp/release/'
         req = urllib.request.Request(url)
@@ -96,7 +96,7 @@ class altema:
         return info
 
 
-class maltine:
+
     def maltine(self):
         url = 'http://maltinerecords.cs8.biz/release.html'
         req = urllib.request.Request(url)
@@ -174,7 +174,7 @@ class maltine:
 
         return info
 
-class bunkai:
+
     def bunkai(self):
         url = 'http://bunkai-kei.com/release/'
         req = urllib.request.Request(url)
@@ -245,7 +245,7 @@ class bunkai:
         return info
 
 
-class sense:
+
     def sense(self):
         url = 'http://sense-sapporo.jp/release'
         req = urllib.request.Request(url)
@@ -315,7 +315,7 @@ class sense:
         return info
 
 
-class trekkie:
+
     def trekkie(self):
         url = 'http://www.trekkie-trax.com/ep/'
         req = urllib.request.Request(url)
@@ -379,7 +379,7 @@ class trekkie:
 
         return info
 
-class planet:
+
     def planet(self):
         url = 'http://planet.mu/releases/'
         req = urllib.request.Request(url)
@@ -450,7 +450,7 @@ class planet:
         return info
 
 
-class warp:
+
     def warp(self):
         url = 'https://warp.net/releases/'
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -529,7 +529,7 @@ class warp:
         return info
 
 
-class progressive:
+
     def progressive(self):
         url = 'https://pform.thebase.in/'
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -601,7 +601,7 @@ class progressive:
         return info
 
 
-class flau:
+
     def flau(self):
         url = 'http://flau.jp/releases.html'
         req = urllib.request.Request(url)
@@ -686,7 +686,7 @@ class flau:
         return info
 
 
-class owsla:
+
     def owsla(self):
 
        info =  {"label":"OWSLA","title":"","url":"","artist":"","key":0}
@@ -751,7 +751,6 @@ class owsla:
 
 
 
-class revealed:
     def revealed(self):
 
         info =  {"label":"Revealed Recordings","title":"","url":"","artist":"","key":0}
@@ -826,7 +825,7 @@ class revealed:
 
 
 
-class ghostly:
+
     def ghostly(self):
         info =  {"label":"Ghostly International","title":"","url":"","artist":"","key":0}
 
@@ -914,7 +913,7 @@ class ghostly:
 
 
 
-class spinnin:
+
     def spinnin(self):
         url = 'https://www.spinninrecords.com/releases/'
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -1004,7 +1003,7 @@ class spinnin:
 
 
 
-class wedidit:
+
     def wedidit(self):
         url = 'http://www.wediditcollective.com/releases/'
         req = urllib.request.Request(url)
@@ -1073,7 +1072,7 @@ class wedidit:
 
 
 
-class never:
+
     def never(self):
         url = 'https://never-slept.bandcamp.com/'
         req = urllib.request.Request(url)
@@ -1143,7 +1142,7 @@ class never:
 
 
 
-class mad:
+
     def mad(self):
         url = 'http://maddecent.com/music/'
         req = urllib.request.Request(url)
@@ -1218,7 +1217,7 @@ class mad:
 
 
 
-class edbanger:
+
     def edbanger(self):
         url = 'http://www.edbangerrecords.com/site/'
         req = urllib.request.Request(url)
@@ -1303,7 +1302,7 @@ class edbanger:
 
 
 
-class brainfeeder:
+
     def brainfeeder(self):
         url = 'http://www.brainfeedersite.com/'
         req = urllib.request.Request(url)
@@ -1378,7 +1377,7 @@ class brainfeeder:
         return info
 
 
-class luckyme:
+
     def luckyme(self):
         url = 'https://luckyme.bleepstores.com/'
         req = urllib.request.Request(url)
@@ -1450,7 +1449,7 @@ class luckyme:
         return info
 
 
-class rs:
+
     def rs(self):
         url = 'http://www.randsrecords.com/releases'
         req = urllib.request.Request(url)

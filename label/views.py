@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from label.scraping import altema,maltine,bunkai,sense,trekkie,warp,planet,flau,progressive,\
-      digger,owsla,revealed,ghostly,spinnin,wedidit,never,mad,rs,edbanger,brainfeeder,luckyme
+from label.scraping import scrape,digger
 # Create your views here.
 from .models import releases
 import json
@@ -85,66 +84,63 @@ def labelcheck(request,page):
    if page == '1':
      p = "done"
      try:
-      #dig = digger.digger(0)
-      alt = altema.altema(0)
+      alt = scrape.altema(0)
       if alt['key']==1:
           linetransmit(alt['label'],alt['title'],alt['artist'],alt['url'])
-      mal = maltine.maltine(0)
+      mal = scrape.maltine(0)
       if mal['key']==1:
           linetransmit(mal['label'],mal['title'],mal['artist'],mal['url'])
-      bun = bunkai.bunkai(0)
+      bun = scrape.bunkai(0)
       if bun['key']==1:
           linetransmit(bun['label'],bun['title'],bun['artist'],bun['url'])
-      tre = trekkie.trekkie(0)
+      tre = scrape.trekkie(0)
       if tre['key']==1:
           linetransmit(tre['label'],tre['title'],tre['artist'],tre['url'])
-      sen = sense.sense(0)
+      sen = scrape.sense(0)
       if sen['key']==1:
           linetransmit(sen['label'],sen['title'],sen['artist'],sen['url'])
       return HttpResponse(p)
      except:
       return HttpResponse("error")
 
-#def labelcheck2(request):
    elif page == '2':
      p = "done2"
      try:
-      pro = progressive.progressive(0)
+      pro = scrape.progressive(0)
       if pro['key']==1:
           linetransmit(pro['label'],pro['title'],pro['artist'],pro['url'])
-      fla = flau.flau(0)
+      fla = scrape.flau(0)
       if fla['key']==1:
        linetransmit(fla['label'],fla['title'],fla['artist'],fla['url'])
-      war = warp.warp(0)
+      war = scrape.warp(0)
       if war['key']==1:
        linetransmit(war['label'],war['title'],war['artist'],war['url'])
-      pla = planet.planet(0)
+      pla = scrape.planet(0)
       if pla['key']==1:
        linetransmit(pla['label'],pla['title'],pla['artist'],pla['url'])
-      ows = owsla.owsla(0)
+      ows = scrape.owsla(0)
       if ows['key']==1:
        linetransmit(ows['label'],ows['title'],ows['artist'],ows['url'])
       return HttpResponse(p)
      except:
       return HttpResponse("error")
 
-     #def labelcheck3(request):
    elif page =='3':
      p = "done3"
      try:
-      rev = revealed.revealed(0)
+      rev = scrape.revealed(0)
       if rev['key']==1:
           linetransmit(rev['label'],rev['title'],rev['artist'],rev['url'])
-      gho = ghostly.ghostly(0)
+      gho = scrape.ghostly(0)
       if gho['key']==1:
           linetransmit(gho['label'],gho['title'],gho['artist'],gho['url'])
-      spi = spinnin.spinnin(0)
+      spi = scrape.spinnin(0)
       if spi['key']==1:
           linetransmit(spi['label'],spi['title'],spi['artist'],spi['url'])
-      wed = wedidit.wedidit(0)
+      wed = scrape.wedidit(0)
       if wed['key']==1:
           linetransmit(wed['label'],wed['title'],wed['artist'],wed['url'])
-      nev = never.never(0)
+      nev = scrape.never(0)
       if nev['key']==1:
           linetransmit(nev['label'],nev['title'],nev['artist'],nev['url'])
       return HttpResponse(p)
@@ -154,19 +150,19 @@ def labelcheck(request,page):
    elif page =='4':
      p = "done4"
      try:
-      ma = mad.mad(0)
+      ma = scrape.mad(0)
       if ma['key']==1:
           linetransmit(ma['label'],ma['title'],ma['artist'],ma['url'])
-      r = rs.rs(0)
+      r = scrape.rs(0)
       if r['key']==1:
           linetransmit(r['label'],r['title'],r['artist'],r['url'])
-      ed = edbanger.edbanger(0)
+      ed = scrape.edbanger(0)
       if ed['key']==1:
           linetransmit(ed['label'],ed['title'],ed['artist'],ed['url'])
-      br = brainfeeder.brainfeeder(0)
+      br = scrape.brainfeeder(0)
       if br['key']==1:
           linetransmit(br['label'],br['title'],br['artist'],br['url'])
-      lc = luckyme.luckyme(0)
+      lc = scrape.luckyme(0)
       if lc['key']==1:
           linetransmit(lc['label'],lc['title'],lc['artist'],lc['url'])
       return HttpResponse(p)
