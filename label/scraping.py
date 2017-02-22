@@ -652,10 +652,16 @@ class flau:
         '''
 
         if len(url)>len(artistdb2):
-            info['title']=title[0]
-            info['artist']=artist[0]
-            info['url']=url[0]
-            info['key']=1
+            if url[1]!=artistdb2[0]:
+                info['title']=title[0]
+                info['artist']=artist[0]
+                info['url']=url[0] + "\n複数のリリースがあります"
+                info['key']=1
+            else:
+                info['title']=title[0]
+                info['artist']=artist[0]
+                info['url']=url[0]
+                info['key']=1
 
         delete = flaudb.objects.all()
         delete.delete()
