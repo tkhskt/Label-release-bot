@@ -111,8 +111,8 @@ def wordcheck(text,token):
 
     for i in labelname:
         for lb in labelname[i]:
+            key = True
             for wd in words[lb]:
-                key = True
                 if wd in text:
                     if key:
                         db = releases.objects.filter(label=lb).order_by('id').first()
