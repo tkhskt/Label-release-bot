@@ -112,13 +112,13 @@ def wordcheck(text,token):
     for i in labelname:
         for lb in labelname[i]:
             for wd in words[lb]:
-                #key = True
+                key = True
                 if wd in text:
-                    #if key:
+                    if key:
                         db = releases.objects.filter(label=lb).order_by('id').first()
                         data['label'].append(words[lb][0])
                         data['url'].append(db.url)
-                     #   key = False
+                        key = False
     '''
     for wd in words['altema']:
         if wd in text:
