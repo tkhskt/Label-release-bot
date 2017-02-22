@@ -116,7 +116,7 @@ def wordcheck(text,token):
                 if wd in text:
                     #if key:
                         db = releases.objects.filter(label=lb).order_by('id').first()
-                        data['label'].append(words[labelname[i]][0])
+                        data['label'].append(words[lb][0])
                         data['url'].append(db.url)
                      #   key = False
     '''
