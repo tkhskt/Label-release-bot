@@ -25,5 +25,4 @@ urlpatterns = [
     url(r'^check2/$', views.labelcheck2),
     url(r'^check3/$', views.labelcheck3),
     url(r'^check4/$', views.labelcheck4),
-
 ]
