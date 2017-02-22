@@ -59,7 +59,7 @@ def linetransmit(label,title,artist,url): #label,title,artist,url
     for ids in lineid.objects.all():
         userid.append(ids.user)
     payload = {
-        "to":['U9cffcfa9f62705b889bfc4470efea951',],#userid,
+        "to":userid,
         "messages":[
             {
                 "type":"text",
@@ -125,101 +125,7 @@ def wordcheck(text,token):
             db = releases.objects.filter(label='altema').order_by('id').first()
             data['label'].append('Altema Records')
             data['url'].append(db.url)
-    for wd in words['maltine']:
-        if wd in text:
-            db = releases.objects.filter(label='maltine').order_by('id').first()
-            data['label'].append('Maltine Records')
-            data['url'].append(db.url)
-    for wd in words['bunkai-kei']:
-        if wd in text:
-            db = releases.objects.filter(label='bunkai-kei').order_by('id').first()
-            data['label'].append('Bunkai-Kei Records')
-            data['url'].append(db.url)
-    for wd in words['trekkie trax']:
-        if wd in text:
-            db = releases.objects.filter(label='trekkie trax').order_by('id').first()
-            data['label'].append('TREKKIE TRAX')
-            data['url'].append(db.url)
-    for wd in words['sense']:
-        if wd in text:
-            db = releases.objects.filter(label='sense').order_by('id').first()
-            data['label'].append('SenSe')
-            data['url'].append(db.url)
-    for wd in words['flau']:
-        if wd in text:
-            db = releases.objects.filter(label='flau').order_by('id').first()
-            data['label'].append('flau')
-            data['url'].append(db.url)
-    for wd in words['progressive form']:
-        if wd in text:
-            db = releases.objects.filter(label='progressive form').order_by('id').first()
-            data['label'].append('PROGRESSIVE FOrM')
-            data['url'].append(db.url)
-    for wd in words['warp']:
-        if wd in text:
-            db = releases.objects.filter(label='warp').order_by('id').first()
-            data['label'].append('Warp Records')
-            data['url'].append(db.url)
-    for wd in words['planet mu']:
-        if wd in text:
-            db = releases.objects.filter(label='planet mu').order_by('id').first()
-            data['label'].append('Planet Mu')
-            data['url'].append(db.url)
-    for wd in words['owsla']:
-        if wd in text:
-            db = releases.objects.filter(label='owsla').order_by('id').first()
-            data['label'].append('OWSLA')
-            data['url'].append(db.url)
-    for wd in words['revealed']:
-        if wd in text:
-            db = releases.objects.filter(label='revealed').order_by('id').first()
-            data['label'].append('Revealed Recordings')
-            data['url'].append(db.url)
-    for wd in words['ghostly international']:
-        if wd in text:
-            db = releases.objects.filter(label='ghostly international').order_by('id').first()
-            data['label'].append('Ghostly International')
-            data['url'].append(db.url)
-    for wd in words["spinnin'"]:
-        if wd in text:
-            db = releases.objects.filter(label="spinnin'").order_by('id').first()
-            data['label'].append("Spinnin' Records")
-            data['url'].append(db.url)
-    for wd in words['wedidit']:
-        if wd in text:
-            db = releases.objects.filter(label='wedidit').order_by('id').first()
-            data['label'].append('WEDIDIT')
-            data['url'].append(db.url)
-    for wd in words['never slept']:
-        if wd in text:
-            db = releases.objects.filter(label='never slept').order_by('id').first()
-            data['label'].append('Never Slept')
-            data['url'].append(db.url)
-    for wd in words['mad decent']:
-        if wd in text:
-            db = releases.objects.filter(label='mad decent').order_by('id').first()
-            data['label'].append('Mad Decent')
-            data['url'].append(db.url)
-    for wd in words['r&s']:
-        if wd in text:
-            db = releases.objects.filter(label='r&s').order_by('id').first()
-            data['label'].append('R&S Records')
-            data['url'].append(db.url)
-    for wd in words['ed banger']:
-        if wd in text:
-            db = releases.objects.filter(label='ed banger').order_by('id').first()
-            data['label'].append('Ed Banger Records')
-            data['url'].append(db.url)
-    for wd in words['brainfeeder']:
-        if wd in text:
-            db = releases.objects.filter(label='brainfeeder').order_by('id').first()
-            data['label'].append('Brainfeeder')
-            data['url'].append(db.url)
-    for wd in words['luckyme']:
-        if wd in text:
-            db = releases.objects.filter(label='luckyme').order_by('id').first()
-            data['label'].append('LuckyMe')
-            data['url'].append(db.url)
+
     '''
     return data
 
