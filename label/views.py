@@ -21,28 +21,35 @@ PUSH_ENDPOINT ='https://api.line.me/v2/bot/message/push'
 REPLY_ENDPOINT = 'https://api.line.me/v2/bot/message/reply'
 
 words = {
-    'altema':['altema','アルテマ','あるてま','altima','Altima','アルティマ','アルティメ','Altema','ALTEMA'],
-    'maltine':['maltine','マルチネ','マルティネ','malutine','marutine','martine','MALTINE','Maltine','まるちね'],
-    'bunkai-kei':['bunkai','Bunkai','BUNKAI','分解','ぶんかい','ブンカイ'],
-    'trekkie trax':['Trekkie','TREKKIE','trekkie','トレッキー','とれっきー'],
+    'altema':['Altema Records','altema','アルテマ','あるてま','altima','Altima','アルティマ','アルティメ','Altema','ALTEMA'],
+    'maltine':['Maltine Records','maltine','マルチネ','マルティネ','malutine','marutine','martine','MALTINE','Maltine','まるちね'],
+    'bunkai-kei':['Bunkai-kei Records','bunkai','Bunkai','BUNKAI','分解','ぶんかい','ブンカイ'],
+    'trekkie trax':['TREKKIE TRAX','Trekkie','TREKKIE','trekkie','トレッキー','とれっきー'],
     'sense':['SenSe','SENSE','sense','Sense','senSe','センス','せんす','sence','Sence'],
     'flau':['flau','FLAU','FLAW','Flau','ふらう','ふらー','flaw','Flaw','フル―','フラ','フラー','ふる','ふるー','フラウ'],
-    'progressive form':['PROGRESSIVE','progressive','Progressive','プログレッシブ','プログレッシヴ','ぷろぐれっしぶ'],
-    'warp':['Warp','warp','WARP','ウォープ','ワープ','うぉーぷ','わーぷ'],
-    'planet mu':['Planet','planet','PLANET','ぷらねっと','プラネット'],
+    'progressive form':['PROGRESSIVE FOrM','PROGRESSIVE','progressive','Progressive','プログレッシブ','プログレッシヴ','ぷろぐれっしぶ'],
+    'warp':['Warp Records','Warp','warp','WARP','ウォープ','ワープ','うぉーぷ','わーぷ'],
+    'planet mu':['Planet Mu','Planet','planet','PLANET','ぷらねっと','プラネット'],
     'owsla':['OWSLA','owsla','Owsla','オウスラ','おうすら','オースラ','オウズラ','おーずら'],
-    'revealed':['Revealed','REVEALED','revealed','リヴィールド','リビールド'],
-    'ghostly international':['Ghostly','GHOSTLY','ghostly','Ghosty','GHOSTTY','ghosty','ゴーストリー','ごーすとりー','ごーすてぃー','ゴースティー'],
-    "spinnin'":['Spinnin','spinnin','SPINNIN','スピニン','すぴにん'],
+    'revealed':['Revealed Recordings','Revealed','REVEALED','revealed','リヴィールド','リビールド'],
+    'ghostly international':['Ghostly International','Ghostly','GHOSTLY','ghostly','Ghosty','GHOSTTY','ghosty','ゴーストリー','ごーすとりー','ごーすてぃー','ゴースティー'],
+    "spinnin'":["Spinnin' Records",'Spinnin','spinnin','SPINNIN','スピニン','すぴにん'],
     'wedidit':['WEDIDIT','wedidit','Wedidit','ウィーディドイット','ウィーディドゥイット','うぃーでぃどいっと'],
-    'never slept':['Never','NEVER','never','ネヴァー','ネバー','ねばー'],
-    'mad decent':['Mad','MAD','mad','マッド','まっど'],
-    'r&s':['R&S','RandS','rands','r&s','Rands','R&s','アール','あーる'],
-    'ed banger':['Ed Banger','ED BANGER','ed banger','Ed banger','ed Banger','EdBanger','EDBANGER','edbanger','Edbanger','edBanger','エドバンガー','エド・バンガー','エド　バンガー'],
-    'brainfeeder':['Brain','brain','BRAIN','ブレイン','ブレーン','ぶれいん','ぶれーん'],
-    'luckyme':['Lucky','lucky','LUCKY','ラッキー','らっきー'],
+    'never slept':['Never Slept','Never','NEVER','never','ネヴァー','ネバー','ねばー'],
+    'mad decent':['Mad Decent','Mad','MAD','mad','マッド','まっど'],
+    'r&s':['R&S Records','R&S','RandS','rands','r&s','Rands','R&s','アール','あーる'],
+    'ed banger':['Ed Banger Records','Ed Banger','ED BANGER','ed banger','Ed banger','ed Banger','EdBanger','EDBANGER','edbanger','Edbanger','edBanger','エドバンガー','エド・バンガー','エド　バンガー'],
+    'brainfeeder':['Brainfeeder','Brain','brain','BRAIN','ブレイン','ブレーン','ぶれいん','ぶれーん'],
+    'luckyme':['LuckyMe','Lucky','lucky','LUCKY','ラッキー','らっきー'],
 }
 
+
+labelname = {
+             1:['altema','maltine','bunkai-kei','trekkie trax','sense'],
+             2:['flau', 'progressive form','warp','planet mu','owsla'],
+             3:['revealed', 'ghostly international',"spinnin'",'wedidit','never slept'],
+             4:['mad decent','r&s','ed banger','brainfeeder','luckyme']
+             }
 
 
 def linetransmit(label,title,artist,url): #label,title,artist,url
@@ -52,7 +59,7 @@ def linetransmit(label,title,artist,url): #label,title,artist,url
     for ids in lineid.objects.all():
         userid.append(ids.user)
     payload = {
-        "to":userid,
+        "to":['U9cffcfa9f62705b889bfc4470efea951',],#userid,
         "messages":[
             {
                 "type":"text",
@@ -81,93 +88,16 @@ def takahashi():
 
 
 def labelcheck(request,page):
-   if page == '1':
-     p = "done"
+     res = 'OK' + page
+     er = 'error' + page
      try:
-      alt = scrape.altema(0)
-      if alt['key']==1:
-          linetransmit(alt['label'],alt['title'],alt['artist'],alt['url'])
-      mal = scrape.maltine(0)
-      if mal['key']==1:
-          linetransmit(mal['label'],mal['title'],mal['artist'],mal['url'])
-      bun = scrape.bunkai(0)
-      if bun['key']==1:
-          linetransmit(bun['label'],bun['title'],bun['artist'],bun['url'])
-      tre = scrape.trekkie(0)
-      if tre['key']==1:
-          linetransmit(tre['label'],tre['title'],tre['artist'],tre['url'])
-      sen = scrape.sense(0)
-      if sen['key']==1:
-          linetransmit(sen['label'],sen['title'],sen['artist'],sen['url'])
-      return HttpResponse(p)
+       for lb in labelname[str(page)]:
+         info = scrape().doscraping(lb)
+         if info['key']==1:
+           linetransmit(info['label'],info['title'],info['artist'],info['url'])
+       return HttpResponse(res)
      except:
-      return HttpResponse("error")
-
-   elif page == '2':
-     p = "done2"
-     try:
-      pro = scrape.progressive(0)
-      if pro['key']==1:
-          linetransmit(pro['label'],pro['title'],pro['artist'],pro['url'])
-      fla = scrape.flau(0)
-      if fla['key']==1:
-       linetransmit(fla['label'],fla['title'],fla['artist'],fla['url'])
-      war = scrape.warp(0)
-      if war['key']==1:
-       linetransmit(war['label'],war['title'],war['artist'],war['url'])
-      pla = scrape.planet(0)
-      if pla['key']==1:
-       linetransmit(pla['label'],pla['title'],pla['artist'],pla['url'])
-      ows = scrape.owsla(0)
-      if ows['key']==1:
-       linetransmit(ows['label'],ows['title'],ows['artist'],ows['url'])
-      return HttpResponse(p)
-     except:
-      return HttpResponse("error")
-
-   elif page =='3':
-     p = "done3"
-     try:
-      rev = scrape.revealed(0)
-      if rev['key']==1:
-          linetransmit(rev['label'],rev['title'],rev['artist'],rev['url'])
-      gho = scrape.ghostly(0)
-      if gho['key']==1:
-          linetransmit(gho['label'],gho['title'],gho['artist'],gho['url'])
-      spi = scrape.spinnin(0)
-      if spi['key']==1:
-          linetransmit(spi['label'],spi['title'],spi['artist'],spi['url'])
-      wed = scrape.wedidit(0)
-      if wed['key']==1:
-          linetransmit(wed['label'],wed['title'],wed['artist'],wed['url'])
-      nev = scrape.never(0)
-      if nev['key']==1:
-          linetransmit(nev['label'],nev['title'],nev['artist'],nev['url'])
-      return HttpResponse(p)
-     except:
-      return HttpResponse("error")
-
-   elif page =='4':
-     p = "done4"
-     try:
-      ma = scrape.mad(0)
-      if ma['key']==1:
-          linetransmit(ma['label'],ma['title'],ma['artist'],ma['url'])
-      r = scrape.rs(0)
-      if r['key']==1:
-          linetransmit(r['label'],r['title'],r['artist'],r['url'])
-      ed = scrape.edbanger(0)
-      if ed['key']==1:
-          linetransmit(ed['label'],ed['title'],ed['artist'],ed['url'])
-      br = scrape.brainfeeder(0)
-      if br['key']==1:
-          linetransmit(br['label'],br['title'],br['artist'],br['url'])
-      lc = scrape.luckyme(0)
-      if lc['key']==1:
-          linetransmit(lc['label'],lc['title'],lc['artist'],lc['url'])
-      return HttpResponse(p)
-     except:
-      return HttpResponse("error4")
+       return HttpResponse(er)
 
 
 
@@ -178,6 +108,18 @@ def wordcheck(text,token):
             'url':[],
             'token':token,
             }
+
+    for i in labelname:
+        for lb in labelname[i]:
+            for wd in words[lb]:
+                key = True
+                if wd in text:
+                    if key:
+                        db = releases.objects.filter(label=lb).order_by('id').first()
+                        data['label'].append(words[labelname[i]][0])
+                        data['url'].append(db.url)
+                        key = False
+
     for wd in words['altema']:
         if wd in text:
             db = releases.objects.filter(label='altema').order_by('id').first()

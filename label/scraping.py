@@ -6,7 +6,8 @@ from label.models import altemadb,maltinedb,sensedb,bunkaidb,trekkiedb,flaudb,\
 import re
 
 class scrape:
-    def altema(number):
+
+    def altema(self):
         url = 'http://www.altemarecords.jp/release/'
         req = urllib.request.Request(url)
         response = urllib.request.urlopen(req)
@@ -32,8 +33,6 @@ class scrape:
         link = soup.find_all('a',href=True)
 
         dl = soup.find_all("dl")
-
-
 
         for i in soup.find_all('a',href=True):
          #print(i['href'])
@@ -1514,6 +1513,50 @@ class scrape:
             db.save()
 
         return info
+
+
+
+    def doscraping(self,name):
+        if name == 'altema':
+           return self.altema()
+        elif name == 'maltine':
+            return self.maltine()
+        elif name == 'bunkai-kei':
+            return self.bunkai()
+        elif name == 'trekkie trax':
+            return self.trekkie()
+        elif name == 'sense':
+            return self.sense()
+        elif name == 'flau':
+            return self.flau()
+        elif name == 'progressive form':
+            return self.progressive()
+        elif name == 'warp':
+            return self.warp()
+        elif name == 'planet mu':
+            return self.planet()
+        elif name == 'owsla':
+            return self.owsla()
+        elif name == 'revealed':
+            return self.revealed()
+        elif name == 'ghostly international':
+            return self.ghostly()
+        elif name == "spinnin'":
+            return self.spinnin()
+        elif name == 'wedidit':
+            return self.wedidit()
+        elif name == 'never slept':
+            return self.never()
+        elif name == 'mad decent':
+            return self.mad()
+        elif name == 'r&s':
+            return self.rs()
+        elif name == 'ed banger':
+            return self.edbanger()
+        elif name == 'brainfeeder':
+            return self.brainfeeder()
+        elif name == 'luckyme':
+            return self.luckyme()
 
 class digger:
     def digger(self):
