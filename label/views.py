@@ -119,7 +119,7 @@ def wordcheck(text,token):
                         data['label'].append(words[labelname[i]][0])
                         data['url'].append(db.url)
                         key = False
-
+    '''
     for wd in words['altema']:
         if wd in text:
             db = releases.objects.filter(label='altema').order_by('id').first()
@@ -220,6 +220,7 @@ def wordcheck(text,token):
             db = releases.objects.filter(label='luckyme').order_by('id').first()
             data['label'].append('LuckyMe')
             data['url'].append(db.url)
+    '''
     return data
 
 
