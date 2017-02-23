@@ -49,7 +49,7 @@ labelname = {
              2:['flau', 'progressive form','warp','planet mu','owsla'],
              3:['revealed', 'ghostly international',"spinnin'",'wedidit','never slept'],
              4:['mad decent','r&s','ed banger','brainfeeder','luckyme']
-             }
+}
 
 
 def linetransmit(label,title,artist,url): #label,title,artist,url
@@ -91,7 +91,7 @@ def labelcheck(request,page):
      res = 'OK' + page
      er = 'error' + page
      try:
-       for lb in labelname[str(page)]:
+       for lb in labelname[int(page)]:
          info = scrape().doscraping(lb)
          if info['key']==1:
            linetransmit(info['label'],info['title'],info['artist'],info['url'])
