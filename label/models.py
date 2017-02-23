@@ -88,6 +88,7 @@ class progressivedb(models.Model):
     def __str__(self):
         return self.artist
 
+
 class trekkiedb(models.Model):
     artist =  models.CharField('アーティスト名',max_length=500)
 

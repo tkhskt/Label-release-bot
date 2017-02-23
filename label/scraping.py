@@ -326,7 +326,7 @@ class scrape:
         title = []
         url = []
 
-        info =  {"label":"Trekkie Trax","title":"","url":"","artist":"","key":0}
+        info =  {"label":"TREKKIE TRAX","title":"","url":"","artist":"","key":0}
 
         artistdb = [] #dbから取得したアーティスト情報
         artistdb2 = []
