@@ -168,17 +168,15 @@ def lineidinput(request):
         rptoken = e['replyToken']
 
         if e['type'] == 'follow':
-         userid = e['source']['userId']
-         db = lineid(user=userid)
-         db.save()
+           userid = e['source']['userId']
+           db = lineid(user=userid)
+           db.save()
 
         if e['type'] == 'unfollow':
            userid = e['source']['userId']
 
-           delete = lineid.objects.filter(user=userid)
+           delete = lineid.objects.filter(user=userid).first()
            delete.delete()
-
-
 
 
         if e['type']=='message':
