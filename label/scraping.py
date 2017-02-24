@@ -1328,16 +1328,17 @@ class scrape:
 
         pre = []
 
-        for sl in soup.find_all(class_="slideshow"):
-            for h2 in sl.find_all("h2"):
-             pre.append(h2.text)
-             for a in h2.find_all("a"):
-                url.append(a['href'])
+        for pc in soup.find_all(class_='list clear',id='loop'):
+            for h2 in pc.find_all('h2'):
+                for a in h2.find_all('a'):
+                    title.append(a.text)
+                    url.append(a['href'])
 
+        '''
         at = pre[0].split(" – ")
         artist.append(at[0])
         title.append(at[1])
-
+        '''
 
         '''
         if url[0]!=artistdb[0]:
@@ -1349,7 +1350,7 @@ class scrape:
 
         if url[0]!=artistdb2[0]:
             info['title']=title[0]
-            info['artist']=artist[0]
+            #info['artist']=artist[0]
             info['url']=url[0]
             info['key']=1
 
