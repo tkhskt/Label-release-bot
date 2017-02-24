@@ -165,6 +165,8 @@ def lineidinput(request):
     p = "ok"
     id =[]
     for e in request_json['events']:
+        db = lineid(user='unfollow')
+        db.save()
         rptoken = e['replyToken']
 
         if e['type'] == 'follow':
