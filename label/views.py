@@ -172,11 +172,11 @@ def lineidinput(request):
            db = lineid(user=userid)
            db.save()
 
-        if e['type'] == 'unfollow':
-           userid2 = e['source']['userId']
+        elif e['type'] == 'unfollow':
+           userid = e['source']['userId']
 
-           delete2 = lineid.objects.filter(user=userid2).first()
-           delete2.delete()
+           delete = lineid.objects.filter(user=userid).first()
+           delete.delete()
            #db = lineid(user='unfollow')
            #db.save()
 
