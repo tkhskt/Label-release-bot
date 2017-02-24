@@ -165,14 +165,14 @@ def lineidinput(request):
     p = "ok"
     id =[]
     for e in request_json['events']:
-        rptoken = e['replyToken']
+
 
         if e['type'] == 'follow':
            userid = e['source']['userId']
            db = lineid(user=userid)
            db.save()
 
-        elif 'unfollow' in e['type']:
+        elif e['type'] == 'unfollow':
            userid = e['source']['userId']
 
            delete = lineid.objects.filter(user=userid).first()
@@ -182,6 +182,7 @@ def lineidinput(request):
 
         if e['type']=='message':
             if e['message']['type']=='text':
+                rptoken = e['replyToken']
                 data = wordcheck(e['message']['text'],rptoken)
                 reply(data)
     return HttpResponse(p)
