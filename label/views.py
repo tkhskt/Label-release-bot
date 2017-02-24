@@ -41,6 +41,7 @@ words = {
     'ed banger':['Ed Banger Records','Ed Banger','ED BANGER','ed banger','Ed banger','ed Banger','EdBanger','EDBANGER','edbanger','Edbanger','edBanger','エドバンガー','エド・バンガー','エド　バンガー'],
     'brainfeeder':['Brainfeeder','Brain','brain','BRAIN','ブレイン','ブレーン','ぶれいん','ぶれーん'],
     'luckyme':['LuckyMe','Lucky','lucky','LUCKY','ラッキー','らっきー'],
+
 }
 
 
@@ -172,19 +173,12 @@ def lineidinput(request):
          db.save()
 
         if e['type'] == 'unfollow':
-           for i in lineid.objects.all():
-               id.append(i.user)
-
-           delete = lineid.objects.all()
-           delete.delete()
-
            userid = e['source']['userId']
 
-           id.remove(userid)
+           delete = lineid.objects.filter(user=userid)
+           delete.delete()
 
-           for i in range(len(id)):
-            db = lineid(user=id[i])
-            db.save()
+
 
 
         if e['type']=='message':
