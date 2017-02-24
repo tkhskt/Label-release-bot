@@ -175,9 +175,10 @@ def lineidinput(request):
         if e['type'] == 'unfollow':
            userid = e['source']['userId']
 
-           delete = lineid.objects.filter(user=userid).first()
-           delete.delete()
-
+           #delete = lineid.objects.filter(user=userid).first()
+           #delete.delete()
+           db = lineid(user='unfollow')
+           db.save()
 
         if e['type']=='message':
             if e['message']['type']=='text':
