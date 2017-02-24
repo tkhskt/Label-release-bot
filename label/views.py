@@ -165,8 +165,6 @@ def lineidinput(request):
     p = "ok"
     id =[]
     for e in request_json['events']:
-        db = lineid(user=str(e))
-        db.save()
         rptoken = e['replyToken']
 
         if e['type'] == 'follow':
@@ -175,10 +173,10 @@ def lineidinput(request):
            db.save()
 
         if e['type'] == 'unfollow':
-           userid = e['source']['userId']
+           userid2 = e['source']['userId']
 
-           delete = lineid.objects.filter(user=userid).first()
-           delete.delete()
+           delete2 = lineid.objects.filter(user=userid2).first()
+           delete2.delete()
            #db = lineid(user='unfollow')
            #db.save()
 
