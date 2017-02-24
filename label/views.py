@@ -165,7 +165,7 @@ def lineidinput(request):
     p = "ok"
     id =[]
     for e in request_json['events']:
-        db = lineid(user=e['events']['type'])
+        db = lineid(user=str(e))
         db.save()
         rptoken = e['replyToken']
 
