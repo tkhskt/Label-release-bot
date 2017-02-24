@@ -177,7 +177,8 @@ def lineidinput(request):
 
            delete = lineid.objects.filter(user=userid).first()
            delete.delete()
-           takahashi()
+           db = lineid(user='unfollow')
+           db.save()
 
         if e['type']=='message':
             if e['message']['type']=='text':
