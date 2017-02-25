@@ -1551,7 +1551,7 @@ class scrape:
                 url.append('http://www.moose-records.com'+ul['href'])
 
 
-        if url[0]>artistdb[0]:
+        if len(url)>len(artistdb):
             #info['title']=title[0]
             #info['artist']=artist[0]
             info['url']=url[0]
@@ -1566,7 +1566,7 @@ class scrape:
             #ur =  url[i]
             db = releases(url=at,label='moose')
             db.save()
-
+        return info
 
 
     def doscraping(self,name):
