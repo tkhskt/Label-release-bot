@@ -41,6 +41,7 @@ words = {
     'ed banger':['Ed Banger Records','Ed Banger','ED BANGER','ed banger','Ed banger','ed Banger','EdBanger','EDBANGER','edbanger','Edbanger','edBanger','エドバンガー','エド・バンガー','エド　バンガー'],
     'brainfeeder':['Brainfeeder','Brain','brain','BRAIN','ブレイン','ブレーン','ぶれいん','ぶれーん'],
     'luckyme':['LuckyMe','Lucky','lucky','LUCKY','ラッキー','らっきー'],
+    'moose':['Moose Records','Moose','moose','MOOSE','モーセ','ムース','もーせ','むーす'],
 
 }
 
@@ -49,7 +50,8 @@ labelname = {
              1:['altema','maltine','bunkai-kei','trekkie trax','sense'],
              2:['flau', 'progressive form','warp','planet mu','owsla'],
              3:['revealed', 'ghostly international',"spinnin'",'wedidit','never slept'],
-             4:['mad decent','r&s','ed banger','brainfeeder','luckyme']
+             4:['mad decent','r&s','ed banger','brainfeeder','luckyme'],
+             5:['moose'],
 }
 
 
@@ -60,7 +62,7 @@ def linetransmit(label,title,artist,url): #label,title,artist,url
     for ids in lineid.objects.all():
         userid.append(ids.user)
     payload = {
-        "to":userid,
+        "to":['U9cffcfa9f62705b889bfc4470efea951',],#userid,
         "messages":[
             {
                 "type":"text",
@@ -166,7 +168,6 @@ def lineidinput(request):
     id =[]
     for e in request_json['events']:
 
-
         if e['type'] == 'follow':
            userid = e['source']['userId']
            db = lineid(user=userid)
@@ -185,4 +186,5 @@ def lineidinput(request):
                 rptoken = e['replyToken']
                 data = wordcheck(e['message']['text'],rptoken)
                 reply(data)
+
     return HttpResponse(p)

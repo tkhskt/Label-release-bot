@@ -1517,6 +1517,58 @@ class scrape:
 
 
 
+    def moose(self):
+        url = 'http://www.moose-records.com/releases/'
+
+        key = True
+        while key:
+            try:
+                req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+                response = urllib.request.urlopen(req)
+                html = response.read()
+                key = False
+            except:
+                pass
+
+        soup = BeautifulSoup(html, "lxml")
+
+        url = []
+
+        artistdb = []
+
+
+        info =  {"label":"Moose Records","title":"","url":"","artist":"","key":0}
+
+        for artdb in releases.objects.filter(label='moose').order_by('id'):
+            artistdb.append(artdb.url)
+
+
+
+        for ul in soup.find_all(class_='image-slide-anchor content-fit'):
+            if 'www.moose-records' in ul['href']:
+                url.append(ul['href'])
+            else:
+                url.append('http://www.moose-records.com'+ul['href'])
+
+
+        if url[0]>artistdb[0]:
+            #info['title']=title[0]
+            #info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+
+        delete = releases.objects.filter(label='moose')
+        delete.delete()
+
+        for i in range(len(url)):
+            at = url[i]
+            #tit = title[i]
+            #ur =  url[i]
+            db = releases(url=at,label='moose')
+            db.save()
+
+
+
     def doscraping(self,name):
         if name == 'altema':
            return self.altema()
@@ -1558,6 +1610,8 @@ class scrape:
             return self.brainfeeder()
         elif name == 'luckyme':
             return self.luckyme()
+        elif name == 'moose':
+            return self.moose()
 
 class digger:
     def digger(self):

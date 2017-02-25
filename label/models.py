@@ -25,6 +25,7 @@ class releases(models.Model):
         ('ed banger','Ed Banger Records'),
         ('brainfeeder','brainfeeder'),
         ('luckyme','luckyme'),
+        ('moose','Moose Records'),
     )
     label = models.CharField('Label',max_length=500,choices=LABEL_SET,default='no')
     url = models.CharField('URL',max_length=500)
