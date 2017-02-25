@@ -1569,6 +1569,57 @@ class scrape:
         return info
 
 
+
+
+    def anticon(self):
+
+        url = 'https://www.anticon.com/store/music/anticon-releases'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+
+        artist = []
+        url = []
+        title = []
+        artistdb = []
+
+
+        info =  {"label":"anticon.","title":"","url":"","artist":"","key":0}
+
+        for artdb in releases.objects.filter(label='anticon').order_by('id'):
+            artistdb.append(artdb.url)
+
+
+        for tit in soup.find_all(class_='product-meta'):
+             for h3 in tit.find_all('h3'):
+                 artist.append(h3.text)
+             for h4 in tit.find_all('h4'):
+                 title.append(h4.text)
+
+        for ul in soup.find_all(class_='product-image'):
+            for a in ul.find_all('a'):
+                url.append('https://www.anticon.com'+a['href'])
+
+
+        if url[0]!=artistdb[0]:
+            info['title']=title[0]
+            info['artist']=artist[0]
+            info['url']=url[0]
+            info['key']=1
+
+        delete = releases.objects.filter(label='anticon')
+        delete.delete()
+
+        for i in range(len(url)):
+            at = url[i]
+            db = releases(url=at,label='anticon')
+            db.save()
+
+        return info
+
+
     def doscraping(self,name):
         if name == 'altema':
            return self.altema()
@@ -1612,6 +1663,8 @@ class scrape:
             return self.luckyme()
         elif name == 'moose':
             return self.moose()
+        elif name == 'anticon':
+            return self.anticon()
 
 class digger:
     def digger(self):

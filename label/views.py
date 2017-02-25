@@ -42,6 +42,7 @@ words = {
     'brainfeeder':['Brainfeeder','Brain','brain','BRAIN','ブレイン','ブレーン','ぶれいん','ぶれーん'],
     'luckyme':['LuckyMe','Lucky','lucky','LUCKY','ラッキー','らっきー'],
     'moose':['Moose Records','Moose','moose','MOOSE','モーセ','ムース','もーせ','むーす'],
+    'anticon':['anticon.','anticon','Anticon','ANTICON','アンチコン','あんちこん','あんてぃこん','アンティコン'],
 
 }
 
@@ -51,7 +52,7 @@ labelname = {
              2:['flau', 'progressive form','warp','planet mu','owsla'],
              3:['revealed', 'ghostly international',"spinnin'",'wedidit','never slept'],
              4:['mad decent','r&s','ed banger','brainfeeder','luckyme'],
-             5:['moose'],
+             5:['moose','anticon'],
 }
 
 
@@ -62,7 +63,7 @@ def linetransmit(label,title,artist,url): #label,title,artist,url
     for ids in lineid.objects.all():
         userid.append(ids.user)
     payload = {
-        "to":userid,
+        "to":['U9cffcfa9f62705b889bfc4470efea951',],#userid,
         "messages":[
             {
                 "type":"text",
