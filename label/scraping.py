@@ -1626,6 +1626,61 @@ class scrape:
         return info
 
 
+
+    def orikami(self):
+        url = 'https://orikamirecords.bandcamp.com/music'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+
+        artist = []
+        title = []
+        url = []
+        artistdb = []
+
+
+        info =  {"label":"Orikami Records","title":"","url":"","artist":"","key":0}
+
+        for artdb in releases.objects.filter(label='orikami').order_by('id'):
+            artistdb.append(artdb.url)
+
+
+        for pn in soup.find_all('p',class_='title'):
+            for ex in pn.find_all('span'):
+                ex.extract()
+            tit = re.sub('\s{2}',"",pn.text.replace("\n",''))
+            title.append(tit)
+
+        for ol in soup.find_all('ol',class_="editable-grid music-grid columns-4 public"):
+            for a in ol.find_all('a'):
+                url.append('https://orikamirecords.bandcamp.com'+a['href'])
+
+        if url[0]!=artistdb[0]:
+            if url[1]!=artistdb[0]:
+                info['title']=title[0]
+                #info['artist']=artist[0]
+                info['url']=url[0] + "\n複数のリリースがあります"
+                info['key']=1
+            else:
+                info['title']=title[0]
+                #info['artist']=artist[0]
+                info['url']=url[0]
+                info['key']=1
+
+        delete = releases.objects.filter(label='orikami')
+        delete.delete()
+
+        for i in range(len(url)):
+            at = url[i]
+            db = releases(url=at,label='orikami')
+            db.save()
+
+        return info
+
+
+
     def doscraping(self,name):
         if name == 'altema':
            return self.altema()
@@ -1671,6 +1726,8 @@ class scrape:
             return self.moose()
         elif name == 'anticon':
             return self.anticon()
+        elif name == 'orikami':
+            return self.orikami()
 
 class digger:
     def digger(self):
