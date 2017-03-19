@@ -2,6 +2,9 @@ from django.db import models
 
 # Create your models here.
 
+
+
+
 class releases(models.Model):
     LABEL_SET = (
         ('no','no'),
@@ -34,6 +37,17 @@ class releases(models.Model):
 
     def __str__(self):
         return self.label
+
+
+class update(models.Model):
+    label = models.CharField('Label',max_length=500,default='no')
+    url = models.CharField('URL',max_length=500)
+    date = models.DateField('Date',auto_now=True)
+
+    def __str__(self):
+        return self.label
+
+
 
 
 class altemadb(models.Model):

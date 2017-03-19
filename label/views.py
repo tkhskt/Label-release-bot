@@ -4,7 +4,7 @@ from label.scraping import scrape,digger
 from .models import releases
 import json
 import requests
-from label.models import lineid,diggerdb
+from label.models import lineid,update
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -100,6 +100,8 @@ def labelcheck(request,page):
          info = scrape().doscraping(lb)
          if info['key']==1:
            linetransmit(info['label'],info['title'],info['artist'],info['url'])
+           db = update(label=info['label'],url=info['url'])
+           db.save()
        return HttpResponse(res)
      except:
        return HttpResponse(er)
@@ -111,6 +113,7 @@ def wordcheck(text,token):
     data = {
             'label':[],
             'url':[],
+
             'token':token,
             }
 
@@ -163,6 +166,21 @@ def reply(data):
 
 
 
+
+def calendar(request):
+    label = []
+    url = []
+    date = []
+    text = ""
+    for dbs in update.objects.all():
+        label.append(dbs.label)
+        url.append(dbs.url)
+        date.append(dbs.date)
+
+    for i in range(len(label)):
+      text = text + "{\ntitle:" + "'" + label[i] + "'," + "\n" + "url:" + "'"  + url[i] + "'," + "\n" + "start:" + "'"  + date[i].strftime('%Y/%m/%d') + "'\n},\n"
+
+    return render(request,'calendar.html',{'text':text})
 
 def lineidinput(request):
     request_json = json.loads(request.body.decode('utf-8'))

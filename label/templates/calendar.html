@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>更新カレンダー</title>
+
+    <link href='https://gericass.github.io/fullcalendar-3.2.0/fullcalendar.min.css' rel='stylesheet' />
+    <link href='https://gericass.github.io/fullcalendar-3.2.0/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+    <script src='https://gericass.github.io/fullcalendar-3.2.0/lib/moment.min.js'></script>
+    <script src='https://gericass.github.io/fullcalendar-3.2.0/lib/jquery.min.js'></script>
+    <script src='https://gericass.github.io/fullcalendar-3.2.0/fullcalendar.min.js'></script>
+    <script>
+    $(document).ready(function() {
+
+    $('#calendar').fullCalendar({
+    header: {
+    left: 'prev,next today',
+    center: 'title',
+    right: 'month,agendaWeek,agendaDay,listWeek'
+    },
+    // defaultDate: '2017-02-12',
+    navLinks: true, // can click day/week names to navigate views
+    editable: false,
+    eventLimit: true, // allow "more" link when too many events
+    events: [
+        {{text|safe}}
+    ]
+    });
+
+    });
+
+    </script>
+    <style>
+
+    body {
+        margin: 40px 10px;
+        padding: 0;
+        font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+        font-size: 14px;
+    }
+
+    #calendar {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    </style>
+</head>
+<body>
+ <div id='calendar'></div>
+
+</body>
+</html>

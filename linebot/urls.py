@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^$', views.lineidinput),
 
     url(r'^check/(?P<page>\d+)/$', views.labelcheck),
+    url(r'^calendar/$', views.calendar),
 ]
