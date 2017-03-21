@@ -100,7 +100,7 @@ def labelcheck(request,page):
          info = scrape().doscraping(lb)
          if info['key']==1:
            linetransmit(info['label'],info['title'],info['artist'],info['url'])
-           db = update(label=info['label'],url=info['url'])
+           db = update(label=info['label'],url=info['url'].replace('複数のリリースがあります',''))
            db.save()
        return HttpResponse(res)
      except:
@@ -179,7 +179,7 @@ def calendar(request):
         date.append(dbs.date)
 
     for i in range(len(label)):
-      text = text + "{\ntitle:" + '"' + label[i].replace('複数のリリースがあります','') + '",' + "\n" + "url:" + "'"  + url[i] + "'," + "\n" + "start:" + "'"  + date[i].strftime('%Y/%m/%d') + "'\n},\n"
+      text = text + "{\ntitle:" + '"' + label[i] + '",' + "\n" + "url:" + "'"  + url[i] + "'," + "\n" + "start:" + "'"  + date[i].strftime('%Y/%m/%d') + "'\n},\n"
 
     return render(request,'calendar.html',{'text':text})
 

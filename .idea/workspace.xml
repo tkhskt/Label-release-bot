@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26b5f249-2c0b-4ebb-bf73-1b0c692d42e9" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/label/views.py" afterPath="$PROJECT_DIR$/label/views.py" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -145,13 +146,13 @@
         <entry file="file://$PROJECT_DIR$/label/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="181" column="60" lean-forward="false" selection-start-line="181" selection-start-column="60" selection-end-line="181" selection-end-column="60" />
+              <caret line="181" column="58" lean-forward="false" selection-start-line="181" selection-start-column="58" selection-end-line="181" selection-end-column="58" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
                 <element signature="e#3805#4071#0" expanded="false" />
                 <element signature="e#4544#5301#0" expanded="false" />
                 <element signature="e#5328#5911#0" expanded="false" />
-                <element signature="e#6436#7161#0" expanded="false" />
+                <element signature="e#6434#7159#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -1041,12 +1042,12 @@
       <workItem from="1487935456403" duration="21069000" />
       <workItem from="1489053165509" duration="704000" />
       <workItem from="1489564968469" duration="2019000" />
-      <workItem from="1489731649344" duration="19679000" />
+      <workItem from="1489731649344" duration="19773000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="211303000" />
+    <option name="totallyTimeSpent" value="211397000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
@@ -1170,7 +1171,7 @@
             <element signature="e#3805#4071#0" expanded="false" />
             <element signature="e#4544#5301#0" expanded="false" />
             <element signature="e#5328#5911#0" expanded="false" />
-            <element signature="e#6436#7161#0" expanded="false" />
+            <element signature="e#6434#7159#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1288,7 +1289,7 @@
             <element signature="e#3805#4071#0" expanded="false" />
             <element signature="e#4544#5301#0" expanded="false" />
             <element signature="e#5328#5911#0" expanded="false" />
-            <element signature="e#6436#7161#0" expanded="false" />
+            <element signature="e#6434#7159#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1406,7 +1407,7 @@
             <element signature="e#3805#4071#0" expanded="false" />
             <element signature="e#4544#5301#0" expanded="false" />
             <element signature="e#5328#5911#0" expanded="false" />
-            <element signature="e#6436#7161#0" expanded="false" />
+            <element signature="e#6434#7159#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1531,7 +1532,7 @@
             <element signature="e#3805#4071#0" expanded="false" />
             <element signature="e#4544#5301#0" expanded="false" />
             <element signature="e#5328#5911#0" expanded="false" />
-            <element signature="e#6436#7161#0" expanded="false" />
+            <element signature="e#6434#7159#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1710,13 +1711,13 @@
     <entry file="file://$PROJECT_DIR$/label/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="181" column="60" lean-forward="false" selection-start-line="181" selection-start-column="60" selection-end-line="181" selection-end-column="60" />
+          <caret line="181" column="58" lean-forward="false" selection-start-line="181" selection-start-column="58" selection-end-line="181" selection-end-column="58" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <element signature="e#3805#4071#0" expanded="false" />
             <element signature="e#4544#5301#0" expanded="false" />
             <element signature="e#5328#5911#0" expanded="false" />
-            <element signature="e#6436#7161#0" expanded="false" />
+            <element signature="e#6434#7159#0" expanded="false" />
           </folding>
         </state>
       </provider>
