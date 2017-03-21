@@ -179,7 +179,7 @@ def calendar(request):
         date.append(dbs.date)
 
     for i in range(len(label)):
-      text = text + "{\ntitle:" + '"' + label[i].replace('\n複数のリリースがあります','') + '",' + "\n" + "url:" + "'"  + url[i] + "'," + "\n" + "start:" + "'"  + date[i].strftime('%Y/%m/%d') + "'\n},\n"
+      text = text + "{\ntitle:" + '"' + label[i].replace('複数のリリースがあります','') + '",' + "\n" + "url:" + "'"  + url[i] + "'," + "\n" + "start:" + "'"  + date[i].strftime('%Y/%m/%d') + "'\n},\n"
 
     return render(request,'calendar.html',{'text':text})
 
