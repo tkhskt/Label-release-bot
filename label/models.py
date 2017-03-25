@@ -45,7 +45,8 @@ class update(models.Model):
     date = models.DateField('Date',auto_now=True)
 
     def __str__(self):
-        return self.label
+        strd = self.date.strftime('%Y/%m/%d')
+        return strd
 
 
 
