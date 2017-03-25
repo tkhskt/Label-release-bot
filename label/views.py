@@ -100,7 +100,7 @@ def labelcheck(request,page):
          info = scrape().doscraping(lb)
          if info['key']==1:
            linetransmit(info['label'],info['title'],info['artist'],info['url'])
-           db = update(label=info['label'],url=info['url'].replace('複数のリリースがあります',''))
+           db = update(label=info['label'],url=info['url'].replace('\n複数のリリースがあります',''))
            db.save()
        return HttpResponse(res)
      except:
