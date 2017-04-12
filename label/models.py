@@ -30,7 +30,8 @@ class releases(models.Model):
         ('luckyme','luckyme'),
         ('moose','Moose Records'),
         ('anticon','anticon.'),
-        ('orikami','Orikami Records')
+        ('orikami','Orikami Records'),
+        ('ne','neRecords')
     )
     label = models.CharField('Label',max_length=500,choices=LABEL_SET,default='no')
     url = models.CharField('URL',max_length=500)

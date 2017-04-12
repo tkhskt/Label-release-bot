@@ -21,7 +21,6 @@ from label import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.lineidinput),
-
     url(r'^check/(?P<page>\d+)/$', views.labelcheck),
     url(r'^calendar/$', views.calendar),
 ]

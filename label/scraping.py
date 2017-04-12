@@ -1681,6 +1681,57 @@ class scrape:
 
 
 
+    def ne(self):
+        url = 'http://nerecords.tokyo/release.html'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+
+        artist = []
+        title = []
+        url = []
+        artistdb = []
+
+
+        info =  {"label":"neRecords","title":"","url":"","artist":"","key":0}
+
+        for artdb in releases.objects.filter(label='ne').order_by('id'):
+            artistdb.append(artdb.url)
+
+
+        for ul in soup.find_all(class_='box'):
+            for a in ul.find_all('a'):
+                url.append('http://nerecords.tokyo/'+a['href'])
+            for tit in ul.find_all(class_='title'):
+                title.append(tit.text)
+
+        if url[0]!=artistdb[0]:
+            if url[1]!=artistdb[0]:
+                info['title']=title[0]
+                #info['artist']=artist[0]
+                info['url']=url[0] + "\n複数のリリースがあります"
+                info['key']=1
+            else:
+                info['title']=title[0]
+                #info['artist']=artist[0]
+                info['url']=url[0]
+                info['key']=1
+
+        delete = releases.objects.filter(label='ne')
+        delete.delete()
+
+        for i in range(len(url)):
+            at = url[i]
+            db = releases(url=at,label='ne')
+            db.save()
+
+        return info
+
+
+
+
     def doscraping(self,name):
         if name == 'altema':
            return self.altema()
@@ -1728,6 +1779,8 @@ class scrape:
             return self.anticon()
         elif name == 'orikami':
             return self.orikami()
+        elif name == 'ne':
+            return self.ne()
 
 class digger:
     def digger(self):
