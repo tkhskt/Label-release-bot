@@ -1779,8 +1779,8 @@ class scrape:
             return self.anticon()
         elif name == 'orikami':
             return self.orikami()
-        elif name == 'ne':
-            return self.ne()
+        #elif name == 'ne':
+         #   return self.ne()
 
 class digger:
     def digger(self):

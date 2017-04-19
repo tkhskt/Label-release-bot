@@ -54,7 +54,7 @@ labelname = {
              2:['flau', 'progressive form','warp','planet mu','owsla'],
              3:['revealed', 'ghostly international',"spinnin'",'wedidit','never slept'],
              4:['mad decent','r&s','ed banger','brainfeeder','luckyme'],
-             5:['moose','anticon','orikami','ne'],
+             5:['moose','anticon','orikami'],#ne
 }
 
 
