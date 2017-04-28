@@ -1509,6 +1509,60 @@ class scrape:
 
 
 
+    def gondwana(self):
+        url = 'https://gondwanarecords.bandcamp.com/music'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+
+        artist = []
+        title = []
+        url = []
+
+        artistdb = []
+
+        info =  {"label":"Gondwana Records","title":"","url":"","artist":"","key":0}
+
+        for artdb in releases.objects.filter(label='gondwana').order_by('id'):
+            artistdb.append(artdb.url)
+
+        for tit in soup.find_all("p",class_="title"):
+            for ex in tit.find_all('span'):
+                art = re.sub('\s{2}',"",ex.text.replace('\n',''))
+                artist.append(art)
+                ex.extract()
+            moji = re.sub('\s{2}',"",tit.text.replace('\n','')) #連続した空白の削除
+            title.append(moji)
+
+        for link in soup.find_all("div",class_="leftMiddleColumns"):
+            for link2 in link.find_all("a"):
+                url.append(link2['href'])
+
+        if url[0]!=artistdb[0]:
+            if url[1]!=artistdb[0]:
+                info['title']=title[0]
+                info['artist']=artist[0]
+                info['url']=url[0] + "\n複数のリリースがあります"
+                info['key']=1
+            else:
+                info['title']=title[0]
+                info['artist']=artist[0]
+                info['url']=url[0]
+                info['key']=1
+
+        delete = releases.objects.filter(label='gondwana')
+        delete.delete()
+
+        for i in range(len(url)):
+            at = url[i]
+            db = releases(url=at,label='gondwana')
+            db.save()
+
+        return info
+
+
 
     def doscraping(self,name):
         if name == 'altema':
@@ -1563,4 +1617,6 @@ class scrape:
             return self.outlier()
         elif name == 'king':
             return self.king()
+        elif name == 'gondwana':
+            return self.gondwana()
 

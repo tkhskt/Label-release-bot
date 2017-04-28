@@ -7,7 +7,7 @@ from django.db import models
 
 class releases(models.Model):
     LABEL_SET = (
-        ('no','no'),
+        ('--','--'),
         ('altema','Altema Records'),
         ('maltine','Maltine Records'),
         ('bunkai-kei','Bunkai-Kei Records'),
@@ -34,8 +34,9 @@ class releases(models.Model):
         ('ne','neRecords'),
         ('outlier','OUTLIER RECORDINGS'),
         ('king','King Deluxe'),
+        ('gondwana','Gondwana Records'),
     )
-    label = models.CharField('Label',max_length=500,choices=LABEL_SET,default='no')
+    label = models.CharField('Label',max_length=500,choices=LABEL_SET,default='--')
     url = models.CharField('URL',max_length=500)
 
     def __str__(self):

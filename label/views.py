@@ -45,8 +45,8 @@ words = {
     'orikami':['Orikami Records','Orikami','orikami','ORIKAMI','Origami','origami','ORIGAMI','折り紙','おりかみ','折紙','オリカミ','オリガミ','おりがみ'],
     'ne':['neRecords','ne ','Ne ','NE ','NeRecords','Nerecords','ネレコーズ','ネ ','ね '],
     'outlier':['OUTLIER RECORDINGS','Outlier','outlier','OUTLIER','アウトライアー','アウトライヤー'],
-    'king':['King Deluxe','King','king','KING','キング','きんぐ']
-
+    'king':['King Deluxe','King','king','KING','キング','きんぐ'],
+    'gondwana':['Gondwana Records','Gondwana','gondwana','GONDWANA','Gondowana','gondowana','GONDOWANA','ゴンドワナ','ごんどわな']
 }
 
 
@@ -56,7 +56,7 @@ labelname = {
              3:['revealed', 'ghostly international',"spinnin'",'wedidit','never slept'],
              4:['mad decent','r&s','ed banger','brainfeeder','luckyme'],
              5:['moose','anticon','orikami','ne','outlier'],
-             6:['king'],
+             6:['king','gondwana'],
 }
 
 
@@ -67,7 +67,7 @@ def linetransmit(label,title,artist,url): #label,title,artist,url
     for ids in lineid.objects.all():
         userid.append(ids.user)
     payload = {
-        "to":userid,
+        "to":['U9cffcfa9f62705b889bfc4470efea951'],#userid,
         "messages":[
             {
                 "type":"text",
