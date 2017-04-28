@@ -7,7 +7,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/label/models.py" afterPath="$PROJECT_DIR$/label/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/label/scraping.py" afterPath="$PROJECT_DIR$/label/scraping.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/label/views.py" afterPath="$PROJECT_DIR$/label/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/linebot/settings.py" afterPath="$PROJECT_DIR$/linebot/settings.py" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,8 +64,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/linebot/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="30" column="12" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
+            <state relative-caret-position="82">
+              <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
               <folding>
                 <element signature="e#311#320#0" expanded="true" />
               </folding>
@@ -1023,12 +1022,12 @@
       <workItem from="1489564968469" duration="2019000" />
       <workItem from="1489731649344" duration="25137000" />
       <workItem from="1490518525461" duration="5057000" />
-      <workItem from="1492580590996" duration="11646000" />
+      <workItem from="1492580590996" duration="11836000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="233464000" />
+    <option name="totallyTimeSpent" value="233654000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1378" height="775" extended-state="0" />
@@ -1614,8 +1613,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/linebot/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="30" column="12" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
+        <state relative-caret-position="82">
+          <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
           <folding>
             <element signature="e#311#320#0" expanded="true" />
           </folding>
