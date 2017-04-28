@@ -1455,6 +1455,60 @@ class scrape:
 
 
 
+    def king(self):
+        url = 'http://kingdeluxe.ca/'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+        artist = []
+        title = []
+        url = []
+
+        artistdb = []
+
+        info =  {"label":"King Deluxe","title":"","url":"","artist":"","key":0}
+
+        for artdb in releases.objects.filter(label='king').order_by('id'):
+            artistdb.append(artdb.url)
+
+        for tit in soup.find_all(class_="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-780"):
+            for ul in tit.find_all('li'):
+                for a in ul.find_all('a'):
+                    sp = a.text.split(' – ')
+                    if len(sp)<2:
+                        title.append(sp[0])
+                        artist.append("")
+                    else:
+                        title.append(sp[1])
+                        artist.append(sp[0])
+                    url.append(a['href'])
+
+        if url[0]!=artistdb[0]:
+            if url[1]!=artistdb[0]:
+                info['title']=title[0]
+                info['artist']=artist[0]
+                info['url']=url[0] + "\n複数のリリースがあります"
+                info['key']=1
+            else:
+                info['title']=title[0]
+                info['artist']=artist[0]
+                info['url']=url[0]
+                info['key']=1
+
+        delete = releases.objects.filter(label='king')
+        delete.delete()
+
+        for i in range(len(url)):
+            at = url[i]
+            db = releases(url=at,label='king')
+            db.save()
+
+        return info
+
+
+
 
     def doscraping(self,name):
         if name == 'altema':
@@ -1507,4 +1561,6 @@ class scrape:
             return self.ne()
         elif name == 'outlier':
             return self.outlier()
+        elif name == 'king':
+            return self.king()
 

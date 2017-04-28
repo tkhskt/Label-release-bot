@@ -32,7 +32,8 @@ class releases(models.Model):
         ('anticon','anticon.'),
         ('orikami','Orikami Records'),
         ('ne','neRecords'),
-        ('outlier','OUTLIER RECORDINGS')
+        ('outlier','OUTLIER RECORDINGS'),
+        ('king','King Deluxe'),
     )
     label = models.CharField('Label',max_length=500,choices=LABEL_SET,default='no')
     url = models.CharField('URL',max_length=500)
