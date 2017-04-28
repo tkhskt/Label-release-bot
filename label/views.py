@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from label.scraping import scrape,digger
+from label.scraping import scrape
 # Create your views here.
 from .models import releases
 import json
@@ -44,7 +43,8 @@ words = {
     'moose':['Moose Records','Moose','moose','MOOSE','モーセ','ムース','もーせ','むーす'],
     'anticon':['anticon.','anticon','Anticon','ANTICON','アンチコン','あんちこん','あんてぃこん','アンティコン'],
     'orikami':['Orikami Records','Orikami','orikami','ORIKAMI','Origami','origami','ORIGAMI','折り紙','おりかみ','折紙','オリカミ','オリガミ','おりがみ'],
-    'ne':['neRecords','ne ','Ne ','NE ','NeRecords','Nerecords','ネレコーズ','ネ ','ね ']
+    'ne':['neRecords','ne ','Ne ','NE ','NeRecords','Nerecords','ネレコーズ','ネ ','ね '],
+    'outlier':['OUTLIER RECORDINGS','Outlier','outlier','OUTLIER','アウトライアー','アウトライヤー']
 
 }
 
@@ -54,7 +54,7 @@ labelname = {
              2:['flau', 'progressive form','warp','planet mu','owsla'],
              3:['revealed', 'ghostly international',"spinnin'",'wedidit','never slept'],
              4:['mad decent','r&s','ed banger','brainfeeder','luckyme'],
-             5:['moose','anticon','orikami'],#ne
+             5:['moose','anticon','orikami','ne','outlier'],
 }
 
 
@@ -65,7 +65,7 @@ def linetransmit(label,title,artist,url): #label,title,artist,url
     for ids in lineid.objects.all():
         userid.append(ids.user)
     payload = {
-        "to":userid,
+        "to":['U9cffcfa9f62705b889bfc4470efea951'],#userid,
         "messages":[
             {
                 "type":"text",
