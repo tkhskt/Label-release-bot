@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib.request
-from label.models import maltinedb,ghostlydb,releases
+from label.models import maltinedb\
+    ,ghostlydb,releases
 import re
 
 class scrape:
