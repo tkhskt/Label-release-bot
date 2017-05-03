@@ -128,7 +128,7 @@ USE_TZ = True
 
 
 # 追加した
-DATABASES['default'] = dj_database_url.config()
+#DATABASES['default'] = dj_database_url.config()
 # 追加した
 ALLOWED_HOSTS = ['*']
 # -----------
