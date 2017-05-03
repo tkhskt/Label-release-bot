@@ -1375,7 +1375,10 @@ class scrape:
 
         for ul in soup.find_all(class_='box'):
             for a in ul.find_all('a'):
+              try:
                 url.append('http://nerecords.tokyo/'+a['href'])
+              except:
+                pass
             for tit in ul.find_all(class_='title'):
                 title.append(tit.text)
 
