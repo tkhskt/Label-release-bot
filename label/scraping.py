@@ -1567,6 +1567,79 @@ class scrape:
 
 
 
+    def alphaversion(self):
+        url = 'http://alphaversion.tv/'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+
+        pretitle = []
+        preurl = []
+
+        title = []
+        url = []
+
+        rel = {}
+
+        artistdb = []
+
+        info =  {"label":"AlphaVersion Records","title":"","url":"","artist":"","key":0}
+
+        for artdb in releases.objects.filter(label='alphaversion').order_by('id'):
+            artistdb.append(artdb.url)
+
+        for titw in soup.find_all(class_='works'):
+            for name in titw.find_all(class_='name'):
+                pretitle.append(name.text)
+            for cd in titw.find_all(class_='cdweb'):
+                for a in cd.find_all('a'):
+                    if 'alphaversion.tv' in a['href']:
+                        preurl.append(a['href'])
+                    else:
+                        pass
+
+        for titf in soup.find_all(class_='freedl'):
+            for name in titf.find_all(class_='name'):
+                pretitle.append(name.text)
+            for cd in titf.find_all(class_='web'):
+                for a in cd.find_all('a'):
+                    if 'alphaversion.tv' in a['href']:
+                        preurl.append(a['href'])
+                    else:
+                        pass
+
+
+        for i in range(len(preurl)):
+            rel[preurl[i]] = pretitle[i]
+
+        for newurl in preurl:
+            if newurl in artistdb:
+                continue
+            url.append(newurl)
+            title.append(rel[newurl])
+
+
+        if len(url)>0:
+            if len(url)>=2:
+               info['url']=url[0] + "\n複数のリリースがあります"
+            else:
+               info['url']=url[0]
+            info['title']=title[0]
+            info['key']=1
+
+        delete = releases.objects.filter(label='alphaversion')
+        delete.delete()
+
+        for i in range(len(preurl)):
+            at = preurl[i]
+            db = releases(url=at,label='alphaversion')
+            db.save()
+
+        return info
+
+
     def doscraping(self,name):
         if name == 'altema':
            return self.altema()
@@ -1622,4 +1695,6 @@ class scrape:
             return self.king()
         elif name == 'gondwana':
             return self.gondwana()
+        elif name == 'alphaversion':
+            return self.alphaversion()
 

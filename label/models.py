@@ -35,6 +35,7 @@ class releases(models.Model):
         ('outlier','OUTLIER RECORDINGS'),
         ('king','King Deluxe'),
         ('gondwana','Gondwana Records'),
+        ('alphaversion','AlphaVersion Records'),
     )
     label = models.CharField('Label',max_length=500,choices=LABEL_SET,default='--')
     url = models.CharField('URL',max_length=500)
