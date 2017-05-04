@@ -36,12 +36,14 @@ class releases(models.Model):
         ('king','King Deluxe'),
         ('gondwana','Gondwana Records'),
         ('alphaversion','AlphaVersion Records'),
+        ('eklektik','EKLEKTIK RECORDS'),
     )
     label = models.CharField('Label',max_length=500,choices=LABEL_SET,default='--')
     url = models.CharField('URL',max_length=500)
 
     def __str__(self):
         return self.label
+
 
 
 class update(models.Model):
