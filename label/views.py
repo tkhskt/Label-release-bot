@@ -64,12 +64,12 @@ labelname = {
 
 def linetransmit(label,title,artist,url): #label,title,artist,url
     p = "done"
-    text = "New Release!\n" +label+"\n"+title+" - "+artist+" "+url
+    text = "New Release!\n" +label+"\n"+title+" - "+artist+"\n"+url
     userid = []
     for ids in lineid.objects.all():
         userid.append(ids.user)
     payload = {
-        "to":['U9cffcfa9f62705b889bfc4470efea951'],#userid,
+        "to":userid,
         "messages":[
             {
                 "type":"text",
