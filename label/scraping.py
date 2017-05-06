@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request
-from label.models import maltinedb\
-    ,ghostlydb,releases
+from label.models import maltinedb,ghostlydb,releases
 import re
 
 class scrape:
@@ -680,7 +679,7 @@ class scrape:
         preartist = []
 
         artist = ''
-        p = soup.prettify()
+
 
         for link in soup.find_all("dl",class_="artist-releases"):
           for link2 in link.find_all("a"):
@@ -1699,6 +1698,60 @@ class scrape:
 
 
 
+    def otographic(self):
+        url = 'http://www.otographicmusic.com/tagged/releases'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+        artist = []
+        title = []
+        url = []
+
+        artistdb = []
+
+        info =  {"label":"Otographic Music","title":"","url":"","artist":"","key":0}
+
+        for artdb in releases.objects.filter(label='otographic').order_by('id'):
+            artistdb.append(artdb.url)
+
+
+        for st in soup.find_all('strong'):
+            rep = st.text.split("“")
+            if len(rep)>1:
+                artist.append(rep[0])
+                title.append(rep[1].replace('"','').replace('”',''))
+            else:
+                pass
+
+        for ul in soup.find_all(class_='read_more'):
+            url.append(ul['href'])
+
+        if url[0]!=artistdb[0]:
+            if url[1]!=artistdb[0]:
+                info['title']=title[0]
+                info['artist']=artist[0]
+                info['url']=url[0] + "\n複数のリリースがあります"
+                info['key']=1
+            else:
+                info['title']=title[0]
+                info['artist']=artist[0]
+                info['url']=url[0]
+                info['key']=1
+
+        delete = releases.objects.filter(label='otographic')
+        delete.delete()
+
+        for i in range(len(url)):
+            at = url[i]
+            db = releases(url=at,label='otographic')
+            db.save()
+
+        return info
+
+
+
     def doscraping(self,name):
         if name == 'altema':
            return self.altema()
@@ -1758,4 +1811,6 @@ class scrape:
             return self.alphaversion()
         elif name == 'eklektik':
             return self.eklektik()
+        elif name == 'otographic':
+            return self.otographic()
 

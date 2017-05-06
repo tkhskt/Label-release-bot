@@ -37,6 +37,7 @@ class releases(models.Model):
         ('gondwana','Gondwana Records'),
         ('alphaversion','AlphaVersion Records'),
         ('eklektik','EKLEKTIK RECORDS'),
+        ('otographic','Otographic Music'),
     )
     label = models.CharField('Label',max_length=500,choices=LABEL_SET,default='--')
     url = models.CharField('URL',max_length=500)
