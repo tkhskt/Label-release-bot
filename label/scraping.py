@@ -1752,6 +1752,44 @@ class scrape:
 
 
 
+    def young(self):
+        url = 'https://theyoungturks.co.uk/catalogue/'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+        artist = [h2.text.split(' - ')[1] for h2 in soup.find_all('h2')]
+        title = [h3.text for h3 in soup.find_all('h3')]
+        url = ['https://theyoungturks.co.uk'+u['href'] for fig in soup.find_all(class_='front') for u in fig.find_all('a')]
+
+        artistdb = [artdb.url for artdb in releases.objects.filter(label='young').order_by('id')]
+
+        info =  {"label":"Young Turks","title":"","url":"","artist":"","key":0}
+
+        if url[0]!=artistdb[0]:
+            if url[1]!=artistdb[0]:
+                info['title']=title[0]
+                info['artist']=artist[0]
+                info['url']=url[0] + "\n複数のリリースがあります"
+                info['key']=1
+            else:
+                info['title']=title[0]
+                info['artist']=artist[0]
+                info['url']=url[0]
+                info['key']=1
+
+        delete = releases.objects.filter(label='young')
+        delete.delete()
+
+        for i in range(len(url)):
+            at = url[i]
+            db = releases(url=at,label='young')
+            db.save()
+
+        return info
+
+
     def doscraping(self,name):
         if name == 'altema':
            return self.altema()
@@ -1813,4 +1851,6 @@ class scrape:
             return self.eklektik()
         elif name == 'otographic':
             return self.otographic()
+        elif name == 'young':
+            return self.young()
 
