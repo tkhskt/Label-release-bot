@@ -1670,7 +1670,10 @@ class scrape:
 
         for link in soup.find_all("div",class_="leftMiddleColumns"):
             for link2 in link.find_all("a"):
-                url.append(link2['href'])
+                if 'https://' in link2['href']:
+                  url.append(link2['href'])
+                else:
+                  url.append('https://eklektikrecords.bandcamp.com'+link2['href'])
 
         if url[0]!=artistdb[0]:
             if url[1]!=artistdb[0]:
