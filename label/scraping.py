@@ -1790,6 +1790,60 @@ class scrape:
         return info
 
 
+    def n5md(self):
+        url = 'https://n5md.bandcamp.com/'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+
+        artist = []
+        title = []
+        url = []
+
+        artistdb = [artdb.url for artdb in releases.objects.filter(label='n5md').order_by('id')]
+
+        info =  {"label":"n5MD","title":"","url":"","artist":"","key":0}
+
+        for tit in soup.find_all("p",class_="title"):
+            for ex in tit.find_all('span'):
+                art = re.sub('\s{2}',"",ex.text.replace('\n',''))
+                artist.append(art)
+                ex.extract()
+            moji = re.sub('\s{2}',"",tit.text.replace('\n','')) #連続した空白の削除
+            title.append(moji)
+
+        for link in soup.find_all("div",class_="leftMiddleColumns"):
+            for link2 in link.find_all("a"):
+                if 'https://' in link2['href']:
+                    url.append(link2['href'])
+                else:
+                    url.append('https://n5md.bandcamp.com'+link2['href'])
+
+        if url[0]!=artistdb[0]:
+            if url[1]!=artistdb[0]:
+                info['title']=title[0]
+                info['artist']=artist[0]
+                info['url']=url[0] + "\n複数のリリースがあります"
+                info['key']=1
+            else:
+                info['title']=title[0]
+                info['artist']=artist[0]
+                info['url']=url[0]
+                info['key']=1
+
+        delete = releases.objects.filter(label='n5md')
+        delete.delete()
+
+        for i in range(len(url)):
+            at = url[i]
+            db = releases(url=at,label='n5md')
+            db.save()
+
+        return info
+
+
     def doscraping(self,name):
         if name == 'altema':
            return self.altema()
@@ -1853,4 +1907,6 @@ class scrape:
             return self.otographic()
         elif name == 'young':
             return self.young()
+        elif name == 'n5md':
+            return self.n5md()
 

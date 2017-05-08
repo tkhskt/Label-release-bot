@@ -50,7 +50,8 @@ words = {
     'alphaversion':['AlphaVersion Records','alphaversion','アルファバージョン','あるふぁばーじょん','AlphaVersion','Alphaversion','Alpha version','Alpha Version','alpha version'],
     'eklektik':['EKLEKTIK RECORDS','Eklektik','eklektik','エクレクティック','エクレクチック'],
     'otographic':['Otographic Music','otographic','Otographic','OTOGRAPHIC','オトグラフィック','オートグラフィック','おとぐらふぃっく','おーとぐらふぃっく'],
-    'young':['Young Turks','Young','young','turks','Turks','YOUNG','ヤング','やんぐ']
+    'young':['Young Turks','Young','young','turks','Turks','YOUNG','ヤング','やんぐ'],
+    'n5md':['n5MD','n5md','N5MD','N5md','m5nd','M5nd','M5ND']
 }
 
 
@@ -61,7 +62,7 @@ labelname = {
              4:['mad decent','r&s','ed banger','brainfeeder','luckyme'],
              5:['moose','anticon','orikami','ne','outlier'],
              6:['king','gondwana','alphaversion','eklektik','otographic'],
-             7:['young'],
+             7:['young','n5md'],
 }
 
 
@@ -72,7 +73,7 @@ def linetransmit(label,title,artist,url): #label,title,artist,url
     for ids in lineid.objects.all():
         userid.append(ids.user)
     payload = {
-        "to":userid,
+        "to":['U9cffcfa9f62705b889bfc4470efea951'],#userid,
         "messages":[
             {
                 "type":"text",

@@ -39,6 +39,7 @@ class releases(models.Model):
         ('eklektik','EKLEKTIK RECORDS'),
         ('otographic','Otographic Music'),
         ('young','Young Turks'),
+        ('n5md','n5MD'),
     )
     label = models.CharField('Label',max_length=500,choices=LABEL_SET,default='--')
     url = models.CharField('URL',max_length=500)
