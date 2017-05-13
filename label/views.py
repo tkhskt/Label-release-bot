@@ -189,7 +189,7 @@ def calendar(request):
         date.append(dbs.date)
 
     for i in range(len(label)):
-      text = text + "{\ntitle:" + '"' + label[i] + '",' + "\n" + "url:" + "'"  + url[i] + "'," + "\n" + "start:" + "'"  + date[i].strftime('%Y/%m/%d') + "'\n},\n"
+      text = text + "{title:" + '"' + label[i] + '",' + "url:" + "'" + url[i] + "'," + "start:" + "'" + date[i].strftime('%Y/%m/%d') + "'},"
 
     return render(request,'calendar.html',{'text':text})
 
