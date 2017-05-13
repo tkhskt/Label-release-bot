@@ -1608,7 +1608,6 @@ class scrape:
                     else:
                         pass
 
-
         for i in range(len(preurl)):
             rel[preurl[i]] = pretitle[i]
 
@@ -1617,7 +1616,6 @@ class scrape:
                 continue
             url.append(newurl)
             title.append(rel[newurl])
-
 
         if len(url)>0:
             if len(url)>=2:
@@ -1844,9 +1842,63 @@ class scrape:
         return info
 
 
+
+    def wavemob(self):
+        url = 'https://wavemob.net/releases/'
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        html = response.read()
+        soup = BeautifulSoup(html, "lxml")
+
+        artistdb = [artdb.url for artdb in releases.objects.filter(label='wavemob').order_by('id')]
+
+        info = {"label":"wavemob","title":"","url":"","artist":"","key":0}
+
+        title = []
+        url = []
+
+        pretitle = [re.sub('\n', '', a.text) for ent in soup.find_all('h6') for a in ent.find_all('a') if a.text != '\n']
+        preurl = [a['href'] if 'https://' in a['href'] else 'https://wavemob.net'+a['href'] for ent in soup.find_all('h6') for a in ent.find_all('a')]
+        rel = {}
+
+        def f7(seq):
+            seen = set()
+            seen_add = seen.add
+            return [x for x in seq if not(x in seen or seen_add(x))]
+
+        preurl2 = f7(preurl)
+
+        for i in range(len(preurl2)):
+            rel[preurl2[i]] = pretitle[i]
+
+        for ul in preurl2:
+            if ul in artistdb:
+                continue
+            url.append(ul)
+            title.append(rel[ul])
+
+        if len(url) > 0:
+            if len(url) >= 2:
+                info['url'] = url[0] + "\n複数のリリースがあります"
+            else:
+                info['url'] = url[0]
+            info['title'] = title[0]
+            info['key'] = 1
+
+        delete = releases.objects.filter(label='wavemob')
+        delete.delete()
+
+        for i in range(len(preurl2)):
+            at = preurl2[i]
+            db = releases(url=at,label='wavemob')
+            db.save()
+
+        return info
+
+
     def doscraping(self,name):
         if name == 'altema':
-           return self.altema()
+            return self.altema()
         elif name == 'maltine':
             return self.maltine()
         elif name == 'bunkai-kei':
@@ -1909,4 +1961,6 @@ class scrape:
             return self.young()
         elif name == 'n5md':
             return self.n5md()
+        elif name == 'wavemob':
+            return self.wavemob()
 
