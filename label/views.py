@@ -3,7 +3,7 @@ from label.scraping import scrape
 from .models import releases
 import json
 import requests
-from label.models import lineid,update
+from label.models import lineid,update,labelset
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -72,7 +72,14 @@ def linetransmit(label,title,artist,url): #label,title,artist,url
     text = "New Release!\n" +label+"\n"+title+" - "+artist+"\n"+url
     userid = []
     for ids in lineid.objects.all():
-        userid.append(ids.user)
+        if ids.rec == 'on':
+            for lb in ids.label.all():
+               n = lb.label
+               if words[n][0] == label:
+                  userid.append(ids.user)
+        elif ids.rec == 'off':
+            userid.append(ids.user)
+
     payload = {
         "to":userid,
         "messages":[
@@ -86,14 +93,14 @@ def linetransmit(label,title,artist,url): #label,title,artist,url
 
 
 
-def takahashi():
+def push(text,token):
 
     payload = {
-        "to":'U9cffcfa9f62705b889bfc4470efea951',
+        "replyToken":token,#'U9cffcfa9f62705b889bfc4470efea951',
         "messages":[
             {
                 "type":"text",
-                "text": '今日は更新なかった'
+                "text": text
             }
         ]
     }
@@ -178,6 +185,40 @@ def reply(data):
 
 
 
+def setLabel(text,id,token):
+    us = lineid.objects.get(user=id)
+    if us.state == "off":
+        if "登録" in text:
+           us.state = "on"
+           push_text = "登録を開始します、レーベル名を入力してください。"
+           us.rec = "on"
+           push(push_text,token)
+           us.save()
+        else:
+           us.save()
+
+    elif us.state == "on":
+        if "完了" in text:
+            us.state = "off"
+            us.save()
+            push_done = "登録が完了しました。"
+            push(push_done,token)
+        else:
+            us.save()
+            for i in labelname:
+                for lb in labelname[i]:
+                    key = True
+                    for wd in words[lb]:
+                        if wd in text:
+                            if key:
+                                db = labelset.objects.filter(label=lb).order_by('id').first()
+                                us.label.add(db)
+                                key = False
+
+
+
+
+
 def calendar(request):
     label = []
     url = []
@@ -203,7 +244,7 @@ def lineidinput(request):
 
         if e['type'] == 'follow':
            userid = e['source']['userId']
-           db = lineid(user=userid)
+           db = lineid(user=userid,state='off',rec='off')
            db.save()
 
         elif e['type'] == 'unfollow':
@@ -211,8 +252,6 @@ def lineidinput(request):
 
            delete = lineid.objects.filter(user=userid).first()
            delete.delete()
-           #db = lineid(user='unfollow')
-           #db.save()
 
         if e['type']=='message':
             if e['message']['type']=='text':
@@ -220,5 +259,15 @@ def lineidinput(request):
                 data = wordcheck(e['message']['text'],rptoken)
                 reply(data)
 
+                setLabel(e['message']['text'],e['source']['userId'],rptoken)
+
+
+
     return HttpResponse(p)
 
+
+def dbadd(request):
+    for i in range(7):
+        for ln in labelname[i+1]:
+            db = labelset(label=ln)
+            db.save()
