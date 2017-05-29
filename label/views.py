@@ -256,8 +256,8 @@ def lineidinput(request):
         if e['type']=='message':
             if e['message']['type']=='text':
                 rptoken = e['replyToken']
-                #data = wordcheck(e['message']['text'],rptoken)
-                #reply(data)
+                data = wordcheck(e['message']['text'],rptoken)
+                reply(data)
 
                 setLabel(e['message']['text'],e['source']['userId'],rptoken)
 
