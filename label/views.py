@@ -104,7 +104,7 @@ def push(text,token):
             }
         ]
     }
-    requests.post(PUSH_ENDPOINT,headers=HEADER,data=json.dumps(payload))
+    requests.post(REPLY_ENDPOINT,headers=HEADER,data=json.dumps(payload))
 
 
 
