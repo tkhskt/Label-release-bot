@@ -194,8 +194,11 @@ def setLabel(text,id,token):
            us.rec = "on"
            push(push_text,token)
            us.save()
+           return -1
         else:
            us.save()
+           return 0
+
 
     elif us.state == "on":
         if "完了" in text:
@@ -203,6 +206,7 @@ def setLabel(text,id,token):
             us.save()
             push_done = "登録が完了しました。"
             push(push_done,token)
+            return -1
         else:
             us.save()
             for i in labelname:
@@ -214,6 +218,8 @@ def setLabel(text,id,token):
                                 db = labelset.objects.filter(label=lb).order_by('id').first()
                                 us.label.add(db)
                                 key = False
+            return 0
+
 
 
 
@@ -256,10 +262,14 @@ def lineidinput(request):
         if e['type']=='message':
             if e['message']['type']=='text':
                 rptoken = e['replyToken']
-                data = wordcheck(e['message']['text'],rptoken)
-                reply(data)
+                key = setLabel(e['message']['text'],e['source']['userId'],rptoken)
+                if key == 0:
+                    data = wordcheck(e['message']['text'],rptoken)
+                    reply(data)
+                else:
+                    pass
 
-                setLabel(e['message']['text'],e['source']['userId'],rptoken)
+
 
 
 
