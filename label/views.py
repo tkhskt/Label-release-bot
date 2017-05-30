@@ -204,8 +204,7 @@ def setLabel(text,id,token):
             return -1
 
         else:
-           #us.save()
-           return 0
+           pass
 
 
     elif us.toroku == "on" or us.kaijo == "on":
@@ -242,8 +241,9 @@ def setLabel(text,id,token):
         for ulb in us.label.all():
             push_text_kakunin += ulb.label + "\n"
         push(push_text_kakunin,token)
-
         return -1
+
+    return 0
 
 
 
