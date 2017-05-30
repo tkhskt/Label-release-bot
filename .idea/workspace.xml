@@ -62,10 +62,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/linebot/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="47">
+            <state relative-caret-position="1475">
               <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
               <folding>
                 <element signature="e#311#320#0" expanded="true" />
@@ -110,15 +110,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/label/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-320">
-              <caret line="245" column="17" lean-forward="false" selection-start-line="245" selection-start-column="17" selection-end-line="245" selection-end-column="17" />
+            <state relative-caret-position="955">
+              <caret line="239" column="4" lean-forward="false" selection-start-line="239" selection-start-column="4" selection-end-line="239" selection-end-column="4" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
                 <element signature="e#6665#7248#0" expanded="false" />
-                <element signature="e#9091#9501#0" expanded="false" />
+                <element signature="e#9089#9499#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -180,8 +180,8 @@
         <option value="$PROJECT_DIR$/label/admin.py" />
         <option value="$PROJECT_DIR$/linebot/urls.py" />
         <option value="$PROJECT_DIR$/label/models.py" />
-        <option value="$PROJECT_DIR$/label/views.py" />
         <option value="$PROJECT_DIR$/linebot/settings.py" />
+        <option value="$PROJECT_DIR$/label/views.py" />
       </list>
     </option>
   </component>
@@ -1014,16 +1014,16 @@
       <workItem from="1489731649344" duration="25137000" />
       <workItem from="1490518525461" duration="5057000" />
       <workItem from="1492580590996" duration="43357000" />
-      <workItem from="1496018192317" duration="25624000" />
+      <workItem from="1496018192317" duration="25839000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="290799000" />
+    <option name="totallyTimeSpent" value="291014000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1037,7 +1037,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5284178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3625192" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.049155146" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13691376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1126,7 +1126,7 @@
           <folding>
             <element signature="e#0#33#0" expanded="true" />
             <element signature="e#6665#7248#0" expanded="false" />
-            <element signature="e#9091#9501#0" expanded="false" />
+            <element signature="e#9089#9499#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1235,7 +1235,7 @@
           <folding>
             <element signature="e#0#33#0" expanded="true" />
             <element signature="e#6665#7248#0" expanded="false" />
-            <element signature="e#9091#9501#0" expanded="false" />
+            <element signature="e#9089#9499#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1344,7 +1344,7 @@
           <folding>
             <element signature="e#0#33#0" expanded="true" />
             <element signature="e#6665#7248#0" expanded="false" />
-            <element signature="e#9091#9501#0" expanded="false" />
+            <element signature="e#9089#9499#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1460,7 +1460,7 @@
           <folding>
             <element signature="e#0#33#0" expanded="true" />
             <element signature="e#6665#7248#0" expanded="false" />
-            <element signature="e#9091#9501#0" expanded="false" />
+            <element signature="e#9089#9499#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1619,24 +1619,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/label/views.py">
+    <entry file="file://$PROJECT_DIR$/linebot/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-320">
-          <caret line="245" column="17" lean-forward="false" selection-start-line="245" selection-start-column="17" selection-end-line="245" selection-end-column="17" />
+        <state relative-caret-position="1475">
+          <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
           <folding>
-            <element signature="e#0#33#0" expanded="true" />
-            <element signature="e#6665#7248#0" expanded="false" />
-            <element signature="e#9091#9501#0" expanded="false" />
+            <element signature="e#311#320#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/linebot/settings.py">
+    <entry file="file://$PROJECT_DIR$/label/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+        <state relative-caret-position="955">
+          <caret line="239" column="4" lean-forward="false" selection-start-line="239" selection-start-column="4" selection-end-line="239" selection-end-column="4" />
           <folding>
-            <element signature="e#311#320#0" expanded="true" />
+            <element signature="e#0#33#0" expanded="true" />
+            <element signature="e#6665#7248#0" expanded="false" />
+            <element signature="e#9089#9499#0" expanded="false" />
           </folding>
         </state>
       </provider>
