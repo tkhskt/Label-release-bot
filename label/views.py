@@ -206,7 +206,7 @@ def setLabel(text,id,token):
             us.save()
             push_done = "登録が完了しました。"
             push(push_done,token)
-            return -1
+
         else:
             us.save()
             for i in labelname:
@@ -218,7 +218,7 @@ def setLabel(text,id,token):
                                 db = labelset.objects.filter(label=lb).order_by('id').first()
                                 us.label.add(db)
                                 key = False
-            return 0
+        return -1
 
 
 
@@ -268,10 +268,6 @@ def lineidinput(request):
                     reply(data)
                 else:
                     pass
-
-
-
-
 
     return HttpResponse(p)
 
