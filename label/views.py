@@ -237,7 +237,7 @@ def setLabel(text,id,token):
                                 key = False
         return -1
 
-    elif "確認" in text:
+    if "確認" in text:
         push_text_kakunin = "現在の登録レーベル\n"
         for ulb in us.label.all():
             push_text_kakunin += ulb + "\n"
