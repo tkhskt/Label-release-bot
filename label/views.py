@@ -240,7 +240,7 @@ def setLabel(text,id,token):
         push_text_kakunin = "現在の登録レーベル\n"
         for ulb in us.label.all():
             push_text_kakunin += ulb.label + "\n"
-        push(push_text_kakunin,token)
+        push(push_text_kakunin[:-1],token)
         return -1
 
     return 0
