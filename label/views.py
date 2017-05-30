@@ -204,7 +204,7 @@ def setLabel(text,id,token):
             return -1
 
         else:
-           us.save()
+           #us.save()
            return 0
 
 
