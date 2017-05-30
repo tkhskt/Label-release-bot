@@ -187,25 +187,39 @@ def reply(data):
 
 def setLabel(text,id,token):
     us = lineid.objects.get(user=id)
-    if us.state == "off":
+    if us.toroku == "off" and us.kaijo == "off":
         if "登録" in text:
-           us.state = "on"
+           us.toroku = "on"
            push_text = "登録を開始します、レーベル名を入力してください。"
            us.rec = "on"
            push(push_text,token)
            us.save()
            return -1
+
+        elif "解除" in text:
+            us.kaijo = "on"
+            push_text = "解除するレーベル名を入力してください。"
+            push(push_text,token)
+            us.save()
+            return -1
+
         else:
            us.save()
            return 0
 
 
-    elif us.state == "on":
+    elif us.toroku == "on" or us.kaijo == "on":
         if "完了" in text:
-            us.state = "off"
-            us.save()
-            push_done = "登録が完了しました。"
-            push(push_done,token)
+            if us.toroku == "on":
+                us.toroku = "off"
+                us.save()
+                push_done = "登録が完了しました。"
+                push(push_done,token)
+            elif us.kaijo == "on":
+                us.kaijo = "off"
+                us.save()
+                push_done = "解除が完了しました。"
+                push(push_done,token)
 
         else:
             us.save()
@@ -216,9 +230,22 @@ def setLabel(text,id,token):
                         if wd in text:
                             if key:
                                 db = labelset.objects.filter(label=lb).order_by('id').first()
-                                us.label.add(db)
+                                if us.toroku == "on":
+                                  us.label.add(db)
+                                elif us.kaijo == "on":
+                                  us.label.remove(db)
                                 key = False
         return -1
+
+    elif "確認" in text:
+        push_text_kakunin = "現在の登録レーベル\n"
+        for ulb in us.label.all():
+            push_text_kakunin += ulb + "\n"
+        push(push_text_kakunin,token)
+
+        return -1
+
+
 
 
 
@@ -250,7 +277,7 @@ def lineidinput(request):
 
         if e['type'] == 'follow':
            userid = e['source']['userId']
-           db = lineid(user=userid,state='off',rec='off')
+           db = lineid(user=userid,toroku='off',kaijo="off",rec='off')
            db.save()
 
         elif e['type'] == 'unfollow':

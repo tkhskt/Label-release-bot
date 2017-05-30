@@ -90,7 +90,8 @@ class lineid(models.Model):
     )
     user = models.CharField('userid',max_length=500)
     label = models.ManyToManyField(labelset)
-    state = models.CharField('state',max_length=500,choices=STATE_SET,default='off') #登録機能のオンオフ
+    toroku = models.CharField('state',max_length=500,choices=STATE_SET,default='off') #登録機能のオンオフ
+    kaijo = models.CharField('state',max_length=500,choices=STATE_SET,default='off') #解除機能のオンオフ
     rec = models.CharField('record',max_length=500,choices=STATE_SET,default='off') #登録したかどうか
 
 
