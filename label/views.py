@@ -151,7 +151,6 @@ def wordcheck(text,token):
 
 
 
-
 def reply(data):
     payload = {
         "replyToken":data['token'],
