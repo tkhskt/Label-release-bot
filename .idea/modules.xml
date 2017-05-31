@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/linebot.iml" filepath="$PROJECT_DIR$/linebot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Label-release-bot.iml" filepath="$PROJECT_DIR$/Label-release-bot.iml" />
     </modules>
   </component>
 </project>
