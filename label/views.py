@@ -239,7 +239,7 @@ def setLabel(text,id,token):
     if "確認" in text:
         push_text_kakunin = "現在の登録レーベル\n"
         for ulb in us.label.all():
-            push_text_kakunin += ulb.label + "\n"
+            push_text_kakunin += words[ulb.label][0] + "\n"
         push(push_text_kakunin[:-1],token)
         return -1
 
