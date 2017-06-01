@@ -246,11 +246,7 @@ def setLabel(text,id,token):
     return 0
 
 
-
-
-
-
-
+g
 
 def calendar(request):
     label = []
