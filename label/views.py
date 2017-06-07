@@ -52,7 +52,8 @@ words = {
     'otographic':['Otographic Music','otographic','Otographic','OTOGRAPHIC','オトグラフィック','オートグラフィック','おとぐらふぃっく','おーとぐらふぃっく'],
     'young':['Young Turks','Young','young','turks','Turks','YOUNG','ヤング','やんぐ'],
     'n5md':['n5MD','n5md','N5MD','N5md','m5nd','M5nd','M5ND'],
-    'wavemob':['wavemob','Wavemob','WAVEMOB','Wave mob','wave mob','Wave Mob','ウェーブモブ','ウェーブ　モブ','ウェーブ・モブ','うぇーぶもぶ']
+    'wavemob':['wavemob','Wavemob','WAVEMOB','Wave mob','wave mob','Wave Mob','ウェーブモブ','ウェーブ　モブ','ウェーブ・モブ','うぇーぶもぶ'],
+    'schole':['SCHOLE RECORDS','Schole','schole','スコラ','すこら'],
 }
 
 
@@ -63,7 +64,7 @@ labelname = {
              4:['mad decent','r&s','ed banger','brainfeeder','luckyme'],
              5:['moose','anticon','orikami','ne','outlier'],
              6:['king','gondwana','alphaversion','eklektik','otographic'],
-             7:['young','n5md','wavemob'],
+             7:['young','n5md','wavemob','schole'],
 }
 
 
@@ -81,7 +82,7 @@ def linetransmit(label,title,artist,url): #label,title,artist,url
             userid.append(ids.user)
 
     payload = {
-        "to":userid,
+        "to":['U9cffcfa9f62705b889bfc4470efea951'],#userid,
         "messages":[
             {
                 "type":"text",

@@ -47,6 +47,7 @@ class releases(models.Model):
         ('young','Young Turks'),
         ('n5md','n5MD'),
         ('wavemob','wavemob'),
+        ('schole','SCHOLE RECORDS'),
     )
     label = models.CharField('Label',max_length=500,choices=LABEL_SET,default='--')
     url = models.CharField('URL',max_length=500)

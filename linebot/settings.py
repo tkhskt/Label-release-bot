@@ -28,7 +28,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = '&v&mt)^l*xc0o1tm2%pib8&v7i6b3(hjkeqz3!!&rhmmd@8l0m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # コメントアウトした
 #ALLOWED_HOSTS = []
@@ -128,7 +128,7 @@ USE_TZ = True
 
 
 # 追加した
-DATABASES['default'] = dj_database_url.config()
+#DATABASES['default'] = dj_database_url.config()
 # 追加した
 ALLOWED_HOSTS = ['*']
 # -----------
