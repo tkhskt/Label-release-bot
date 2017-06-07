@@ -1942,7 +1942,7 @@ class scrape:
 
 
 
-def doscraping(self,name):
+    def doscraping(self,name):
         if name == 'altema':
             return self.altema()
         elif name == 'maltine':
