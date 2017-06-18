@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-ACCESS_TOKEN = "VfiERPUAyZgGItiV0P7xYRuJLPL1krT9jB81YbK1V4hFoxDbMSSwRvTJzG4K7+eFFH0mobhsF5tcXtLtlSGWKq0uho67eg3Dh6Z6eImDBo8WKnwD63Do+Nfwa/PN9UQnG9c01HJgTk07RX0mquWUBQdB04t89/1O/w1cDnyilFU="
+ACCESS_TOKEN = ""
 
 HEADER = {
     "Content-Type": "application/json",
