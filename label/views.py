@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-ACCESS_TOKEN = ""
+ACCESS_TOKEN = "VfiERPUAyZgGItiV0P7xYRuJLPL1krT9jB81YbK1V4hFoxDbMSSwRvTJzG4K7+eFFH0mobhsF5tcXtLtlSGWKq0uho67eg3Dh6Z6eImDBo8WKnwD63Do+Nfwa/PN9UQnG9c01HJgTk07RX0mquWUBQdB04t89/1O/w1cDnyilFU="
 
 HEADER = {
     "Content-Type": "application/json",
@@ -62,7 +62,7 @@ labelname = {
              2:['flau', 'progressive form','warp','planet mu','owsla'],
              3:['revealed', 'ghostly international',"spinnin'",'wedidit','never slept'],
              4:['mad decent','r&s','ed banger','brainfeeder','luckyme'],
-             5:['moose','anticon','orikami','outlier'],#,'ne'
+             5:['anticon','orikami','ne','outlier'],#'moose',
              6:['king','gondwana','alphaversion','eklektik','otographic'],
              7:['young','n5md','wavemob','schole'],
 }
@@ -111,18 +111,18 @@ def push(text,token):
 
 
 def labelcheck(request,page):
-     res = 'OK' + page
-     er = 'error' + page
-     try:
+    # res = 'OK' + page
+    # er = 'error' + page
+    # try:
        for lb in labelname[int(page)]:
          info = scrape().doscraping(lb)
          if info['key']==1:
            linetransmit(info['label'],info['title'],info['artist'],info['url'])
            db = update(label=info['label'],url=info['url'].replace('\n複数のリリースがあります',''))
            db.save()
-       return HttpResponse(res)
-     except:
-       return HttpResponse(er)
+     #  return HttpResponse(res)
+     #except:
+      # return HttpResponse(er)
 
 
 
