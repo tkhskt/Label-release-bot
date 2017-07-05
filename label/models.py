@@ -48,6 +48,7 @@ class releases(models.Model):
         ('n5md','n5MD'),
         ('wavemob','wavemob'),
         ('schole','SCHOLE RECORDS'),
+        ('fent','Fent Plates'),
     )
     label = models.CharField('Label',max_length=500,choices=LABEL_SET,default='--')
     url = models.CharField('URL',max_length=500)

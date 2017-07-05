@@ -54,6 +54,7 @@ words = {
     'n5md':['n5MD','n5md','N5MD','N5md','m5nd','M5nd','M5ND'],
     'wavemob':['wavemob','Wavemob','WAVEMOB','Wave mob','wave mob','Wave Mob','ウェーブモブ','ウェーブ　モブ','ウェーブ・モブ','うぇーぶもぶ'],
     'schole':['SCHOLE RECORDS','Schole','schole','スコラ','すこら'],
+    'fent':['Fent Plates','fent','フェント','ふぇんと']
 }
 
 
@@ -64,7 +65,7 @@ labelname = {
              4:['mad decent','r&s','ed banger','brainfeeder','luckyme'],
              5:['anticon','orikami','ne','outlier'],#'moose',
              6:['king','gondwana','alphaversion','eklektik','otographic'],
-             7:['young','n5md','wavemob','schole'],
+             7:['young','n5md','wavemob','schole','fent'],
 }
 
 
