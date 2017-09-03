@@ -61,11 +61,11 @@ words = {
 labelname = {
              1:['altema','maltine','bunkai-kei','trekkie trax','sense'],
              2:['flau', 'progressive form','warp','planet mu','owsla'],
-             3:['revealed', 'ghostly international',"spinnin'",'wedidit','never slept'],
+             3:['ghostly international',"spinnin'",'wedidit','never slept'],#'revealed',
              4:['mad decent','r&s','ed banger','brainfeeder','luckyme'],
              5:['anticon','orikami','ne','outlier'],#'moose',
              6:['king','gondwana','alphaversion','eklektik','otographic'],
-             7:['young','n5md','wavemob','schole','fent'],
+             7:['n5md','wavemob','schole','fent'],#'young',
 }
 
 
