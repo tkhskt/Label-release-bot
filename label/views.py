@@ -60,7 +60,7 @@ words = {
 
 labelname = {
              1:['altema','maltine','bunkai-kei','trekkie trax','sense'],
-             2:['progressive form','warp','planet mu','owsla'],#'flau',
+             2:['flau','progressive form','warp','planet mu','owsla'],
              3:['ghostly international',"spinnin'",'wedidit','never slept'],#'revealed',
              4:['mad decent','r&s','ed banger','brainfeeder','luckyme'],
              5:['anticon','orikami','ne','outlier'],#'moose',
