@@ -63,7 +63,7 @@ labelname = {
              2:['flau','progressive form','warp','planet mu','owsla'],
              3:['ghostly international',"spinnin'",'wedidit','never slept'],#'revealed',
              4:['mad decent','r&s','ed banger','brainfeeder','luckyme'],
-             5:['moose','anticon','orikami','ne','outlier'],#'moose',
+             5:['moose','anticon','orikami','ne','outlier'],
              6:['king','gondwana','alphaversion','eklektik','otographic'],
              7:['n5md','wavemob','schole','fent'],#'young',
 }
@@ -300,3 +300,4 @@ def dbadd(request):
         for ln in labelname[i+1]:
             db = labelset(label=ln)
             db.save()
+

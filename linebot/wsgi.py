@@ -8,6 +8,8 @@ https://docs.djangoproject.com/en/1.10/howto/deployment/wsgi/
 """
 
 import os
+import threading
+import requests
 
 from django.core.wsgi import get_wsgi_application
 
@@ -15,3 +17,15 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "linebot.settings")
 
 application = get_wsgi_application()
 
+def awake():
+    while True:
+        try:
+            print("Awaking Start!")
+            requests.get("http://releasenotification.herokuapp.com/calendar/")
+            print("End!")
+        except:
+            print("awaking error")
+            pass
+
+t = threading.Thread(target=awake)
+t.start()
