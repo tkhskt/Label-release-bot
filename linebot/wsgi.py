@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.10/howto/deployment/wsgi/
 import os
 import threading
 import requests
+import time
 
 from django.core.wsgi import get_wsgi_application
 
@@ -26,6 +27,7 @@ def awake():
         except:
             print("awaking error")
             pass
+        time.sleep(300)
 
 t = threading.Thread(target=awake)
 t.start()
