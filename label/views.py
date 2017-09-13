@@ -64,7 +64,7 @@ labelname = {
              3:['ghostly international',"spinnin'",'wedidit','never slept'],#'revealed',
              4:['mad decent','r&s','ed banger','brainfeeder','luckyme'],
              5:['moose','anticon','orikami','ne','outlier'],
-             6:['king','gondwana','alphaversion','eklektik','otographic'],
+             6:['king','gondwana','alphaversion','otographic'],#'otographic'
              7:['n5md','wavemob','schole','fent'],#'young',
 }
 
