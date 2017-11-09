@@ -63,7 +63,7 @@ labelname = {
              2:['flau','progressive form','warp','planet mu','owsla'],
              3:['ghostly international',"spinnin'",'wedidit','never slept'],#'revealed',
              4:['mad decent','r&s','ed banger','brainfeeder','luckyme'],
-             5:['moose','anticon','orikami','ne','outlier'],
+             5:['moose','anticon','orikami','outlier'],#ne
              6:['king','gondwana','alphaversion','otographic'],#'otographic'
              7:['n5md','wavemob','schole','fent'],#'young',
 }
@@ -115,13 +115,13 @@ def labelcheck(request,page):
      res = 'OK' + page
      er = 'error' + page
      try:
-       for lb in labelname[int(page)]:
-         info = scrape().doscraping(lb)
-         if info['key']==1:
-           linetransmit(info['label'],info['title'],info['artist'],info['url'])
-           db = update(label=info['label'],url=info['url'].replace('\n複数のリリースがあります',''))
-           db.save()
-       return HttpResponse(res)
+        for lb in labelname[int(page)]:
+          info = scrape().doscraping(lb)
+          if info['key']==1:
+            linetransmit(info['label'],info['title'],info['artist'],info['url'])
+            db = update(label=info['label'],url=info['url'].replace('\n複数のリリースがあります',''))
+            db.save()
+        return HttpResponse(res)
      except:
        return HttpResponse(er)
 

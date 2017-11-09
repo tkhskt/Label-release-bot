@@ -1,7 +1,5 @@
 language: python
 python:
-  - "3.2"
-  - "3.3"
   - "3.6"
 env:
   - SECRET_KEY=&v&mt)^l*xc0o1tm2%pib8&v7i6b3(hjkeqz3!!&rhmmd@8l0m
