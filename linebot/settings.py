@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 import dj_database_url
-
+import pymysql
+pymysql.install_as_MySQLdb()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -83,11 +84,11 @@ WSGI_APPLICATION = 'linebot.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-        'USER': 'postgres',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'relbot',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'USER': 'root',
         'PASSWORD': 'Keita9156'
     }
 }
@@ -128,7 +129,7 @@ USE_TZ = True
 
 
 # 追加した
-DATABASES['default'] = dj_database_url.config()
+#DATABASES['default'] = dj_database_url.config()
 # 追加した
 ALLOWED_HOSTS = ['*']
 # -----------
