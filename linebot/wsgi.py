@@ -18,16 +18,16 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "linebot.settings")
 
 application = get_wsgi_application()
 
-def awake():
-    while True:
-        try:
-            print("Awaking Start!")
-            requests.get("http://releasenotification.herokuapp.com/calendar/")
-            print("End!")
-        except:
-            print("awaking error")
-            pass
-        time.sleep(300)
+#def awake():
+ #   while True:
+  #      try:
+   #         print("Awaking Start!")
+    #        requests.get("http://releasenotification.herokuapp.com/calendar/")
+     #       print("End!")
+      #  except:
+       #     print("awaking error")
+        #    pass
+       # time.sleep(300)
 
-t = threading.Thread(target=awake)
-t.start()
+#t = threading.Thread(target=awake)
+#t.start()

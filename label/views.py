@@ -1,3 +1,5 @@
+# coding:utf-8
+
 from label.scraping import scrape
 # Create your views here.
 from .models import releases

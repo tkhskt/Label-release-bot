@@ -17,9 +17,7 @@ pymysql.install_as_MySQLdb()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# いじった
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-# ここまで
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,12 +27,9 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = '&v&mt)^l*xc0o1tm2%pib8&v7i6b3(hjkeqz3!!&rhmmd@8l0m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-# コメントアウトした
 #ALLOWED_HOSTS = []
-# ここまで
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -128,10 +123,8 @@ USE_L10N = True
 USE_TZ = True
 
 
-# 追加した
 #DATABASES['default'] = dj_database_url.config()
-# 追加した
-ALLOWED_HOSTS = ['ec2-18-216-162-92.us-east-2.compute.amazonaws.com']
+ALLOWED_HOSTS = ['*']#['www.gericass.com','ec2-13-58-164-192.us-east-2.compute.amazonaws.com']
 # -----------
 
 # Static files (CSS, JavaScript, Images)
@@ -142,13 +135,11 @@ STATIC_URL = '/static/'
 
 
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')  # PROJECT_ROOTはBASE_DIRだった
-
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles') 
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# 追加した
 #STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # -------------
