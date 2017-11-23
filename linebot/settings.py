@@ -131,7 +131,7 @@ USE_TZ = True
 # 追加した
 #DATABASES['default'] = dj_database_url.config()
 # 追加した
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['ec2-18-216-162-92.us-east-2.compute.amazonaws.com']
 # -----------
 
 # Static files (CSS, JavaScript, Images)
