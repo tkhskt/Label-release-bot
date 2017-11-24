@@ -76,31 +76,28 @@ WSGI_APPLICATION = 'linebot.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-if os.getenv('BUILD_ON_TRAVIS', None):
-    SECRET_KEY = "SecretKeyForUseOnTravis"
-    DEBUG = False
-    TEMPLATE_DEBUG = True
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'travis_ci_db',
-            'USER': 'travis',
-            'PASSWORD': '',
-            'HOST': '127.0.0.1',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE':   'django.db.backends.mysql',
+        'NAME':     'relbot',
+        'USER':     'root',
+        'PASSWORD': '',
+        'HOST':     'localhost',
+        'PORT':     '',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'relbot',
-            'HOST': 'localhost',
-            'PORT': '3306',
-            'USER': 'root',
-            'PASSWORD': 'Keita9156'
-        }
-    }
+}
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'relbot',
+#        'HOST': 'localhost',
+#        'PORT': '3306',
+#        'USER': 'root',
+#        'PASSWORD': 'Keita9156'
+#    }
+#}
 
 
 # Password validation
