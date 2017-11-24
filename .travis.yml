@@ -1,10 +1,15 @@
 language: python
 python:
   - "3.6"
+services:
+  - mysql
 env:
   - SECRET_KEY=&v&mt)^l*xc0o1tm2%pib8&v7i6b3(hjkeqz3!!&rhmmd@8l0m
 install:
   - pip install -r requirements.txt
+before_script:
+  - mysql -e 'create database test;' -u root
+
 script:
   - python manage.py migrate
   - python manage.py test
