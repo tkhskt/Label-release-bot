@@ -268,33 +268,33 @@ def calendar(request):
 
 
 def lineidinput(request):
-    request_json = json.loads(request.body.decode('utf-8'))
-    p = "ok"
-    id =[]
-    for e in request_json['events']:
+    #request_json = json.loads(request.body.decode('utf-8'))
+    #p = "ok"
+    #id =[]
+    #for e in request_json['events']:
+#
+    #    if e['type'] == 'follow':
+    #       userid = e['source']['userId']
+    #       db = lineid(user=userid,toroku='off',kaijo="off",rec='off')
+    #       db.save()
+#
+    #    elif e['type'] == 'unfollow':
+    #       userid = e['source']['userId']
+#
+    #       delete = lineid.objects.filter(user=userid).first()
+    #       delete.delete()
+#
+    #    if e['type']=='message':
+    #        if e['message']['type']=='text':
+    #            rptoken = e['replyToken']
+    #            key = setLabel(e['message']['text'],e['source']['userId'],rptoken)
+    #            if key == 0:
+    #                data = wordcheck(e['message']['text'],rptoken)
+    #                reply(data)
+    #            else:
+    #                pass
 
-        if e['type'] == 'follow':
-           userid = e['source']['userId']
-           db = lineid(user=userid,toroku='off',kaijo="off",rec='off')
-           db.save()
-
-        elif e['type'] == 'unfollow':
-           userid = e['source']['userId']
-
-           delete = lineid.objects.filter(user=userid).first()
-           delete.delete()
-
-        if e['type']=='message':
-            if e['message']['type']=='text':
-                rptoken = e['replyToken']
-                key = setLabel(e['message']['text'],e['source']['userId'],rptoken)
-                if key == 0:
-                    data = wordcheck(e['message']['text'],rptoken)
-                    reply(data)
-                else:
-                    pass
-
-    return HttpResponse(p)
+    return HttpResponse("ok")
 
 
 def dbadd(request):
