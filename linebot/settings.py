@@ -92,10 +92,10 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'relbot',
-            'HOST': 'localhost',
-            'PORT': '3306',
+            'HOST': '127.0.0.1',
+            'PORT': '13306',
             'USER': 'root',
-            'PASSWORD': 'Keita9156'
+            'PASSWORD': 'mysql'
         }
     }
 
@@ -146,7 +146,10 @@ STATIC_URL = '/static/'
 
 
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles') 
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+print(os.path.join(PROJECT_ROOT, 'staticfiles'))
+print(os.environ)
+
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
