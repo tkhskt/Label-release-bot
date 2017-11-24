@@ -93,9 +93,9 @@ else:
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'relbot',
             'HOST': '127.0.0.1',
-            'PORT': '13306',
+            'PORT': '3306',
             'USER': 'root',
-            'PASSWORD': 'mysql'
+            'PASSWORD': 'Keita9156'
         }
     }
 
