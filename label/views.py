@@ -128,7 +128,8 @@ def labelcheck(request,page):
        return HttpResponse(er)
 
 
-
+def okview(request):
+    return HttpResponse("ok")
 
 
 def wordcheck(text,token):
@@ -284,9 +285,14 @@ def lineidinput(request):
            delete.delete()
 
         if e['type']=='message':
+            
             if e['message']['type']=='text':
                 rptoken = e['replyToken']
-                key = setLabel(e['message']['text'],e['source']['userId'],rptoken)
+                key = 0
+                try: 
+                    key = setLabel(e['message']['text'],e['source']['userId'],rptoken)
+                except:
+                    pass
                 if key == 0:
                     data = wordcheck(e['message']['text'],rptoken)
                     reply(data)

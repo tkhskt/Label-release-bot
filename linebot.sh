@@ -11,7 +11,7 @@ start() {
 
 stop() {
   echo "Stopping server..."
-  kill -TERM `cat $PIDFILE`
+  pkill -TERM `cat $PIDFILE`
   rm -f $PIDFILE
 }
 
